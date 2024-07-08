@@ -1,0 +1,25 @@
+.fondo{
+    background-image: url(../img/logo_buimon.png);
+    background-repeat: no-repeat;
+    background-size: 60%;
+    background-position: center;
+
+
+}
+.tabla{
+    text-align: center;
+}
+.general{
+   width: 100%;
+   height: 43rem;
+}
+table,th,td{
+    border: 1px solid;
+    border-collapse: collapse;
+
+}
+table{
+    width: 90%;
+    height: auto;
+    margin: auto;
+}

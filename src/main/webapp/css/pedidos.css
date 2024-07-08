@@ -1,0 +1,45 @@
+.fondo{
+    background-image: url(../img/logo_ruta.png);
+    background-repeat: no-repeat;
+    background-size: 60%;
+    background-position: center;
+}
+h1{
+    position: relative;
+    left: 30%;
+    font-size: 400%;
+}
+h2{
+    font-size: 200%;
+}
+.fecha{
+    width: 40%;
+    border-radius: 20px;
+}
+.sucursal{
+    width: 60%;
+    border-radius: 20px;
+}
+.asunto{
+    width: 80%;
+    height: 18rem;
+    border-radius: 20px;
+    font-size: 150%;
+}
+.general{
+  position: relative;
+  left: 10%;
+  opacity: 80%;
+
+
+
+}
+.enviar{
+    border-radius: 20px;
+    position: relative;
+    left: 65%;
+
+}
+.enviar:active{
+    background-color: #f92626;
+}

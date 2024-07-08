@@ -1,0 +1,274 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+
+}
+body{
+    background: url(../img/tiendacelulares.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+
+}
+.general{
+   opacity: 80%;
+    margin:5% 0%;
+    height: 43.5rem;
+}
+.arriba{
+    height: 35%;
+}
+.medio{
+    height: 35%;
+}
+.abajo{
+    height: 30%;
+}
+.distribuidor{
+    background: #f92626;
+    width: 80%;
+    height: 90%;
+    border-radius: 30px;
+    position: relative;
+    left: 10%;
+    top: 10%;
+}
+.sucursal{
+    background-color:#f92626 ;
+    width: 50%;
+    height: 80%;
+    border-radius: 30px;
+    position: relative;
+    left: 10%;
+    top: 10%;
+
+}
+.entrar{
+    background-color: #f92626;
+    width: 80%;
+    height: 90%;
+    border-radius: 25px;
+    position: relative;
+    left: 10%;
+}
+.buimon{
+
+    color: white;
+    width: 20%;
+    font-size: 2rem;
+    position: relative;
+    left: 10%;
+    top: 15%;
+}
+.tienda{
+
+    font-size: 4rem;
+    width: 50%;
+    position: relative;
+    left: 5%;
+    top: 15%;
+    color: white;
+}
+.grupo{
+
+    width: 20%;
+    position: relative;
+    bottom: 48%;
+    left: 70%;
+    color:white;
+}
+.log{
+
+    width: 20%;
+    position: relative;
+    left: 68%;
+    bottom: 45%;
+    border-radius: 20px;
+}
+.ruta{
+    width: 25%;
+    border-radius: 25px;
+    position: relative;
+    left: 10%;
+    top: 10%;
+}
+.suc{
+    width: 30%;
+    position: relative;
+    left: 50%;
+    bottom: 20%;
+    color: white;
+    font-size: 300%;
+
+}
+
+.empleados{
+    width: 10%;
+    height: 60%;
+    position: relative;
+    left: 90%;
+    bottom: 60%;
+}
+.as{
+    background-color:rgb(212, 22, 22);
+    height: 40%;
+    border-radius: 20px 0 0 20px;
+    color: black;
+
+}
+.ad{
+    background-color: rgb(212, 22, 22);
+    height: 40%;
+    border-radius: 20px 0 0 20px;
+    position: relative;
+    top: 20%;
+    color: black;
+}
+.ase{
+    font-size: 4rem;
+    position: relative;
+    left: 30%;
+    bottom: 20%;
+    opacity: 80%;
+}
+.adm{
+    font-size: 4rem;
+    position: relative;
+    left: 30%;
+    bottom: 20%;
+    opacity: 80%;
+}
+.ent{
+    color: rgb(238, 228, 38);
+    font-size: 5rem;
+    position: relative;
+    left: 25%;
+    top: 25%;
+}
+nav:active{
+    background-color: rgb(192, 22, 13);
+}
+@media screen and (max-width :1410px) {
+    .log{
+
+        bottom: 75%;
+
+    }
+    .grupo{
+        bottom: 75%;
+    }
+    .ent{
+        position: relative;
+        left: 15%;
+    }
+}
+@media screen and (max-width :1073px) {
+    .buimon{
+        font-size: 90%;
+    }
+    .ent{
+        font-size: 400%;
+    }
+    .ruta{
+        top: 30%;
+    }
+    .suc{
+        top: 0%;
+    }
+    .grupo{
+        bottom: 60%;
+    }
+    .log{
+        bottom: 60%;
+    }
+
+
+}
+@media screen and (max-width :870px){
+    .grupo{
+        display: none;
+    }
+    .buimon{
+
+        left: 70%;
+        top: 80%;
+        font-size: 120%;
+    }
+    .log{
+        bottom:40% ;
+    }
+    .ent{
+        font-size: 350%;
+    }
+    .suc{
+        font-size: 250%;
+        left: 40%;
+    }
+    .ase{
+        left: 10%;
+    }
+    .adm{
+        left: 10%;
+    }
+}
+@media screen and (max-width :678px){
+    .buimon{
+        display: none;
+    }
+    .tienda{
+        font-size: 200%;
+        width: 80%;
+        left: 20%;
+        top: 60%;
+    }
+    .log{
+        bottom:10%;
+        left: 35%;
+        width: 30%;
+    }
+    .suc{
+        display: none;
+    }
+    .ruta{
+        width: 60%;
+        left: 20%;
+        top:15%;
+    }
+    .ent{
+
+        font-size: 250%;
+    }
+    .ase,
+    .adm{
+        left: 0%;
+        font-size: 250%;
+        top: 10%;
+    }
+
+}
+@media screen and (max-width :516px){
+    .tienda{
+        font-size: 150%;
+        left: 25%;
+    }
+    .log{
+        top: 10%;
+    }
+    .ent{
+        font-size: 200%;
+        left: 20%;
+        top: 40%;
+    }
+}
+@media screen and (max-width :427px){
+    .tienda{
+        font-size: 120%;
+    }
+    .ent{
+        font-size: 150%;
+    }
+    .entrar{
+        font-size: 100%;
+    }
+}

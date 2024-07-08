@@ -1,0 +1,92 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{margin: 1%;
+
+}
+.general{
+    background-image: url(../img/fondoUsuario.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 43.5rem;
+}
+.info{
+    width: 80%;
+    height: 70%;
+    margin: 0 auto;
+    text-align: center;
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 450%;
+    color: #f92626;
+}
+.entradas{
+    width: 100%;
+    height: 30%;
+}
+nav{
+    width: 30%;
+    height: 60%;
+    background-color: #f92626;
+    float:left ;
+    margin: 0 10%;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 350%;
+    color: white;
+    opacity: 80%;
+}
+nav:active{
+    background-color: #b11818;
+}
+@media screen and (max-width:1050px){
+    nav{
+        font-size: 250%;
+        height: 45%;
+    }
+}
+
+    @media screen and (max-width:845px){
+        nav{
+            font-size: 200%;
+            height: 45%;
+         }
+            .info{
+                font-size: 400%;
+
+        }
+    }
+    @media screen and (max-width:675px){
+            nav{
+                font-size: 150%;
+                height: 40%;
+             }
+                .info{
+                    font-size: 350%;
+
+            }
+        }
+    @media screen and (max-width:500px){
+                .promociones{
+                   width: 50%;
+                   position: relative;
+                   left: 15%;
+                   bottom: 60%;
+
+                }
+                .productos{
+                    width: 50%;
+                    position: relative;
+                    left: 15%;
+                    top: 30%;
+                }
+                .info{
+                    font-size: 300%;
+                }
+            }
