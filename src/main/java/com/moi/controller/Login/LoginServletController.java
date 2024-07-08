@@ -24,10 +24,10 @@ public class LoginServletController extends HttpServlet {
             throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        String loginMessage = null;
+
 
         if (username.equalsIgnoreCase("santa") && password.equals("1234")) {
-            request.setAttribute("loginMessge", "acceso valido");
+            request.setAttribute("loginMessage", "acceso valido");
 
         }else {
             request.setAttribute("loginMessage","acceso invalido");
