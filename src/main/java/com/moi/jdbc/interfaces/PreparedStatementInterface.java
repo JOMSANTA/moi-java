@@ -11,6 +11,8 @@ public class PreparedStatementInterface {
     private static final String JDBC_USER = "root";
     private static final String JDBC_PASSWORD = "rootpassword";
 
+
+
     public  static  void  main(String[] args) {
         try {
             Connection connection = DriverManager

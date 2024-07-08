@@ -1,6 +1,7 @@
 package com.moi.controller.Login;
 
 
+import com.moi.dao.UserDAOImpl;
 import com.moi.model.UserModel;
 
 import javax.servlet.ServletException;
@@ -24,8 +25,9 @@ public class LoginServletController extends HttpServlet {
             throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        String loginMessage = null;
 
-
+        UserModel userModel = new UserDAOImpl().getUserByUsernameANDPassword(username, password);
         if (username.equalsIgnoreCase("santa") && password.equals("1234")) {
             request.setAttribute("loginMessage", "acceso valido");
 
