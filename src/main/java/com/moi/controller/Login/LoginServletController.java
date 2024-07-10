@@ -28,6 +28,7 @@ public class LoginServletController extends HttpServlet {
 
         if (username.equalsIgnoreCase("santa") && password.equals("1234")) {
             request.setAttribute("loginMessage", "acceso valido");
+            request.getRequestDispatcher("/WEB-INF/views/adviserOptions/adviserOption.jsp").forward(request, response);
 
         }else {
             request.setAttribute("loginMessage","acceso invalido");
