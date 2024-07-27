@@ -1,0 +1,79 @@
+public List<InventoryModel> getAllInventory(String idProducto, String producto, String colorProducto,
+                                                        int numeroExistencias, int imeiProducto, Date fechaLimiteVenta, String tipoDeProducto)
+   {
+        InventoryModel inventoryModel= null;
+        String selectQuery = "SELECT * FROM inventario_oficina";
+
+        try (Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)){
+
+
+            preparedStatement.setString(1, idProducto);
+            preparedStatement.setString(2, producto);
+            preparedStatement.setString(3, colorProducto);
+            preparedStatement.setInt(4, numeroExistencias);
+            preparedStatement.setInt(5, imeiProducto);
+            preparedStatement.setDate(6, fechaLimiteVenta);
+            preparedStatement.setString(7, tipoDeProducto);
+
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()){
+                inventoryModel= new InventoryModel();
+                inventoryModel.setIdProducto(resultSet.getString("idProducto"));
+                inventoryModel.setProducto(resultSet.getString("producto"));
+                inventoryModel.setColorProducto(resultSet.getString("colorProducto"));
+                inventoryModel.setNumeroExistencias(resultSet.getShort("numeroExistencias"));
+                inventoryModel.setImeiProducto(resultSet.getLong("imeiProducto"));
+                inventoryModel.setFechaLimiteVenta(resultSet.getDate("fechaLimiteVenta"));
+                inventoryModel.setTipoDeProducto(resultSet.getString("tipoDeProducto"));
+
+
+            }
+
+        }catch (SQLException e) {
+            System.err.println("InventoryDAOImpl failed to select inventory " + e.getMessage());
+   }
+        return List.of();
+
+
+
+
+
+
+    @Override
+    public InventoryModel geProductByName(String producto) {
+        return null;
+    }
+
+    @Override
+    public InventoryModel getProductByColor(String colorProducto) {
+        return null;
+    }
+
+    @Override
+    public InventoryModel getProductById(String idProducto) {
+        return null;
+
+    }
+
+    @Override
+    public InventoryModel getProductByImei(int imeiProducto) {
+        return null;
+    }
+
+    @Override
+    public void deleteProduct(String idProducto) {
+
+    }
+
+    @Override
+    public void insertProduct(InventoryModel model) {
+
+    }
+
+    @Override
+    public void updateProduct(String idProducto, InventoryModel model) {
+
+    }
