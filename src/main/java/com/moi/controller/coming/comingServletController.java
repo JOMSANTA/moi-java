@@ -1,19 +1,18 @@
+package com.moi.controller.coming;
 
-package com.moi.coming;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 
-
 @WebServlet("/comings")
-public class ComingServletController extends HttpServlet {
+public class comingServletController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        request.getRequestDispatcher("/WEB-INF/views/comings/coming.jsp");
+        request.getRequestDispatcher("/WEB-INF/views/comings/coming.jsp").forward(request, response);
     }
 }

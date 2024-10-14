@@ -51,8 +51,8 @@ public class InventoryModel {
         return imeiProducto;
     }
 
-    public void setImeiProducto(Long imeiProducto) {
-        this.producto = producto;
+    public void setImeiProducto(int imeiProducto) {
+        this.imeiProducto = imeiProducto;
     }
 
     public Date getFechaLimiteVentas() {
@@ -113,6 +113,6 @@ public class InventoryModel {
     }
 
     public static void insertProcuct(Connection connection){
-        String query = "INSERT INTO user (idProducto, producto, colorProducto, numeroExistencias, imeiProducto, fechaLimiteVenta, tipoDeProducto) VALUES(?,?,?,?,?,?,?);"
+        String query = "INSERT INTO user (idProducto, producto, colorProducto, numeroExistencias, imeiProducto, fechaLimiteVenta, tipoDeProducto) VALUES(?,?,?,?,?,?,?);";
     }
 }

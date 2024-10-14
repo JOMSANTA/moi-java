@@ -54,6 +54,7 @@ public class InventoryDAOImpl implements InventoryDAO{
 
     @Override
     public List<InventoryModel> getAllInventory() {
+        String insertQuery = "SELECT * FROM moi.inventario_oficina;";
         return List.of();
     }
 
