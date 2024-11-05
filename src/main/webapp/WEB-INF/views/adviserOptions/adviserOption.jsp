@@ -17,7 +17,7 @@
             <a href="promotions"><nav class="Promociones">Promociones</nav></a>
             <a href="https://tienda.claro.com.co/?gad_source=1&gclid=CjwKCAjwvvmzBhA2EiwAtHVrb0h3OYLc3eQ-lduE5O-aThNUTTB1aA6Tl2a8iDPsK4EZry5pQ6iZTBoC09YQAvD_BwE"><nav class="Productos">Productos</nav></a>
             <a href="comings"><nav class="Priorizar">Priorizar venta</nav></a>
-            <a href="pedidos"><nav class="solicitudes">Enviar solicitudes</nav></a>
+            <a href="emails"><nav class="solicitudes">Enviar solicitudes</nav></a>
         </div>
     </div>
 

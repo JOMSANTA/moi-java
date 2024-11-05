@@ -17,6 +17,7 @@
             <input type="text" name="apellidos" id="apellidos" placeholder="apellidos"><br>
             <input type="number" name="documento" id="documento" placeholder="numero documento"><br>
             <input type="email" name="correo" id="correo" placeholder="correo"><br>
+            <input type="number" name="cel" id="cel" placeholder="num celular"><br>
             <input type="text" name="cargo" id="cargo" placeholder="cargo"><br>
             <label for="fecha_nacimiento">Fecha nacimiento</label>
             <input type="date" name="fechaNacimiento" id="fechaNacimiento" placeholder="fecha nacimiento"><br>

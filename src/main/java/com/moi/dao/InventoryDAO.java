@@ -11,6 +11,7 @@ public interface InventoryDAO {
     InventoryModel getProductById(String idProducto);
     InventoryModel geProductByName(String producto);
     InventoryModel getProductByImei(int imeiProducto);
+    InventoryModel getProductByCodigo(int codigo);
     InventoryModel getProductByColor(String colorProducto);
     void  updateProduct (String idProducto, InventoryModel model);
     void  deleteProduct (String idProducto);

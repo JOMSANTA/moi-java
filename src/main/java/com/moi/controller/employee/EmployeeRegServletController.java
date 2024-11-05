@@ -1,4 +1,4 @@
-package com.moi.controller.pedidos;
+package com.moi.controller.employee;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -7,10 +7,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/pedidos")
-public class PedidosServletController extends HttpServlet {
+@WebServlet("/employeesRegister")
+public class EmployeeRegServletController extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/views/pedidos/pedido.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/employeesRegister/employee-register.jsp").forward(request, response);
     }
 }

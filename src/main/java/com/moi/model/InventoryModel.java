@@ -4,23 +4,22 @@ import java.sql.*;
 
 public class InventoryModel {
 
-    private String idproducto;
+    private String id;
     private String producto;
-    private String colorProducto;
+    private String color;
     private int numeroExistencias;
-    private int imeiProducto;
+    private int codigo;
+    private long imei;
     private Date fechaLimiteVenta;
     private String tipoDeProducto;
 
-
-
-    public String getIdProducto() {
-        return idproducto;
+    public InventoryModel() {
     }
 
-    public void setIdProducto(String idproducto) {
-        this.idproducto = idproducto;
-    }
+
+    public String getId() {return id;}
+
+    public void setId(String id) { this.id= id;}
 
     public String getProducto() {
         return producto;
@@ -30,30 +29,25 @@ public class InventoryModel {
         this.producto = producto;
     }
 
-    public String getColorProducto() {
-        return colorProducto;
+    public String getColor() {return color;}
 
+    public void setColor(String color) { this.color = color; }
+
+    public short getNumeroExistencias() { return (short) numeroExistencias;
     }
 
-    public void setColorProducto(String colorProducto) {
-        this.colorProducto = colorProducto;
+    public void setNumeroExistencias(short numeroExistencias) {
+        this.numeroExistencias =  numeroExistencias;
+    }
+    public int getCodigo(){return codigo;}
+
+    public void setCodigo(int codigo){this.codigo= codigo;}
+
+    public long getImei() {
+        return imei;
     }
 
-    public int getNumeroExistencias() {
-        return numeroExistencias;
-    }
-
-    public void setNumeroExistencias(Short numeroExistencias) {
-        this.numeroExistencias = numeroExistencias;
-    }
-
-    public int getImeiProducto() {
-        return imeiProducto;
-    }
-
-    public void setImeiProducto(int imeiProducto) {
-        this.imeiProducto = imeiProducto;
-    }
+    public void setImei(long imei) { this.imei = imei; }
 
     public Date getFechaLimiteVentas() {
         return fechaLimiteVenta;
@@ -74,45 +68,4 @@ public class InventoryModel {
 
 
 
-    public static void Consultadb(Connection connection){
-        String query = "SELECT * FROM inventario_oficina";
-        Statement stmt ;
-        ResultSet rs;
-        String idProducto;
-        String producto;
-        String colorProducto;
-        int numeroExistencias;
-        int imeiProducto;
-        Date fechaLimiteVenta;
-        String tipoDeProducto;
-
-        try {
-            stmt = connection.createStatement();
-            rs = stmt.executeQuery(query);
-
-            while (rs.next()){
-                idProducto = rs.getString("idProducto");
-                producto = rs.getString("producto");
-                colorProducto = rs.getString("colorProducto");
-                numeroExistencias= rs.getInt("numeroExistencias");
-                imeiProducto= rs.getInt("imeiProducto");
-                fechaLimiteVenta= rs.getDate("fechaLimiteVenta");
-                tipoDeProducto= rs.getString("tipoDeProducto");
-
-                System.out.println("idProducto:" +idProducto+ " , producto:" +producto+ " , colorProducto:" +colorProducto+ " , numeroExistencias:" +numeroExistencias+ " , imeiProducto:" +imeiProducto+
-                        " , fechaLimiteVenta:" +fechaLimiteVenta+ " , tipoDeProducto:" +tipoDeProducto);
-
-            }
-
-
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static void insertProcuct(Connection connection){
-        String query = "INSERT INTO user (idProducto, producto, colorProducto, numeroExistencias, imeiProducto, fechaLimiteVenta, tipoDeProducto) VALUES(?,?,?,?,?,?,?);";
-    }
 }

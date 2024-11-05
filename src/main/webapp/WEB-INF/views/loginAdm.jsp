@@ -9,7 +9,7 @@
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css?" />
-    <title>Login</title>
+    <title>LoginAdm</title>
 </head>
 <body>
 
@@ -20,6 +20,7 @@
 
           <div class="login-card padding-horizontal--48">
             <h2>Bienvenido </h2>
+
 
             <p class="paragraph">Ingresa tus datos</p>
 
@@ -32,7 +33,7 @@
                 <% } %>
             </div>
 
-            <form class="login-form" action="login" method="post">
+            <form class="login-form" action="loginAdm" method="post">
               <div class="field">
                 <label for="username">Nombre :   </label>
                 <input
@@ -62,7 +63,8 @@
                 </div>
              </form>
                 <div class="footer-link padding-top--12">
-          </div>
+
+          </div><h3>PERFIL ADMINISTRATIVO </h3>
 <h3>BUIMON.Ltda</h3
         </div>
       </section>

@@ -13,15 +13,17 @@
                    <div class="general">
                        <h1 class="factura">Factura</h1>
 
-                       <label for="fecha_factura">Fecha factura</label>
-                       <input type="datetime-local" name="fechaFactura" id="fechaFactura" placeholder="fecha factura"><br>
-                       <input type="number" name="idCliente" id="idCliente" placeholder="id cliente"><br>
-                       <input type="text" name="nombreCliente" id="nombreCliente" placeholder="Nombre cliente"><br>
-                       <input type="number" name="idProducto" id="idProducto" placeholder="id producto"><br>
-                       <input type="text" name="nombreProducto" id="nombreProducto"placeholder="nombre producto"><br>
-                       <input type="text" name="imeiProducto" id="imeiProducto"placeholder="imei"><br>
-                       <input type="number" name="cantidadProductos" id="cantidadProductos" placeholder="cantidad producto"><br>
-                       <input type="number" name="valorUnitario" id="valorUnitario" placeholder="valor_unitario"><br>
+                       <label for="fecha">Fecha</label>
+                       <input type="datetime-local" name="fecha" id="fecha" placeholder="fecha"><br>
+                       <input type="text" name="nombre" id="nombre" placeholder="Nombre"><br>
+                       <input type="number" name="documento" id="documento" placeholder="Numero documento"><br>
+                       <input type="number" name="factura" id="factura" placeholder="Numero factura"><br>
+                       <input type="int" name="codigoEmpleado" id="codigoEmpleado"placeholder="codigoEmpleado"><br>
+                       <input type="text" name="producto" id="producto"placeholder="Producto"><br>
+                       <input type="number" name="codigoProducto" id="codigoProducto" placeholder="codigo"><br>
+                       <input type="text" name="imei" id="imei"placeholder="imei"><br>
+                       <input type="number" name="cantidad" id="cantidad" placeholder="cantidad"><br>
+                       <input type="number" name="valorUnitario" id="valorUnitario" placeholder="valor unitario"><br>
                        <input type="number" name="subTotal" id="subTotal" placeholder="sub total"><br>
                        <input type="number" name="iva" id="iva" placeholder="iva"><br>
                        <input type="number" name="total" id="total" placeholder="total"><br>

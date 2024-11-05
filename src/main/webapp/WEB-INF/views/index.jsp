@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-escalable=np, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css?">
-    <title>Maquetacion Inicio</title>
+    <link rel="stylesheet" href=${pageContext.request.contextPath}/css/index.css?">
+    <title>Inicio</title>
 
 </head>
 
@@ -27,7 +27,7 @@
     </section>
     <section class="empleados">
       <a href="login"><nav class="as"><h2 class="ase">as</h2></nav></a>
-      <a href="opcAdm.jsp"><nav class="ad"><h2 class="adm">ad</h2></nav></a>
+      <a href="loginAdm"><nav class="ad"><h2 class="adm">ad</h2></nav></a>
     </section>
   </div>
   <div class="abajo">

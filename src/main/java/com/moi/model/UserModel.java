@@ -74,7 +74,7 @@ public class UserModel {
             if (resultSet.next()) {
                 userModel = new UserModel();
                 userModel.setId(resultSet.getLong("id"));
-                userModel.setFirstName(resultSet.getString("Name"));
+                userModel.setFirstName(resultSet.getString("FirstName"));
                 userModel.setLastName(resultSet.getString("LastName"));
 
             }

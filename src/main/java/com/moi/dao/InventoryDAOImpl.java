@@ -2,17 +2,15 @@ package com.moi.dao;
 
 import com.moi.model.InventoryModel;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
-public class InventoryDAOImpl implements InventoryDAO{
+public class InventoryDAOImpl implements InventoryDAO {
 
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/moi";
     private static final String JDBC_USER = "root";
-    private static final String JDBC_PASSWORD = "rootpassword";
+    private static final String JDBC_PASSWORD = "root123";
 
     static {
         try {
@@ -20,13 +18,11 @@ public class InventoryDAOImpl implements InventoryDAO{
         } catch (ClassNotFoundException e) {
             System.err.println("falla en el jbdc driver");
         }
-
     }
+
     private Connection getConnection() throws SQLException {
-        return  DriverManager.getConnection(JDBC_URL,JDBC_USER,JDBC_PASSWORD);
+        return DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
     }
-
-
 
 
     @Override
@@ -36,17 +32,18 @@ public class InventoryDAOImpl implements InventoryDAO{
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
 
-            preparedStatement.setString(1, model.getIdProducto());
+            preparedStatement.setString(1, model.getId());
             preparedStatement.setString(2, model.getProducto());
-            preparedStatement.setString(3, model.getColorProducto());
+            preparedStatement.setString(3, model.getColor());
             preparedStatement.setInt(4, model.getNumeroExistencias());
-            preparedStatement.setInt(5, model.getImeiProducto());
+            preparedStatement.setInt(4, model.getCodigo());
+            preparedStatement.setLong(5, model.getImei());
             preparedStatement.setDate(6, model.getFechaLimiteVentas());
             preparedStatement.setString(7, model.setTipoDeProducto());
             preparedStatement.executeUpdate();
 
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             System.err.println("error insertando producto : " + e.getMessage());
         }
 
@@ -54,8 +51,38 @@ public class InventoryDAOImpl implements InventoryDAO{
 
     @Override
     public List<InventoryModel> getAllInventory() {
-        String insertQuery = "SELECT * FROM moi.inventario_oficina;";
-        return List.of();
+        List<InventoryModel> inventories = new ArrayList<>();
+        String selectQuery = "SELECT * FROM inventario_oficina;";
+
+
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                InventoryModel inventoryModel = new InventoryModel();
+                inventoryModel.setId(resultSet.getString("id"));
+                inventoryModel.setProducto(resultSet.getString("producto"));
+                inventoryModel.setColor(resultSet.getString("Color"));
+                inventoryModel.setNumeroExistencias((short) resultSet.getInt("numeroExistencias"));
+                inventoryModel.setImei((long) resultSet.getInt("imei"));
+                inventoryModel.setCodigo((int)resultSet.getInt("codigo"));
+                inventoryModel.setFechaLimiteVenta(resultSet.getDate("fechaLimiteVenta"));
+                inventoryModel.setTipoDeProducto(resultSet.getString("tipoDeProducto"));
+
+
+                // Resto de atributos
+
+
+                inventories.add(inventoryModel);
+
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return inventories;
     }
 
     @Override
@@ -74,6 +101,11 @@ public class InventoryDAOImpl implements InventoryDAO{
     }
 
     @Override
+    public InventoryModel getProductByCodigo(int codigo) {
+        return null;
+    }
+
+    @Override
     public InventoryModel getProductByColor(String colorProducto) {
         return null;
     }
@@ -88,5 +120,9 @@ public class InventoryDAOImpl implements InventoryDAO{
 
     }
 
-
 }
+
+
+
+
+
