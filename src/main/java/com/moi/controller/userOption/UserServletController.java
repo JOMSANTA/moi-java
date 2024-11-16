@@ -14,4 +14,5 @@ public class UserServletController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
      request.getRequestDispatcher("/WEB-INF/views/userOptions/userOption.jsp") .forward(request, response);
     }
+
 }

@@ -1,5 +1,6 @@
 package com.moi.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class EmployeeModel {
@@ -10,7 +11,7 @@ public class EmployeeModel {
   private long celular;
   private String correo;
   private  String cargo;
-  private Date fechaNacimiento;
+  private LocalDate fechaNacimiento;
   private String sucursal;
 
     public EmployeeModel() {
@@ -70,11 +71,11 @@ public class EmployeeModel {
         this.cargo = cargo;
     }
 
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
+    public LocalDate getFechaNacimiento() {
+        return (LocalDate) fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

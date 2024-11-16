@@ -1,4 +1,5 @@
-package com.moi.controller.userAuthorized;
+package com.moi.controller.employeeAuthorized;
+
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,8 +12,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-@WebServlet("/usersAuthorized")
-public class UserAuthorizedServletController extends HttpServlet {
+@WebServlet("/employeesAuthorized")
+public class EmployeeAuthorizedServletController extends HttpServlet {
+
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/moi";
     private static final String JDBC_USER = "root";
     private static final String JDBC_PASSWORD = "rootpassword";
@@ -30,26 +32,8 @@ public class UserAuthorizedServletController extends HttpServlet {
     }
 
 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("WEB-INF/views/usersAuthorized/userAuthorized.jsp").forward(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String first_name = request.getParameter("first_name");
-        String last_name = request.getParameter("last_name");
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-
-        request.getRequestDispatcher("").forward(request,response);
-
-//prueba verificacion si esta obteniendo los datos
- /*       System.out.println("nombre es :"+ first_name);
-        System.out.println("apellido es :"+ last_name);
-        System.out.println("username es :"+ username);
-        System.out.println("password es :"+ password);
-*/
+       request.getRequestDispatcher("/WEB-INF/views/employeesAuthorized/employeeAuthorized.jsp").forward(request,response);
     }
 }

@@ -47,8 +47,8 @@ public class AccountDAOImpl implements AccountDAO {
                 accountingModel.setDescripcion(resultSet.getString("descripcion"));
                 accountingModel.setDetalle(resultSet.getString("detalle"));
                 accountingModel.setCantidad(resultSet.getInt("cantidad"));
-                accountingModel.setValorUnitario(resultSet.getInt("valorUnitario"));
-                accountingModel.setValorTotal(resultSet.getInt("valorTotal"));
+                accountingModel.setIngresos(resultSet.getInt("ingresos"));
+                accountingModel.setEgresos(resultSet.getInt("Egresos"));
 
                 accounting.add(accountingModel);
             }

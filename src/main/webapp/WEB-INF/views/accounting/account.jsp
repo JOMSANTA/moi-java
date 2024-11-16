@@ -18,13 +18,14 @@
 <h1 class="tabla">Contabilidad</h1>
 <table>
  <tr>
-   <th>Fecha AAMMDD</th>
+   <th>AAMMDD</th>
    <th>Factura</th>
    <th>Descripcion</th>
    <th>Detalle</th>
-   <th>Cantidad</th>
-   <th>ValorUnitario</th>
-   <th>ValorTotal</th>
+   <th>Cant</th>
+   <th>Ingresos</th>
+   <th>Egresos</th>
+   <th>Total</th>
  </tr>
  <% for (int i = 0; i < accounting.size(); i ++) { %>
   <% AccountingModel account = (AccountingModel) accounting.get(i); %>
@@ -34,9 +35,11 @@
     <td><%= account.getDescripcion() %></td>
     <td><%= account.getDetalle() %></td>
     <td><%= account.getCantidad() %></td>
-    <td><%= account.getValorUnitario() %></td>
-    <td><%= account.getValorTotal() %></td>
+    <td><%= account.getIngresos() %></td>
+    <td><%= account.getEgresos() %></td>
+    <td><%= account.getTotal() %></td>
  </tr>
+
   <% } %>
 
 </table>

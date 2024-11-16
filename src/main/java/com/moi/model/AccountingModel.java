@@ -9,8 +9,9 @@ public class AccountingModel {
     private String descripcion;
     private String detalle;
     private int cantidad;
-    private int valorUnitario;
-    private int valorTotal;
+    private int ingresos;
+    private int egresos;
+    private int total;
 
     public AccountingModel() {
     }
@@ -55,19 +56,26 @@ public class AccountingModel {
         this.cantidad = cantidad;
     }
 
-    public int getValorUnitario() {
-        return valorUnitario;
+    public int getIngresos() {
+        return ingresos;
     }
 
-    public void setValorUnitario(int valorUnitario) {
-        this.valorUnitario = valorUnitario;
+    public void setIngresos(int ingresos) {
+        this.ingresos = ingresos;
     }
 
-    public int getValorTotal() {
-        return valorTotal;
+    public int getEgresos() {
+        return egresos;
     }
 
-    public void setValorTotal(int valorTotal) {
-        this.valorTotal = valorTotal;
+    public void setEgresos(int egresos) {
+        this.egresos = egresos;
+    }
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
     }
 }

@@ -1,8 +1,11 @@
 package com.moi.dao;
 
+import com.moi.controller.employee.EmployeeServletController;
 import com.moi.model.EmployeeModel;
 
+import javax.swing.*;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +30,34 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public void insertEmployee(EmployeeModel model) {
+        String insertQuery = "INSERT INTO moi.employees\n" +
+                "(documento, nombres, apellidos, celular, correo, cargo, fechaNacimiento, sucursal)\n" +
+                "VALUES(?,?,?,?,?,?,?,?);";
+            ResultSet rs = null;
 
-       // String insertQuery= "INSERT INTO empleados (`documento`, `nombres`, `apellidos`, `celular`, `correo`, `cargo`, `fechaNacimiento`, `sucursal`) VALUES ('?', '?', '?', '?', '?', '?', '?', '?');";
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
+
+            preparedStatement.setInt(1, model.getDocumento());
+            preparedStatement.setString(2, model.getNombres());
+            preparedStatement.setString(3, model.getApellidos());
+            preparedStatement.setLong(4, model.getCelular());
+            preparedStatement.setString(5, model.getCorreo());
+            preparedStatement.setString(6, model.getCargo());
+            preparedStatement.setString(7, model.getFechaNacimiento().toString());
+            preparedStatement.setString(8, model.getSucursal());
+
+
+
+            preparedStatement.executeUpdate();
+
+
+
+
+        } catch (SQLException e) {
+            System.err.println("UserDAOImpl fallo para insertar empleado: " + e.getMessage());
+
+        }
 
     }
 
@@ -52,10 +81,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                 employeeModel.setCelular(resultSet.getLong("celular"));
                 employeeModel.setCorreo(resultSet.getString("correo"));
                 employeeModel.setCargo(resultSet.getString("cargo"));
-                employeeModel.setFechaNacimiento(resultSet.getDate("fechaNacimiento"));
+                String fecha= resultSet.getString("fechaNacimiento");
+                employeeModel.setFechaNacimiento(LocalDate.parse(fecha));
                 employeeModel.setSucursal(resultSet.getString("sucursal"));
 
                 employees.add(employeeModel);
+
             }
 
         } catch (SQLException e) {

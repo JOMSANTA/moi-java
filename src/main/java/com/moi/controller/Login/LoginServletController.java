@@ -33,7 +33,7 @@ public class LoginServletController extends HttpServlet {
         }else {
             request.setAttribute("loginMessage","acceso invalido");
         }
-        request.getRequestDispatcher("/WEB-INF/views/loginAdm.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
 
 
 

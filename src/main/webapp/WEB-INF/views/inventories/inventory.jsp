@@ -8,14 +8,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventario</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/inventory.css?">
+    <link rel="stylesheet" href= "${pageContext.request.contextPath}/css/inventory.css?">
 </head>
 <body>
 
     <% List inventories  = (List) request.getAttribute("inventories"); %>
 
-    <div class="fondo">
-        <form action="">
+    <div class="fondo">     <form action="">
             <div class="general">
             <h1 class="tabla"> Inventario sucursal</h1>
             <table>
@@ -39,9 +38,11 @@
                      <td><%= inventory.getNumeroExistencias() %></td
                 </tr>
                 <% } %>
-            </table><a href="queries"><nav class="buscar">Buscar</nav></a>
-            </table><a href=""><nav class="agregar">Agregar</nav></a>
-            </table><a href=""><nav class="actualizar">Actualizar</nav></a>
+
+    </table><a href="queries"><nav class="buscar">Buscar</nav></a>
+    </table><a href=""><nav class="agregar">Agregar</nav></a>
+    </table><a href=""><nav class="actualizar">Actualizar</nav></a>
+
             </div>
 
         </form>

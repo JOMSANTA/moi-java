@@ -15,10 +15,10 @@
 
 <% List employees = (List)  request.getAttribute("employees"); %>
 
-<div class= "fondo">
-  <div class= "general">
-  <h1 class="tabla"> Empleados</h1>
-  <Table>
+<div  class= "fondo">
+<div  class= "general">
+<h1 class="tabla"> Empleados</h1>
+  <Table  >
    <tr>
                        <th>documento</th>
                        <th>nombres</th>
@@ -44,6 +44,9 @@
                                         <td><%= employee.getSucursal() %></td
                                    </tr>
                                    <% } %>
+                                    </table><a href=""><nav class="buscar">Buscar</nav></a>
+                                    </table><a href="employeesRegister"><nav class="agregar">Insertar</nav></a>
+                                    </table><a href=""><nav class="actualizar">Actualizar</nav></a>
 
                                </div>
    </Table>

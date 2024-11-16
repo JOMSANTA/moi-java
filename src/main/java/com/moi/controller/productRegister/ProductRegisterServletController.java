@@ -18,11 +18,11 @@ public class ProductRegisterServletController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String idProducto = request.getParameter("idProducto");
+        String id = request.getParameter("id");
         String producto = request.getParameter("producto");
-        String colorProducto = request.getParameter("colorProducto");
+        String color = request.getParameter("color");
         int numeroExistencias = Integer.parseInt(request.getParameter("numeroExistencias"));
-        int imeiProducto = Integer.parseInt(request.getParameter("imeiProducto"));
+        int imei = Integer.parseInt(request.getParameter("imei"));
         String fechaLimiteVenta = request.getParameter("fechaLimiteVenta");
         String tipoDeProducto = request.getParameter("tipoDeProducto");
 
