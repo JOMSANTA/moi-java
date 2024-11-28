@@ -4,71 +4,43 @@ import java.util.Date;
 
 public class ProductModel {
 
-    private String idProducto;
-    private String producto;
-    private String colorProducto;
-    private int numeroExistencias;
-    private int imeiProducto;
-    private Date fechaLimiteVenta;
-    private String tipoDeProducto;
+    private Long id;
+    private String name;
+    private String color;
+    private long imei;
 
     public ProductModel() {
     }
 
-    public String getIdProducto() {
-        return idProducto;
+    public long getImei() {
+        return imei;
     }
 
-    public void setIdProducto(String idProduccto) {
-        this.idProducto = idProduccto;
+    public void setImei(long imei) {
+        this.imei = imei;
     }
 
-    public String getProducto() {
-        return producto;
+    public Long getId() {
+        return id;
     }
 
-    public void setProducto(String producto) {
-        this.producto = producto;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getColorProducto() {
-        return colorProducto;
+    public String getName() {
+        return name;
     }
 
-    public void setColorProducto(String colorProducto) {
-        this.colorProducto = colorProducto;
+    public void setName(String name) {
+        this.name = name;
     }
 
-
-    public int getNumeroExistencias() {
-        return numeroExistencias;
+    public String getColor() {
+        return color;
     }
 
-    public void setNumeroExistencias(int numeroExistencias) {
-        this.numeroExistencias = numeroExistencias;
-    }
-
-    public java.sql.Date getFechaLimiteVenta() {
-        return (java.sql.Date) fechaLimiteVenta;
-    }
-
-    public void setFechaLimiteVenta(Date fechaLimiteVenta) {
-        this.fechaLimiteVenta = fechaLimiteVenta;
-    }
-
-    public int getImeiProducto() {
-        return imeiProducto;
-    }
-
-    public void setImeiProducto(int imeiProducto) {
-        this.imeiProducto = imeiProducto;
-    }
-
-    public String getTipoDeProducto() {
-        return tipoDeProducto;
-    }
-
-    public void setTipoDeProducto(String tipoDeProducto) {
-        this.tipoDeProducto = tipoDeProducto;
+    public void setColor(String color) {
+        this.color = color;
     }
 }

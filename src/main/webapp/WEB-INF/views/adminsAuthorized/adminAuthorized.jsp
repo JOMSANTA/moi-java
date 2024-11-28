@@ -3,12 +3,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>userAuthorized</title>
+    <title>adminAuthorized</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/userAuthorized.css?">
 </head>
 <body>
  <div class="fondo">
-     <form class="authorized-form" action="userAuthorized" method="post">
+     <form class="authorized-form" action="adminsAuthorized" method="post">
      <div class="general">
          <h1 class="autorizar">Autorizar administracion</h1>
          <input type="text" name="first_name" id="first_name" placeholder="Nombre"><br>

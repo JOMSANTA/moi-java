@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
 </head>
 <body>
  <div class="fondo">
-     <form class="authorized-form" action="employeeAuthorized" method="post">
+     <form action="employeesAuthorized" method="post" class="authorized-form">
      <div class="general">
          <h1 class="autorizar">Autorizar empleado</h1>
          <input type="text" name="first_name" id="first_name" placeholder="Nombre"><br>

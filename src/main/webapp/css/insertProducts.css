@@ -1,0 +1,92 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+body{
+
+}
+h1{
+text-align: center;
+font-size:350%;
+}
+.fondo{
+background-image: url(../img/logo_buimon.png);
+background-repeat: no-repeat;
+background-position:center;
+background-size:60% ;
+width: 100%;
+height: 44.5rem;
+}
+
+.general{
+    background-color: rgba(255, 255, 255, 0.7);
+    width:70%;
+    position: relative;
+    top: 5rem;
+    margin: auto;
+
+
+}
+
+input{
+    width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: 120%;
+   border-radius: 10px;
+}
+
+
+
+.Atras{
+width: 50%;
+height: 80%;
+background-color: #b11818;
+display:flex;
+border-radius:20px;
+position: relative;
+right: 5%;
+top: 20%;
+justify-content:center;
+align-items:center;
+color: white;
+font-size:150%;
+
+}
+
+.Salir{
+background-color:  #b11818;
+justify-content:center;
+align-items:center;
+display:flex;
+border-radius:20px;
+width: 50%;
+height: 80%;
+position: relative;
+left: 66%;
+bottom: 60%;
+color: white;
+font-size:150%;
+
+}
+nav:active{
+    background-color:#f92626;
+}
+
+.env:active{
+background-color: #b11818;
+}
+
+.ex{
+background-color:rgba(255, 255, 255, 0.7);
+width: 90%;
+height:2rem;
+}
+
+.env{
+background-color: #f92626;
+}
+

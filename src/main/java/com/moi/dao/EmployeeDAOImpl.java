@@ -31,9 +31,9 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public void insertEmployee(EmployeeModel model) {
         String insertQuery = "INSERT INTO moi.employees\n" +
-                "(documento, nombres, apellidos, celular, correo, cargo, fechaNacimiento, sucursal)\n" +
-                "VALUES(?,?,?,?,?,?,?,?);";
-            ResultSet rs = null;
+                "(documento, nombres, apellidos, codigo, celular, correo, cargo, fechaNacimiento, sucursal)\n" +
+                "VALUES(?,?,?,?,?,?,?,?,?);";
+        ResultSet rs = null;
 
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
@@ -41,21 +41,19 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             preparedStatement.setInt(1, model.getDocumento());
             preparedStatement.setString(2, model.getNombres());
             preparedStatement.setString(3, model.getApellidos());
-            preparedStatement.setLong(4, model.getCelular());
-            preparedStatement.setString(5, model.getCorreo());
-            preparedStatement.setString(6, model.getCargo());
-            preparedStatement.setString(7, model.getFechaNacimiento().toString());
-            preparedStatement.setString(8, model.getSucursal());
-
+            preparedStatement.setInt(4, model.getCodigo());
+            preparedStatement.setLong(5, model.getCelular());
+            preparedStatement.setString(6, model.getCorreo());
+            preparedStatement.setString(7, model.getCargo());
+            preparedStatement.setString(8, model.getFechaNacimiento().toString());
+            preparedStatement.setString(9, model.getSucursal());
 
 
             preparedStatement.executeUpdate();
 
 
-
-
         } catch (SQLException e) {
-            System.err.println("UserDAOImpl fallo para insertar empleado: " + e.getMessage());
+            System.err.println("employeDAOImpl fallo para insertar empleado: " + e.getMessage());
 
         }
 
@@ -71,9 +69,9 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()){
+              while (resultSet.next()) {
 
-                EmployeeModel employeeModel= new EmployeeModel();
+                EmployeeModel employeeModel = new EmployeeModel();
                 employeeModel.setDocumento(resultSet.getInt("documento"));
                 employeeModel.setNombres(resultSet.getString("nombres"));
                 employeeModel.setApellidos(resultSet.getString("apellidos"));
@@ -81,15 +79,15 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                 employeeModel.setCelular(resultSet.getLong("celular"));
                 employeeModel.setCorreo(resultSet.getString("correo"));
                 employeeModel.setCargo(resultSet.getString("cargo"));
-                String fecha= resultSet.getString("fechaNacimiento");
+                String fecha = resultSet.getString("fechaNacimiento");
                 employeeModel.setFechaNacimiento(LocalDate.parse(fecha));
                 employeeModel.setSucursal(resultSet.getString("sucursal"));
 
                 employees.add(employeeModel);
 
-            }
+              }
 
-        } catch (SQLException e) {
+            } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 

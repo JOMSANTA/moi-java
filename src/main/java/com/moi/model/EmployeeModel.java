@@ -39,8 +39,9 @@ public class EmployeeModel {
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
+
     public int getCodigo(){
-        return codigo;
+       return codigo;
 
     }
     public void setCodigo(int codigo){

@@ -1,11 +1,11 @@
 package com.moi.dao;
 
-import com.moi.model.EmployeeAuthorizedModel;
+import com.moi.model.AdminAuthorizedModel;
 
 import java.sql.*;
 import java.util.List;
 
-public class EmployeeAuthorizedDAOImpl implements EmployeeAuthorizedDAO{
+public class AdminAuthorizedDAOImpl implements AdminAuthorizedDAO{
 
 
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/moi";
@@ -25,11 +25,9 @@ public class EmployeeAuthorizedDAOImpl implements EmployeeAuthorizedDAO{
     }
 
 
-
-
     @Override
-    public void insertEmployeeAutorized(EmployeeAuthorizedModel model) {
-        String insertQuery ="INSERT INTO moi.user\n" +
+    public void insertAdminAuthorized(AdminAuthorizedModel model) {
+        String insertQuery="INSERT INTO moi.adminauthorized\n" +
                 "(first_name, last_name, username, password)\n"+
                 "VALUES(?,?,?,?);";
         ResultSet rs = null;
@@ -56,34 +54,22 @@ public class EmployeeAuthorizedDAOImpl implements EmployeeAuthorizedDAO{
     }
 
     @Override
-    public List<EmployeeAuthorizedModel> getAllEmployeeAuthorized() {
+    public List<AdminAuthorizedModel> getAllAdminAuthorized() {
         return List.of();
     }
 
     @Override
-    public EmployeeAuthorizedModel getEmployeeAuthorizedByFirst_name(String first_name) {
+    public AdminAuthorizedModel getAdminAuthorizedByFirst_name(String first_name) {
         return null;
     }
 
     @Override
-    public EmployeeAuthorizedModel getEmployeeAuthorizedByLast_name(String last_name) {
-        return null;
-    }
-
-    @Override
-    public EmployeeAuthorizedModel getEmployeeAuthorizedByUsername(String user_name) {
-        return null;
-    }
-
-    @Override
-    public void updateEmployeeAuthorized(int id ) {
+    public void updateAdminAuthorized(int id) {
 
     }
 
     @Override
-    public void deleteEmployeeAuthorized(int id) {
+    public void deleteAdminAuthorized(int id) {
 
     }
-
-
 }

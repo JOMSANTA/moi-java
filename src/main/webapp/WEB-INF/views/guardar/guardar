@@ -77,3 +77,31 @@ public List<InventoryModel> getAllInventory(String idProducto, String producto, 
     public void updateProduct(String idProducto, InventoryModel model) {
 
     }
+
+    =====
+
+        String first_name = request.getParameter("first_name");
+        String last_name= request.getParameter("last_name");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        if (first_name != null) {
+            EmployeeAuthorizedModel model= new EmployeeAuthorizedModel();
+            model.setFirst_name(first_name);
+            model.setLast_name(last_name);
+            model.setUsername(username);
+            model.setPassword(password);
+
+
+
+            EmployeeAuthorizedDAOImpl employeeAuthorizedDAO = new EmployeeAuthorizedDAOImpl();
+            employeeAuthorizedDAO.insertEmployeeAuthorized(model);
+
+            System.out.println("empleado autorizado");
+
+
+        }else {
+              request.setAttribute("error al ingresar empleado", "loginMessage");
+
+        }
+        response.sendRedirect(request.getContextPath()+"/employeesAuthorized");

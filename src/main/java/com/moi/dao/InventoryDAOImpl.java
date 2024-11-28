@@ -1,6 +1,7 @@
 package com.moi.dao;
 
 import com.moi.model.InventoryModel;
+import com.moi.model.ProductModel;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -27,19 +28,18 @@ public class InventoryDAOImpl implements InventoryDAO {
 
     @Override
     public void insertProduct(InventoryModel model) {
-        String insertQuery = "INSERT INTO inventario_oficina (idProducto, producto, colorProducto, numeroExistencias, imeiProducto, fechaLimiteVenta, tipoDeProducto) VALUES(?,?,?,?,?,?,?);";
+        String insertQuery = "INSERT INTO inventario_oficina (  producto, color, numeroExistencias, codigo, imei, fechaLimiteVenta, tipoDeProducto) VALUES(?,?,?,?,?,?,?);";
 
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
 
-            preparedStatement.setString(1, model.getId());
-            preparedStatement.setString(2, model.getProducto());
-            preparedStatement.setString(3, model.getColor());
-            preparedStatement.setInt(4, model.getNumeroExistencias());
-            preparedStatement.setInt(4, model.getCodigo());
-            preparedStatement.setLong(5, model.getImei());
-            preparedStatement.setDate(6, model.getFechaLimiteVentas());
-            preparedStatement.setString(7, model.setTipoDeProducto());
+
+//            preparedStatement.setString(1, model.getId());
+//            preparedStatement.setInt(3, model.getQuantity());
+//            preparedStatement.setString(4, model.getCodigo());
+//            preparedStatement.setLong(5, model.getImei());
+//            preparedStatement.setString(6, model.getFechaLimiteVenta());
+//            preparedStatement.setString(7, model.getTipoDeProducto());
             preparedStatement.executeUpdate();
 
 
@@ -52,30 +52,78 @@ public class InventoryDAOImpl implements InventoryDAO {
     @Override
     public List<InventoryModel> getAllInventory() {
         List<InventoryModel> inventories = new ArrayList<>();
-        String selectQuery = "SELECT * FROM inventario_oficina;";
+        String selectQuery = "SELECT i.*, p.name, p.color, p.imei FROM inventory i JOIN product p on p.id = i.product_id";
 
 
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
 
+
+            //preparedStatement.setString(1,"aqui va lo que reemplaza la x");
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
                 InventoryModel inventoryModel = new InventoryModel();
-                inventoryModel.setId(resultSet.getString("id"));
-                inventoryModel.setProducto(resultSet.getString("producto"));
-                inventoryModel.setColor(resultSet.getString("Color"));
-                inventoryModel.setNumeroExistencias((short) resultSet.getInt("numeroExistencias"));
-                inventoryModel.setImei((long) resultSet.getInt("imei"));
-                inventoryModel.setCodigo((int)resultSet.getInt("codigo"));
-                inventoryModel.setFechaLimiteVenta(resultSet.getDate("fechaLimiteVenta"));
-                inventoryModel.setTipoDeProducto(resultSet.getString("tipoDeProducto"));
+                ProductModel productModel = new ProductModel();
 
+                inventoryModel.setId(resultSet.getLong("id"));
+                inventoryModel.setQuantity(resultSet.getInt("quantity"));
 
-                // Resto de atributos
+                productModel.setId(resultSet.getLong("product_id"));
+                productModel.setName(resultSet.getString("name"));
+                productModel.setColor(resultSet.getString("color"));
+                productModel.setImei(resultSet.getLong("imei"));
 
+                inventoryModel.setProduct(productModel);
 
                 inventories.add(inventoryModel);
+
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return inventories;
+    }
+
+    @Override
+    public List<InventoryModel> getAllByFilterParamsInventory(String product, String color) {
+        return List.of();
+    }
+
+
+    @Override
+    public List<InventoryModel> getAllByFilterParamsInventory(String product, String color, String imei) {
+        List<InventoryModel> inventories = new ArrayList<>();
+        String query = "select i.*, p.name, p.color, p.imei from inventory i join product p  on p.id = i.product_id WHERE name like ? and color like ? and imei like ?" ;
+        //String query = "SELECT * FROM inventario_oficina WHERE producto like '%"+ producto +"%'";
+
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setString(1, "%" + product + "%");
+            preparedStatement.setString(2, "%" + color + "%");
+            preparedStatement.setString(3,"%" + imei + "%");
+
+            //preparedStatement.setString(1,"aqui va lo que reemplaza la x");
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                InventoryModel inventoryModel = new InventoryModel();
+                ProductModel productModel = new ProductModel();
+
+                inventoryModel.setId(resultSet.getLong("id"));
+                inventoryModel.setQuantity(resultSet.getInt("quantity"));
+
+                productModel.setId(resultSet.getLong("product_id"));
+                productModel.setName(resultSet.getString("name"));
+                productModel.setColor(resultSet.getString("color"));
+                productModel.setImei(resultSet.getLong("imei"));
+
+                inventoryModel.setProduct(productModel);
+
+                inventories.add(inventoryModel);
+
 
             }
         } catch (SQLException e) {
@@ -91,17 +139,34 @@ public class InventoryDAOImpl implements InventoryDAO {
     }
 
     @Override
-    public InventoryModel geProductByName(String producto) {
+    public InventoryModel getProductByName(String producto) {
+        InventoryModel product = null;
+        String insertQuery = "SELECT * FROM inventario_oficina WHERE producto like '%?%'";
+
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
+            preparedStatement.setString(1, producto);
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                if (rs.next()) {
+                    product = new InventoryModel();
+                    product.setQuantity(rs.getInt("quantity"));
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return product;
+    }
+
+    @Override
+    public InventoryModel getProductByImei(long imeiProducto) {
         return null;
     }
 
     @Override
-    public InventoryModel getProductByImei(int imeiProducto) {
-        return null;
-    }
-
-    @Override
-    public InventoryModel getProductByCodigo(int codigo) {
+    public InventoryModel getProductByCodigo(String codigo) {
         return null;
     }
 
@@ -119,8 +184,19 @@ public class InventoryDAOImpl implements InventoryDAO {
     public void deleteProduct(String idProducto) {
 
     }
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

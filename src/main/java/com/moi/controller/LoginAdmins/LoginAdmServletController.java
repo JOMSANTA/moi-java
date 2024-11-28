@@ -26,12 +26,12 @@ public class LoginAdmServletController extends HttpServlet {
 
         if (username.equalsIgnoreCase("santa") && password.equals("12345")) {
             request.setAttribute("loginMessage", "acceso valido");
-            request.getRequestDispatcher("/WEB-INF/views/administratorOptions/administrationOption.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/administratorOptions/administrationOption.jsp").forward(request,response);
 
         }else {
             request.setAttribute("loginMessage","acceso invalido");
         }
-
         request.getRequestDispatcher("/WEB-INF/views/loginAdm.jsp").forward(request,response);
+
     }
 }

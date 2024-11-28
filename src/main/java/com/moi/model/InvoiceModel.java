@@ -1,10 +1,9 @@
 package com.moi.model;
 
-import java.util.Date;
-
 public class InvoiceModel {
 
-    private Date fecha;//PREGUNTAR POR ESTO
+
+    private String fecha;//PREGUNTAR POR ESTO
     private String nombre;
     private int documento;
     private int factura;
@@ -13,28 +12,30 @@ public class InvoiceModel {
     private String codigoProducto;
     private int imei;
     private int cantidad;
-    private int valorUnitario;
-    private int subTotal;
+    private float valorUnitario;
+    private float subTotal;
     private int iva;
-    private int total;
+    private float total;
 
     public InvoiceModel(){
 
     }
-    public int getDocumento(){
-        return documento;
+
+
+    public int getCantidad() {
+        return cantidad;
     }
 
-    public void setDocumento(int documento) {
-        this.documento = documento;
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha= fecha;
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
     public String getNombre() {
@@ -43,6 +44,14 @@ public class InvoiceModel {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public int getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(int documento) {
+        this.documento = documento;
     }
 
     public int getFactura() {
@@ -85,27 +94,19 @@ public class InvoiceModel {
         this.imei = imei;
     }
 
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public int getValorUnitario() {
+    public float getValorUnitario() {
         return valorUnitario;
     }
 
-    public void setValorUnitario(int valorUnitario) {
+    public void setValorUnitario(float valorUnitario) {
         this.valorUnitario = valorUnitario;
     }
 
-    public int getSubTotal() {
+    public float getSubTotal() {
         return subTotal;
     }
 
-    public void setSubTotal(int subTotal) {
+    public void setSubTotal(float subTotal) {
         this.subTotal = subTotal;
     }
 
@@ -117,15 +118,11 @@ public class InvoiceModel {
         this.iva = iva;
     }
 
-    public int getTotal() {
+    public float getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(float total) {
         this.total = total;
     }
-
-
-
-
 }

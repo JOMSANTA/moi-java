@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>formulario empleados</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/employeesReg.css?">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/employeesReg.css">
 </head>
 <body>
 
@@ -16,6 +16,7 @@
             <input type="number" name="documento" id="documento" placeholder="numero documento"><br>
             <input type="text" name="nombres" id="nombres" placeholder="nombres"><br>
             <input type="text" name="apellidos" id="apellidos" placeholder="apellidos"><br>
+            <input type="int" name="codigo" id="codigo" placeholder="codigo"><br>
             <input type="number" name="celular" id="celular" placeholder="num celular"><br>
             <input type="email" name="correo" id="correo" placeholder="correo"><br>
             <input type="text" name="cargo" id="cargo" placeholder="cargo"><br>

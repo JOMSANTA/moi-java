@@ -7,6 +7,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import javax.swing.*;
 import java.io.IOException;
 import java.sql.Date;
 
@@ -23,33 +25,60 @@ public class InvoiceServletController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-       Date fecha = Date.valueOf(request.getParameter("fecha"));
+       String fecha = request.getParameter("fecha");
         String nombre = request.getParameter("nombre");
-        int documento = request.getIntHeader("documento");
-        int factura = request.getIntHeader("factura");
+        String documento = request.getParameter("documento");
         String codigoEmpleado = request.getParameter("codigoEmpleado");
         String producto = request.getParameter("producto");
-        int codigoProducto = request.getIntHeader("codigoproducto");
-        int imei = request.getIntHeader("imei");
-        int cantidad = request.getIntHeader("cantidad");
-        int valor = request.getIntHeader("valor");
-        int subTotal = request.getIntHeader("subTotal");
-        int iva = request.getIntHeader("iva");
-        int total = request.getIntHeader("total");
+        String codigoProducto = request.getParameter("codigoProducto");
+        String imei = request.getParameter("imei");
+        String cantidad = request.getParameter("cantidad");
+        String valor = request.getParameter("valor");
+        String subTotal = request.getParameter("subTotal");
+        String iva = request.getParameter("iva");
+        String total = request.getParameter("total");
 
-        InvoiceModel invoiceModel = new InvoiceModel();
 
-        if (invoiceModel ==  null ) {
-            request.setAttribute("loginMessage","Factura generada con exito") ;
-            request.getRequestDispatcher("/WEB-INF/views/invoices/invoice-list.jsp"). forward(request, response);
+
+
+        if (nombre !=  null ) {
+            InvoiceModel model = new InvoiceModel();
+            model.setFecha(fecha != null ? fecha : "");
+            model.setNombre(nombre);
+            model.setDocumento(documento != null ? Integer.parseInt(documento) : 0);
+            model.setCodigoEmpleado(Integer.parseInt(codigoEmpleado));
+            model.setProducto(producto);
+            model.setCodigoProducto(codigoProducto);
+            model.setImei(Integer.parseInt(imei));
+
+            int quantity = Integer.parseInt(cantidad);
+            int unitValue = Integer.parseInt(valor);
+            int totalValue = unitValue * quantity;
+            float ivaValue = totalValue * 0.19f;
+            float subTotalValue = totalValue - ivaValue;
+            int randomNum = (int)(Math.random() * 101);
+            model.setCantidad(quantity);
+            model.setValorUnitario(unitValue);
+            model.setSubTotal(subTotalValue);
+            model.setIva(19);
+            model.setTotal(totalValue);
+            model.setFactura(randomNum);//pilas a cambio
+
+
+            InvoiceDaoImpl invoiceDao = new InvoiceDaoImpl();
+            invoiceDao.insertInvoice(model);
+            System.out.println("Factura generada con exito");
+            request.setAttribute("loginMessage", "Factura generada con exito");
+
         }else {
             request.setAttribute("loginMessage", "Datos invalidos, intentelo nuevamente");
-            request.getRequestDispatcher("/WEB-INF/views/invoices/invoice-list.jsp").forward(request, response);
 
 
         }
 
+        request.getRequestDispatcher("/WEB-INF/views/invoices/invoice-list.jsp").forward(request, response);
 
+         // response.sendRedirect(request.getContextPath()+"/invoices");
 
     }
 }

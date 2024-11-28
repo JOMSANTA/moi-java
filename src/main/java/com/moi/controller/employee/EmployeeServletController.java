@@ -34,7 +34,7 @@ public class EmployeeServletController extends HttpServlet {
         String documento = request.getParameter("documento");
         String nombres = request.getParameter("nombres");
         String apellidos = request.getParameter("apellidos");
-       // String codigo =request.getParameter("codigo");
+        String codigo =request.getParameter("codigo");
         String celular = request.getParameter("celular");
         String correo = request.getParameter("correo");
         String cargo = request.getParameter("cargo");
@@ -47,7 +47,7 @@ public class EmployeeServletController extends HttpServlet {
             model.setDocumento(Integer.parseInt(documento));
             model.setNombres(nombres);
             model.setApellidos(apellidos);
-         //   model.setCodigo(Integer.parseInt(codigo));
+            model.setCodigo(Integer.parseInt(codigo));
             model.setCelular(Integer.parseInt(celular));
             model.setCorreo(correo);
             model.setCargo(cargo);

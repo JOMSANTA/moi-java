@@ -1,6 +1,6 @@
 package com.moi.model;
 
-public class AuthorizedModel {
+public class AdminAuthorizedModel {
 
     private int id;
     private String first_name;
@@ -9,7 +9,7 @@ public class AuthorizedModel {
     private String password;
 
 
-    public AuthorizedModel() {
+    public AdminAuthorizedModel() {
     }
     public int getId() {
         return id;

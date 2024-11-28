@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Empleados</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/inventory.css?">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/employee.css">
 </head>
 <body>
 
@@ -17,7 +17,15 @@
 
 <div  class= "fondo">
 <div  class= "general">
+
 <h1 class="tabla"> Empleados</h1>
+<div class="nav">
+<a href=""><nav class="eliminar">Eliminar</nav></a>
+<a href=""><nav class="actualizar">Actualizar</nav></a>
+<a href="employeesRegister"><nav class="agregar">Insertar</nav></a>
+<a href=""><nav class="buscar">Buscar</nav></a>
+
+</div>
   <Table  >
    <tr>
                        <th>documento</th>
@@ -44,9 +52,8 @@
                                         <td><%= employee.getSucursal() %></td
                                    </tr>
                                    <% } %>
-                                    </table><a href=""><nav class="buscar">Buscar</nav></a>
-                                    </table><a href="employeesRegister"><nav class="agregar">Insertar</nav></a>
-                                    </table><a href=""><nav class="actualizar">Actualizar</nav></a>
+
+
 
                                </div>
    </Table>
