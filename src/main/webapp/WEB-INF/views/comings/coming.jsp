@@ -14,7 +14,7 @@
 <% List inventories  = (List) request.getAttribute("inventories"); %>
 
     <div class="fondo">
-        <form action="">
+        <form action="comings" method= "post">
             <div class="general">
                <h1 class="tabla"> Vencimientos</h1>
                 <table>
@@ -24,14 +24,7 @@
                     <th>imei producto</th>
                     <th> producto</th>
                   </tr>
-                   <% for (int i = 0; i < inventories.size(); i++) { %>
-                                <% InventoryModel inventory = (InventoryModel) inventories.get(i); %>
-                                <tr>
-                                    <td><%= inventory.getFechaLimiteVentas() %></td>
-                                    <td><%= inventory.getImei() %></td>
-                                    <td><%= inventory.getProducto() %></td>
-                                </tr>
-                                <% } %>
+
 
 
 

@@ -26,6 +26,30 @@ public class PayrollDAOImpl  implements PayrollDAO{
 
     @Override
     public void insertPay(PayrollModel model) {
+    String query = "INSERT INTO moi.payroll (date,codigo,nombre,basico,prepago,postpago,detalle,otros,subTotal,total) VALUES (?,?,?,?,?,?,?,?,?,?);";
+
+
+    try (Connection connection = getConnection();
+         PreparedStatement preparedStatement= connection.prepareStatement(query)){
+
+
+        preparedStatement.setString(1,model.getDate());
+        preparedStatement.setInt(2,model.getCodigo());
+        preparedStatement.setString(3,model.getNombre());
+        preparedStatement.setInt(4,model.getBasico());
+        preparedStatement.setInt(5,model.getPrepago());
+        preparedStatement.setInt(6,model.getPostpago());
+        preparedStatement.setString(7,model.getDetalle());
+        preparedStatement.setInt(8,model.getOtros());
+        preparedStatement.setInt(9,model.getSubtotal());
+        preparedStatement.setInt(10,model.getTotal());
+
+        preparedStatement.executeUpdate();
+
+    }catch (SQLException e){
+        System.err.println("error insertando pago : " + e.getMessage());
+    }
+
 
     }
 
@@ -33,7 +57,7 @@ public class PayrollDAOImpl  implements PayrollDAO{
     public List<PayrollModel> getAllPayrolls() {
 
         List<PayrollModel> payrolls = new ArrayList<>();
-        String selectQuery = "SELECT * FROM nominas;";
+        String selectQuery = "SELECT * FROM payroll;";
 
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
@@ -43,7 +67,7 @@ public class PayrollDAOImpl  implements PayrollDAO{
             while (resultSet.next()){
 
                 PayrollModel payrollModel = new PayrollModel();
-                payrollModel.setDocumento(resultSet.getInt("documento"));
+                payrollModel.setDate(resultSet.getString("date"));
                 payrollModel.setCodigo(resultSet.getInt("codigo"));
                 payrollModel.setNombre(resultSet.getString("nombre"));
                 payrollModel.setBasico(resultSet.getInt("basico"));

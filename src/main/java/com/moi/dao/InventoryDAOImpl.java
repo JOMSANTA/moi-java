@@ -52,7 +52,7 @@ public class InventoryDAOImpl implements InventoryDAO {
     @Override
     public List<InventoryModel> getAllInventory() {
         List<InventoryModel> inventories = new ArrayList<>();
-        String selectQuery = "SELECT i.*, p.name, p.color, p.imei FROM inventory i JOIN product p on p.id = i.product_id";
+        String selectQuery = "SELECT i.*, p.name, p.color, p.imei, p.code, p.coming, p.type FROM inventory i JOIN product p on p.id = i.product_id";
 
 
         try (Connection connection = getConnection();
@@ -73,6 +73,9 @@ public class InventoryDAOImpl implements InventoryDAO {
                 productModel.setName(resultSet.getString("name"));
                 productModel.setColor(resultSet.getString("color"));
                 productModel.setImei(resultSet.getLong("imei"));
+                productModel.setCode(resultSet.getString("code"));
+                productModel.setComing(resultSet.getString("coming"));
+                productModel.setType(resultSet.getString("type"));
 
                 inventoryModel.setProduct(productModel);
 
@@ -91,11 +94,16 @@ public class InventoryDAOImpl implements InventoryDAO {
         return List.of();
     }
 
-
     @Override
     public List<InventoryModel> getAllByFilterParamsInventory(String product, String color, String imei) {
+        return List.of();
+    }
+
+
+    @Override
+    public List<InventoryModel> getAllByFilterParamsInventory(String product, String color, String imei, String code) {
         List<InventoryModel> inventories = new ArrayList<>();
-        String query = "select i.*, p.name, p.color, p.imei from inventory i join product p  on p.id = i.product_id WHERE name like ? and color like ? and imei like ?" ;
+        String query = "select i.*, p.name, p.color, p.imei, p.code from inventory i join product p  on p.id = i.product_id WHERE name like ? and color like ? and imei like ? and code like ?" ;
         //String query = "SELECT * FROM inventario_oficina WHERE producto like '%"+ producto +"%'";
 
         try (Connection connection = getConnection();
@@ -104,6 +112,7 @@ public class InventoryDAOImpl implements InventoryDAO {
             preparedStatement.setString(1, "%" + product + "%");
             preparedStatement.setString(2, "%" + color + "%");
             preparedStatement.setString(3,"%" + imei + "%");
+            preparedStatement.setString(4,"%" + code + "%");
 
             //preparedStatement.setString(1,"aqui va lo que reemplaza la x");
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -119,6 +128,7 @@ public class InventoryDAOImpl implements InventoryDAO {
                 productModel.setName(resultSet.getString("name"));
                 productModel.setColor(resultSet.getString("color"));
                 productModel.setImei(resultSet.getLong("imei"));
+                productModel.setCode(resultSet.getString("code"));
 
                 inventoryModel.setProduct(productModel);
 
@@ -166,9 +176,11 @@ public class InventoryDAOImpl implements InventoryDAO {
     }
 
     @Override
-    public InventoryModel getProductByCodigo(String codigo) {
+    public InventoryModel getProductByCode(String code) {
         return null;
     }
+
+
 
     @Override
     public InventoryModel getProductByColor(String colorProducto) {

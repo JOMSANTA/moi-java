@@ -28,8 +28,8 @@ public class InsertProductDAOImpl implements InsertProductDAO {
     @Override
     public void insertProduct(ProductModel model) {
         String insertQuery = "INSERT INTO moi.inventario_oficina\n" +
-        "( producto, color, numeroExistencias, codigo,imei, fechaLimiteVenta, tipoDeProducto)\n" +
-       "VALUES(?,?,?,?,?,?,?);";
+        "( id, producto, color, numeroExistencias, codigo,imei, fechaLimiteVenta, tipoDeProducto)\n" +
+       "VALUES(?,?,?,?,?,?,?,?);";
             ResultSet rs= null;
 
 

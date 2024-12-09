@@ -27,13 +27,33 @@ public class AccountDAOImpl implements AccountDAO {
 
     @Override
     public void insertAccount(AccountingModel model) {
+        String Query = "INSERT INTO `moi`.`accounting` (`date`, `invoice`, `description`, `detail`, `quantity`, `income`, `expenses`, `total`) VALUES (?, ?,?,?,?,?,?,?);";
+
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement= connection.prepareStatement(Query)){
+
+
+            preparedStatement.setString(1,model.getDate());
+            preparedStatement.setInt(2,model.getInvoice());
+            preparedStatement.setString(3,model.getDescription());
+            preparedStatement.setString(4,model.getDetail());
+            preparedStatement.setInt(5,model.getQuantity());
+            preparedStatement.setInt(6,model.getIncome());
+            preparedStatement.setInt(7,model.getExpenses());
+            preparedStatement.setInt(8,model.getTotal());
+
+            preparedStatement.executeUpdate();
+
+        }catch (SQLException e){
+            System.err.println("error insertando registro : " + e.getMessage());
+        }
 
     }
 
     @Override
     public List<AccountingModel> getAllAccount() {
         List<AccountingModel> accounting = new ArrayList<>();
-        String selectQuery = "SELECT * FROM contabilidad;";
+        String selectQuery = "SELECT * FROM moi.accounting";
 
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
@@ -42,13 +62,13 @@ public class AccountDAOImpl implements AccountDAO {
 
             while (resultSet.next()){
                 AccountingModel accountingModel = new AccountingModel();
-                accountingModel.setFecha(resultSet.getDate("fecha"));
-                accountingModel.setFactura(resultSet.getInt("factura"));
-                accountingModel.setDescripcion(resultSet.getString("descripcion"));
-                accountingModel.setDetalle(resultSet.getString("detalle"));
-                accountingModel.setCantidad(resultSet.getInt("cantidad"));
-                accountingModel.setIngresos(resultSet.getInt("ingresos"));
-                accountingModel.setEgresos(resultSet.getInt("Egresos"));
+                accountingModel.setDate(resultSet.getString("date"));
+                accountingModel.setInvoice(resultSet.getInt("invoice"));
+                accountingModel.setDescription(resultSet.getString("description"));
+                accountingModel.setDetail(resultSet.getString("detail"));
+                accountingModel.setQuantity(resultSet.getInt("quantity"));
+                accountingModel.setIncome(resultSet.getInt("income"));
+                accountingModel.setExpenses(resultSet.getInt("expenses"));
 
                 accounting.add(accountingModel);
             }
@@ -62,22 +82,22 @@ public class AccountDAOImpl implements AccountDAO {
     }
 
     @Override
-    public AccountingModel getAccountByFactura(int factura) {
+    public AccountingModel getAccountByFactura(int invoice) {
         return null;
     }
 
     @Override
-    public AccountingModel getAccountByFecha(Date fecha) {
+    public AccountingModel getAccountByFecha(Date date) {
         return null;
     }
 
     @Override
-    public void updateAccount(int factura, AccountingModel model) {
+    public void updateAccount(int invoice, AccountingModel model) {
 
     }
 
     @Override
-    public void deleteAccount(int factura) {
+    public void deleteAccount(int invoice) {
 
     }
 }

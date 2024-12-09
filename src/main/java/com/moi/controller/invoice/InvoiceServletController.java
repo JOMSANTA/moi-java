@@ -41,7 +41,7 @@ public class InvoiceServletController extends HttpServlet {
 
 
 
-        if (nombre !=  null ) {
+        if (documento !=  null ) {
             InvoiceModel model = new InvoiceModel();
             model.setFecha(fecha != null ? fecha : "");
             model.setNombre(nombre);
@@ -71,7 +71,7 @@ public class InvoiceServletController extends HttpServlet {
             request.setAttribute("loginMessage", "Factura generada con exito");
 
         }else {
-            request.setAttribute("loginMessage", "Datos invalidos, intentelo nuevamente");
+            request.setAttribute("loginMessage", "Registre cliente, Datos invalidos, intentelo nuevamente");
 
 
         }

@@ -8,7 +8,7 @@ public interface EmployeeDAO {
 
 void  insertEmployee (EmployeeModel model);
 List<EmployeeModel> getAllEmployees();
-EmployeeModel getEmployeeByDocumento(int documento);
+EmployeeModel getEmployeeByDocumento(long documento);
 EmployeeModel getEmployeeByCodigo(int codigo);
 EmployeeModel getEmployeeByNombres(String nombres);
 EmployeeModel getEmplloyeeByApellidos(String apellidos);

@@ -8,17 +8,10 @@ public class InventoryModel {
     private Long id;
     private Integer quantity;
     private ProductModel product;
-    private long imei;
+
+
 
     public InventoryModel() {
-    }
-
-    public long getImei() {
-        return imei;
-    }
-
-    public void setImei(long imei) {
-        this.imei = imei;
     }
 
     public Long getId() {

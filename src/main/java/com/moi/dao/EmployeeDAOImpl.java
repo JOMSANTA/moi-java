@@ -30,7 +30,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public void insertEmployee(EmployeeModel model) {
-        String insertQuery = "INSERT INTO moi.employees\n" +
+        String insertQuery = "INSERT INTO moi.employ\n" +
                 "(documento, nombres, apellidos, codigo, celular, correo, cargo, fechaNacimiento, sucursal)\n" +
                 "VALUES(?,?,?,?,?,?,?,?,?);";
         ResultSet rs = null;
@@ -38,7 +38,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
 
-            preparedStatement.setInt(1, model.getDocumento());
+            preparedStatement.setLong(1, model.getDocumento());
             preparedStatement.setString(2, model.getNombres());
             preparedStatement.setString(3, model.getApellidos());
             preparedStatement.setInt(4, model.getCodigo());
@@ -62,7 +62,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public List<EmployeeModel> getAllEmployees() {
         List<EmployeeModel> employees = new ArrayList<>();
-        String selectQuery = "SELECT * FROM employees;";
+        String selectQuery = "SELECT * FROM employ;";
 
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
@@ -72,7 +72,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
               while (resultSet.next()) {
 
                 EmployeeModel employeeModel = new EmployeeModel();
-                employeeModel.setDocumento(resultSet.getInt("documento"));
+                employeeModel.setDocumento(resultSet.getLong("documento"));
                 employeeModel.setNombres(resultSet.getString("nombres"));
                 employeeModel.setApellidos(resultSet.getString("apellidos"));
                 employeeModel.setCodigo(resultSet.getInt("codigo"));
@@ -96,7 +96,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public EmployeeModel getEmployeeByDocumento(int documento) {
+    public EmployeeModel getEmployeeByDocumento(long documento) {
         return null;
     }
 

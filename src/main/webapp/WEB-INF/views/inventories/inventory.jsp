@@ -9,62 +9,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventario</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/inventory.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/inventory.css?">
 </head>
 <body>
+<div class="tod">
+<div class="bna">
+<a href="insertProducts"><nav class="insert">Insertar</nav></a>
 
-            <form class="login-form" action="inventories" method="get" >
-            <a class= "tex">Ingresa los datos:<a>
-              <div class="field">
-                <label for="name">Producto :  </label>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Ingresa un nombre de producto a buscar"
-                />
-              </div>
-              <div class="field">
-                  <label for="color">Color   :  </label>
-                  <input
-                    type="text"
-                    name="color"
-                    placeholder="Ingresa un color de producto a buscar"
-                  />
-                </div>
-                <div class="field">
-                    <label for="imei">Imei     :  </label>
-                     <input
-                      type="long"
-                       name="imei"
-                       placeholder="ingresa el imei a buscar"
-                        />
-                </div>
+<a href="moi-java"><nav class="salir">Salir</nav></a>
+ </div>
+<div class="fondo">
+<div class="general">
+<form action="">
+<div class="ent">
+   <table>
+      <tr>
+      <th>producto</th>
+      <th>color</th>
+      <th>imei </th>
+      <th>codigo</th>
+      </tr>
 
-                <div class="bt padding-top--12">
-                  <button
-                    class="btn btn-darken btn-inline login-btn"
-                    type="submit"
-                  >
-                    Buscar
-                  </button>
-                </div>
-            </form>
+      <tr>
+      <td> <input type="text" name="name" id="codigo"> </td>
+      <td> <input type="text" name="color" id="color"> </td>
+      <td> <input type="int" name="imei" id="imei"> </td>
+      <td> <input type="text" name="code" id="code"> </td>
+      </tr>
+      </table>
+      </div>
+
+     <button class="en" type="submit">buscar</button>
+       </form>
 
     <% List inventories  = (List) request.getAttribute("inventories"); %>
 
-
-    <div class="fondo">     <form action="">
-            <div class="general">
-            <div class="btn">
-
-
-            <a href="administratorOptions"><nav class="atras">Atras</nav></a>
-            <a href="moi-java"><nav class="salir">Salir</nav></a>
-            </div>
-            <h1 class="tabla"> Inventario sucursal</h1>
+<h1 class="tabla"> Inventario sucursal</h1>
             <table>
-
-                <tr>
+            <tr>
                     <th>producto</th>
                     <th>color</th>
                     <th>imei </th>
@@ -81,10 +63,10 @@
                     <td><%= inventory.getProduct().getName() %></td>
                     <td><%= inventory.getProduct().getColor() %></td>
                     <td><%= inventory.getProduct().getImei() %></td>
-                    <td></td>
-                     <td></td>
-                     <td></td>
-                      <td></td>
+                    <td><%= inventory.getProduct().getCode() %></td>
+                     <td><%= inventory.getProduct().getComing() %></td>
+                     <td><%= inventory.getQuantity() %></td>
+                     <td><%= inventory.getProduct().getType() %></td>
                        <td>
                         <form action="inventories" method="post">
                          <div>
@@ -107,14 +89,14 @@
                        </td>
                 </tr>
                 <% } %>
-
+             </table>
 
             </div>
 
-        </form>
+         </div>
 
     </div>
-
+ </div>
 
 </body>
 </html>

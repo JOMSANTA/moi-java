@@ -4,26 +4,84 @@ import java.util.Date;
 
 public class PayrollModel {
 
-    private int documento;
+    private int id;
+    private String date;
     private int codigo;
     private String nombre;
     private int basico;
     private int prepago;
     private int postpago;
-    private int otros;
+    private String detalle;
     private int subtotal;
+    private int otros;
     private int total;
 
 
     public PayrollModel() {
     }
 
-    public int getTotal() {
-        return total;
+    public int getId() {
+        return id;
     }
 
-    public void setTotal(int total) {
-        this.total = total;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getBasico() {
+        return basico;
+    }
+
+    public void setBasico(int basico) {
+        this.basico = basico;
+    }
+
+    public int getPrepago() {
+        return prepago;
+    }
+
+    public void setPrepago(int prepago) {
+        this.prepago = prepago;
+    }
+
+    public int getPostpago() {
+        return postpago;
+    }
+
+    public void setPostpago(int postpago) {
+        this.postpago = postpago;
+    }
+
+    public String getDetalle() {
+        return detalle;
+    }
+
+    public void setDetalle(String detalle) {
+        this.detalle = detalle;
     }
 
     public int getSubtotal() {
@@ -42,51 +100,11 @@ public class PayrollModel {
         this.otros = otros;
     }
 
-    public int getPostpago() {
-        return postpago;
+    public int getTotal() {
+        return total;
     }
 
-    public void setPostpago(int postpago) {
-        this.postpago = postpago;
-    }
-
-    public int getPrepago() {
-        return prepago;
-    }
-
-    public void setPrepago(int prepago) {
-        this.prepago = prepago;
-    }
-
-    public int getBasico() {
-        return basico;
-    }
-
-    public void setBasico(int basico) {
-        this.basico = basico;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public int getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
-
-    public int getDocumento() {
-        return documento;
-    }
-
-    public void setDocumento(int documento) {
-        this.documento = documento;
+    public void setTotal(int total) {
+        this.total = total;
     }
 }

@@ -3,39 +3,40 @@ package com.moi.model;
 import java.util.Date;
 
 public class ReportModel {
-    private Date fecha;
-    private int codEmpleado;
-    private String descripcion;
+    private long idReport;
+    private String date;
+    private String sucursal;
     private int postpago;
-    private int prepago;
+    private int kitContado;
+    private int kitCuotas;
     private int tv;
-    private int otros;
+    private String otros;
+    private int quantity;
 
-    public ReportModel() {
+    public ReportModel() {}
+
+    public long getIdReport() {
+        return idReport;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public void setIdReport(long idReport) {
+        this.idReport = idReport;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public String getDate() {
+        return date;
     }
 
-    public int getCodEmpleado() {
-        return codEmpleado;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public void setCodEmpleado(int codEmpleado) {
-        this.codEmpleado = codEmpleado;
+    public String getSucursal() {
+        return sucursal;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setSucursal(String sucursal) {
+        this.sucursal = sucursal;
     }
 
     public int getPostpago() {
@@ -46,12 +47,20 @@ public class ReportModel {
         this.postpago = postpago;
     }
 
-    public int getPrepago() {
-        return prepago;
+    public int getKitContado() {
+        return kitContado;
     }
 
-    public void setPrepago(int prepago) {
-        this.prepago = prepago;
+    public void setKitContado(int kitContado) {
+        this.kitContado = kitContado;
+    }
+
+    public int getKitCuotas() {
+        return kitCuotas;
+    }
+
+    public void setKitCuotas(int kitCuotas) {
+        this.kitCuotas = kitCuotas;
     }
 
     public int getTv() {
@@ -62,11 +71,19 @@ public class ReportModel {
         this.tv = tv;
     }
 
-    public int getOtros() {
+    public String getOtros() {
         return otros;
     }
 
-    public void setOtros(int otros) {
+    public void setOtros(String otros) {
         this.otros = otros;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

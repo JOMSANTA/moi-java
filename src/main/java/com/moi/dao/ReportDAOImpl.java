@@ -3,12 +3,12 @@ package com.moi.dao;
 import com.moi.model.ReportModel;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class ReportDAOImpl implements ReportDAO{
-
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/moi";
     private static final String JDBC_USER = "root";
     private static final String JDBC_PASSWORD = "root123";
@@ -20,7 +20,6 @@ public class ReportDAOImpl implements ReportDAO{
             System.err.println("falla en el jbdc driver");
         }
     }
-
     private Connection getConnection() throws SQLException {
         return DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
     }
@@ -30,13 +29,38 @@ public class ReportDAOImpl implements ReportDAO{
 
     @Override
     public void insertReport(ReportModel model) {
+        String query = "INSERT INTO moi.report (date,sucursal,postpago,kitContado,kitCuotas,tv,otros,quantity) VALUES (?,?,?,?,?,?,?,?);";
+        //   String query = "INSERT INTO moi.report (idReport, date, sucursal, postpago, kit, kitCuotas, tv, otros, quantity) VALUES (?,?,?,?,?,?,?,?,?);";
+
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement= connection.prepareStatement(query)){
+
+            preparedStatement.setString(1,model.getDate());
+            preparedStatement.setString(2,model.getSucursal());
+            preparedStatement.setInt(3,model.getPostpago());
+            preparedStatement.setInt(4,model.getKitContado());
+            preparedStatement.setInt(5,model.getKitCuotas());
+            preparedStatement.setInt(6,model.getTv());
+            preparedStatement.setString(7,model.getOtros());
+            preparedStatement.setInt(8,model.getQuantity());
+
+            preparedStatement.executeUpdate();
+
+        }catch (SQLException e){
+            System.err.println("error insertando reporte : " + e.getMessage());
+        }
+
 
     }
+
+
+
+
 
     @Override
     public List<ReportModel> getAllReports() {
         List<ReportModel> reports = new ArrayList<>();
-        String selectQuery = "SELECT * FROM reportes;";
+        String selectQuery = "SELECT * FROM report;";
 
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
@@ -45,13 +69,14 @@ public class ReportDAOImpl implements ReportDAO{
 
             while (resultSet.next()) {
                 ReportModel reportModel= new ReportModel();
-                reportModel.setFecha(resultSet.getDate("fecha"));
-                reportModel.setCodEmpleado(resultSet.getInt("codEmpleado"));
-                reportModel.setDescripcion(resultSet.getString("descripcion"));
+                reportModel.setDate(resultSet.getString("date"));
+                reportModel.setSucursal(resultSet.getString("sucursal"));
                 reportModel.setPostpago(resultSet.getInt("postpago"));
-                reportModel.setPrepago(resultSet.getInt("prepago"));
+                reportModel.setKitContado(resultSet.getInt("kitContado"));
+                reportModel.setKitCuotas(resultSet.getInt("kitCuotas"));
                 reportModel.setTv(resultSet.getInt("tv"));
-                reportModel.setOtros(resultSet.getInt("otros"));
+                reportModel.setOtros(resultSet.getString("otros"));
+                reportModel.setQuantity(resultSet.getInt("quantity"));
 
                 reports.add(reportModel);
             }

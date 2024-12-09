@@ -4,73 +4,74 @@ import java.util.Date;
 
 public class AccountingModel {
 
-    private Date fecha;
-    private int factura;
-    private String descripcion;
-    private String detalle;
-    private int cantidad;
-    private int ingresos;
-    private int egresos;
+    private String date;
+    private int invoice;
+    private String description;
+    private String detail;
+    private int quantity;
+    private int income;
+    private int expenses;
     private int total;
 
     public AccountingModel() {
     }
 
-    public Date getFecha() {
-        return fecha;
+    public String getDate() {
+        return date;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public int getFactura() {
-        return factura;
+    public int getInvoice() {
+        return invoice;
     }
 
-    public void setFactura(int factura) {
-        this.factura = factura;
+    public void setInvoice(int invoice) {
+        this.invoice = invoice;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getDetalle() {
-        return detalle;
+    public String getDetail() {
+        return detail;
     }
 
-    public void setDetalle(String detalle) {
-        this.detalle = detalle;
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 
-    public int getCantidad() {
-        return cantidad;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public int getIngresos() {
-        return ingresos;
+    public int getIncome() {
+        return income;
     }
 
-    public void setIngresos(int ingresos) {
-        this.ingresos = ingresos;
+    public void setIncome(int income) {
+        this.income = income;
     }
 
-    public int getEgresos() {
-        return egresos;
+    public int getExpenses() {
+        return expenses;
     }
 
-    public void setEgresos(int egresos) {
-        this.egresos = egresos;
+    public void setExpenses(int expenses) {
+        this.expenses = expenses;
     }
+
     public int getTotal() {
         return total;
     }

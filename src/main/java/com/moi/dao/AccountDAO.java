@@ -8,9 +8,9 @@ public interface AccountDAO {
 
     void insertAccount(AccountingModel model);
     List<AccountingModel> getAllAccount();
-    AccountingModel getAccountByFactura(int factura);
-    AccountingModel getAccountByFecha(Date fecha);
-    void updateAccount(int factura, AccountingModel model);
-    void deleteAccount(int factura);
+    AccountingModel getAccountByFactura(int invoice);
+    AccountingModel getAccountByFecha(Date date);
+    void updateAccount(int invoice, AccountingModel model);
+    void deleteAccount(int invoice);
 
 }

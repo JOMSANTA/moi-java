@@ -9,23 +9,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Empleados</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/employee.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/payroll.css">
 </head>
-<body>
 
+<body>
+<div class="bna">
+<a href="employeesRegister"><nav class="insert">Insertar</nav></a>
+<a href="manager"><nav class="atras">Atras</nav></a>
+<a href="moi-java"><nav class="salir">Salir</nav></a>
+</div>
 <% List employees = (List)  request.getAttribute("employees"); %>
 
 <div  class= "fondo">
 <div  class= "general">
 
 <h1 class="tabla"> Empleados</h1>
-<div class="nav">
-<a href=""><nav class="eliminar">Eliminar</nav></a>
-<a href=""><nav class="actualizar">Actualizar</nav></a>
-<a href="employeesRegister"><nav class="agregar">Insertar</nav></a>
-<a href=""><nav class="buscar">Buscar</nav></a>
 
-</div>
   <Table  >
    <tr>
                        <th>documento</th>
@@ -55,7 +54,7 @@
 
 
 
-                               </div>
+
    </Table>
   </div>
   </div>

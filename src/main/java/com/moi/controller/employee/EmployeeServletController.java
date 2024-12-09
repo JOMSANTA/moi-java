@@ -44,11 +44,11 @@ public class EmployeeServletController extends HttpServlet {
 
         if (documento != null) {
             EmployeeModel model= new EmployeeModel();
-            model.setDocumento(Integer.parseInt(documento));
+            model.setDocumento(Long.parseLong(documento));
             model.setNombres(nombres);
             model.setApellidos(apellidos);
             model.setCodigo(Integer.parseInt(codigo));
-            model.setCelular(Integer.parseInt(celular));
+            model.setCelular(Long.parseLong(celular));
             model.setCorreo(correo);
             model.setCargo(cargo);
             model.setFechaNacimiento(LocalDate.parse(fechaNacimiento));

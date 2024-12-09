@@ -105,3 +105,71 @@ public List<InventoryModel> getAllInventory(String idProducto, String producto, 
 
         }
         response.sendRedirect(request.getContextPath()+"/employeesAuthorized");
+
+
+        ***************************
+
+         <td> <input type="int" name="document" id="document">  </td>
+                                        <td> <input type="text" name="name" id="name"> </td>
+                                        <td> <input type="text" name="lastName" id="lastName"> </td>
+                                        <td> <input type="int" name="coode" id="code"> </td>
+                                        <td> <input type="int" name="cel" id="cel"> </td>
+                                        <td> <input type="text" name="email" id="email"> </td>
+                                        <td> <input type="text" name="position" id="position"> </td>
+                                        <td> <input type="date" name="birthdate" id="otros"> </td>
+                                        <td> <input type="text" name="branch" id="branch"> </td>
+
+                                        *******************
+
+          @Override
+             protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+                 String username = request.getParameter("username");
+                 String password = request.getParameter("password");
+
+
+                 if (username.equalsIgnoreCase("santa") && password.equals("12345")) {
+                     request.setAttribute("loginMessage", "acceso valido");
+                     request.getRequestDispatcher("/WEB-INF/views/administratorOptions/administrationOption.jsp").forward(request,response);
+
+                 }else {
+                     request.setAttribute("loginMessage","acceso invalido");
+                 }
+                 request.getRequestDispatcher("/WEB-INF/views/loginAdm.jsp").forward(request,response);
+
+             }
+
+             **********
+             INSERT INTO `moi`.`accounting` (`date`, `invoice`, `description`, `detail`, `quantity`, `income`, `expenses`, `total`) VALUES ('2024-12-02', '002', 'pago', 'servicios', '3', '0', '150000', '0');
+
+
+             ****
+
+        String query = "INSERT INTO moi.report (date,codigo,nombre,basico,prepago,postpago,detalle,otros,subTotal,total) VALUES (?,?,?,?,?,?,?,?,?,?);";
+          ResultSet rs = null;
+
+
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement= connection.prepareStatement(query)){
+
+
+            preparedStatement.setString(1,model.getDate());
+            preparedStatement.setInt(2,model.getCodigo());
+            preparedStatement.setString(3,model.getNombre());
+            preparedStatement.setInt(4,model.getBasico());
+            preparedStatement.setInt(5,model.getPrepago());
+            preparedStatement.setInt(6,model.getPostpago());
+            preparedStatement.setString(7,model.getDetalle());
+            preparedStatement.setInt(8,model.getOtros());
+            preparedStatement.setInt(9,model.getSubtotal());
+            preparedStatement.setInt(10,model.getTotal());
+
+            preparedStatement.executeUpdate();
+
+        }catch (SQLException e){
+            System.err.println("error insertando pago : " + e.getMessage());
+        }
+
+
+    }

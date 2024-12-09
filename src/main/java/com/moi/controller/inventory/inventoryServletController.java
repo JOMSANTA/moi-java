@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet("/inventories")
@@ -22,14 +23,18 @@ public class inventoryServletController extends HttpServlet {
         String name = request.getParameter("name");
         String color = request.getParameter("color");
         String imei = request.getParameter("imei");
+        String code = request.getParameter("code");
+        String quantity = request.getParameter("quantity");
+        String type = request.getParameter("type");
 
 
         if (name != null || color != null) {
             name = name != null ? name : "";
             color = color != null ? color : "";
             imei = imei != null ? imei : "";
+            code = code != null ? code : "";
             // Buscar por nombre de producto
-            inventories = new InventoryDAOImpl().getAllByFilterParamsInventory(name, color, imei);
+            inventories = new InventoryDAOImpl().getAllByFilterParamsInventory(name, color, imei, code);
         } else {
             // Traer toda la lista
             inventories = new InventoryDAOImpl().getAllInventory();
@@ -93,5 +98,21 @@ public class inventoryServletController extends HttpServlet {
 
         doGet(request, response);
 
+    }
+
+    @Override
+    protected void doOptions(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("<h1>Options</h1>");
+    }
+
+    @Override
+    protected void service(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        super.service(request, response);
+
+        System.out.println("Service_______________________________");
     }
 }

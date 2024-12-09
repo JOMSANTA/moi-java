@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class EmployeeModel {
-  private int documento;
+  private long documento;
   private String nombres;
   private  String apellidos;
   private int codigo;
@@ -17,11 +17,12 @@ public class EmployeeModel {
     public EmployeeModel() {
     }
 
-    public int getDocumento() {
+    public long getDocumento() {
         return documento;
     }
-    public void setDocumento(int documento) {
-            this.documento = documento;
+
+    public void setDocumento(long documento) {
+        this.documento = documento;
     }
 
     public String getNombres() {
@@ -40,11 +41,11 @@ public class EmployeeModel {
         this.apellidos = apellidos;
     }
 
-    public int getCodigo(){
-       return codigo;
-
+    public int getCodigo() {
+        return codigo;
     }
-    public void setCodigo(int codigo){
+
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 
@@ -73,7 +74,7 @@ public class EmployeeModel {
     }
 
     public LocalDate getFechaNacimiento() {
-        return (LocalDate) fechaNacimiento;
+        return fechaNacimiento;
     }
 
     public void setFechaNacimiento(LocalDate fechaNacimiento) {

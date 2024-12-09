@@ -19,6 +19,42 @@ public class AccountingServletController extends HttpServlet {
         List<AccountingModel> accounting = new AccountDAOImpl().getAllAccount();
         request.setAttribute("accounting", accounting);
 
-        request.getRequestDispatcher("/WEB-INF/views/accounting/account.jsp").forward(request,response);
+        request.getRequestDispatcher("/WEB-INF/views/accounting/account.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String date = request.getParameter("date");
+        String invoice = request.getParameter("invoice");
+        String description = request.getParameter("description");
+        String detail = request.getParameter("detail");
+        String quantity = request.getParameter("quantity");
+        String income = request.getParameter("income");
+        String expenses = request.getParameter("expenses");
+        String total = request.getParameter("total");
+
+        if (invoice != null) {
+            AccountingModel model = new AccountingModel();
+
+            model.setDate(date != null ? date : "");
+            model.setInvoice(Integer.parseInt(invoice));
+            model.setDescription(description);
+            model.setDetail(detail);
+            model.setQuantity(Integer.parseInt(quantity));
+            model.setIncome(Integer.parseInt(income));
+            model.setExpenses(Integer.parseInt(expenses));
+            model.setTotal(Integer.parseInt(total));
+
+            AccountDAOImpl accountDAO = new AccountDAOImpl();
+            accountDAO.insertAccount(model);
+
+            System.out.println("registro agregado");
+
+
+        } else {
+            request.setAttribute("error al ingresar registro", "loginMessage");
+        }
+        response.sendRedirect(request.getContextPath() + "/accounting");
     }
 }

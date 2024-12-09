@@ -8,16 +8,11 @@ public class ProductModel {
     private String name;
     private String color;
     private long imei;
+    private String code;
+    private String coming;
+    private String type;
 
     public ProductModel() {
-    }
-
-    public long getImei() {
-        return imei;
-    }
-
-    public void setImei(long imei) {
-        this.imei = imei;
     }
 
     public Long getId() {
@@ -42,5 +37,37 @@ public class ProductModel {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public long getImei() {
+        return imei;
+    }
+
+    public void setImei(long imei) {
+        this.imei = imei;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getComing() {
+        return coming;
+    }
+
+    public void setComing(String coming) {
+        this.coming = coming;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
