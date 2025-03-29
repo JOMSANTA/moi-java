@@ -1,12 +1,13 @@
 package com.moi.dao;
 
 import com.moi.model.EmployeeModel;
-import com.moi.model.ProductModel;
+import com.moi.model.InventoryModel;
 
 import java.util.List;
 
 public interface ComingDAO {
 
-    ProductModel getProductByComing(String coming);
+    InventoryModel getProductByComing(String coming);
 
+    List<InventoryModel> getProductByComing();
 }

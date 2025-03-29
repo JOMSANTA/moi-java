@@ -1,7 +1,6 @@
 package com.moi.dao;
 
 import com.moi.model.ClientModel;
-import com.moi.model.ProductModel;
 
 import java.sql.*;
 
@@ -14,6 +13,8 @@ public class ClientDAOImpl implements ClientDAO {
 
     static {
         try {
+
+
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             System.err.println("falla en el jbdc driver");

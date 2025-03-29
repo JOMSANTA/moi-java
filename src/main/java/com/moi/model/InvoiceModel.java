@@ -5,12 +5,12 @@ public class InvoiceModel {
 
     private String fecha;//PREGUNTAR POR ESTO
     private String nombre;
-    private int documento;
+    private long documento;
     private int factura;
-    private int codigoEmpleado;
+    private int codEmpleado;
     private String producto;
     private String codigoProducto;
-    private int imei;
+    private long imei;
     private int cantidad;
     private float valorUnitario;
     private float subTotal;
@@ -19,15 +19,6 @@ public class InvoiceModel {
 
     public InvoiceModel(){
 
-    }
-
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
     }
 
     public String getFecha() {
@@ -46,11 +37,11 @@ public class InvoiceModel {
         this.nombre = nombre;
     }
 
-    public int getDocumento() {
+    public long getDocumento() {
         return documento;
     }
 
-    public void setDocumento(int documento) {
+    public void setDocumento(long documento) {
         this.documento = documento;
     }
 
@@ -62,12 +53,12 @@ public class InvoiceModel {
         this.factura = factura;
     }
 
-    public int getCodigoEmpleado() {
-        return codigoEmpleado;
+    public int getCodEmpleado() {
+        return codEmpleado;
     }
 
-    public void setCodigoEmpleado(int codigoEmpleado) {
-        this.codigoEmpleado = codigoEmpleado;
+    public void setCodEmpleado(int codEmpleado) {
+        this.codEmpleado = codEmpleado;
     }
 
     public String getProducto() {
@@ -86,12 +77,20 @@ public class InvoiceModel {
         this.codigoProducto = codigoProducto;
     }
 
-    public int getImei() {
+    public long getImei() {
         return imei;
     }
 
-    public void setImei(int imei) {
+    public void setImei(long imei) {
         this.imei = imei;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
     public float getValorUnitario() {

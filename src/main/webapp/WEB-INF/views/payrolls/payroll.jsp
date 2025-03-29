@@ -27,7 +27,7 @@
 <table>
  <tr>
    <th>fecha</th>
-      <th>codigo</th>
+      <th>codigo empleado</th>
       <th>nombre</th>
       <th>basico</th>
       <th>prepago</th>

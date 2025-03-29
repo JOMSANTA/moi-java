@@ -20,7 +20,7 @@
             <a href="inventories"><nav class="inventories">Inventario</nav></a>
             <a href="invoices"><nav class="invoices">Registrar</nav></a>
             <a href="comings"><nav class="comings">Priorizar venta</nav></a>
-            <a href="emails"><nav class="emails">Pedidos</nav></a>
+            <a href="emails"><nav class="emails">Correos y pedidos</nav></a>
 
 
           </div>

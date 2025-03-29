@@ -131,3 +131,15 @@ table {
     background-color: #f92626;
     }
 
+    .diez {
+        background-color: #FFA500; /* Naranja para productos a 10 días  */
+        color: white; /* Texto blanco */
+    }
+
+    .cinco {
+        background-color: #FFFF00; /* Amarillo para productos a 5 días */
+        color: black; /* Texto negro  */
+    }
+
+
+

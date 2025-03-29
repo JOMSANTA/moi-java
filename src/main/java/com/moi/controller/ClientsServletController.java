@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/clientsRegister")
+@WebServlet("/clients/register")
 public class ClientsServletController extends HttpServlet {
 
     @Override

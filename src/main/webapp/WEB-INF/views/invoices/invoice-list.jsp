@@ -38,11 +38,11 @@
                                 <tr>
                                  <td> <input type="datetime-local" name="fecha" id="fecha">  </td>
                                  <td> <input type="text" name="nombre" id="nombre"> </td>
-                                 <td> <input type="number" name="documento" id="documento"> </td>
+                                 <td> <input type="long" name="documento" id="documento"> </td>
                                  <td> <input type="int" name="codigoEmpleado" id="codigoEmpleado"> </td>
                                  <td> <input type="text" name="producto" id="producto"> </td>
                                  <td> <input type="text" name="codigoProducto" id="codigoProducto"> </td>
-                                 <td> <input type="number" name="imei" id="imei"> </td>
+                                 <td> <input type="long" name="imei" id="imei"> </td>
                                  <td> <input type="number" name="cantidad" id="cantidad"> </td>
                                  <td> <input type="number" name="valor" id="valor"> </td>
                                  <td> <input type="number" name="subTotal" id="subTotal"> </td>

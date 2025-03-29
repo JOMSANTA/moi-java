@@ -1,40 +1,87 @@
 package com.moi.model;
 
 import java.sql.*;
+import java.util.Date;
 
 public class InventoryModel {
 
-
-    private Long id;
-    private Integer quantity;
-    private ProductModel product;
+    private long idProduct;
+    private String name;
+    private String color;
+    private long imei;
+    private String code;
+    private String coming;
+    private int quantity;
+    private String type;
 
 
 
     public InventoryModel() {
     }
 
-    public Long getId() {
-        return id;
+    public long getIdProduct() {
+        return idProduct;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdProduct(long idProduct) {
+        this.idProduct = idProduct;
     }
 
-    public Integer getQuantity() {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public long getImei() {
+        return imei;
+    }
+
+    public void setImei(long imei) {
+        this.imei = imei;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getComing() {
+        return coming;
+    }
+
+    public void setComing(String coming) {
+        this.coming = coming;
+    }
+
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public ProductModel getProduct() {
-        return product;
+    public String getType() {
+        return type;
     }
 
-    public void setProduct(ProductModel product) {
-        this.product = product;
+    public void setType(String type) {
+        this.type = type;
     }
+
+   
 }

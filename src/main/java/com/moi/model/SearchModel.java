@@ -2,23 +2,23 @@ package com.moi.model;
 
 public class SearchModel {
 
-    private String producto;
+    private String name;
     private String color;
-    private int numeroExistencias;
-    private String codigo;
     private long imei;
-    private String fechaLimiteVenta;
-    private String tipoDeProducto;
+    private String code;
+    private String coming;
+    private int quantity;
+    private String type;
 
     public SearchModel() {
     }
 
-    public String getProducto() {
-        return producto;
+    public String getName() {
+        return name;
     }
 
-    public void setProducto(String producto) {
-        this.producto = producto;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getColor() {
@@ -29,22 +29,6 @@ public class SearchModel {
         this.color = color;
     }
 
-    public int getNumeroExistencias() {
-        return numeroExistencias;
-    }
-
-    public void setNumeroExistencias(int numeroExistencias) {
-        this.numeroExistencias = numeroExistencias;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
     public long getImei() {
         return imei;
     }
@@ -53,19 +37,35 @@ public class SearchModel {
         this.imei = imei;
     }
 
-    public String getFechaLimiteVenta() {
-        return fechaLimiteVenta;
+    public String getCode() {
+        return code;
     }
 
-    public void setFechaLimiteVenta(String fechaLimiteVenta) {
-        this.fechaLimiteVenta = fechaLimiteVenta;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public String getTipoDeProducto() {
-        return tipoDeProducto;
+    public String getComing() {
+        return coming;
     }
 
-    public void setTipoDeProducto(String tipoDeProducto) {
-        this.tipoDeProducto = tipoDeProducto;
+    public void setComing(String coming) {
+        this.coming = coming;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

@@ -32,9 +32,9 @@ public class InvoiceDaoImpl implements InvoiceDao {
     @Override
     public void insertInvoice(InvoiceModel model) {
 
-        String insertQuery = "INSERT INTO moi.factura \n" +
-                "(fecha, nombre,documento, codEmpleado, producto, codigoProducto, imei, cantidad, valorUnitario, subTotal, iva, total,factura)\n" +
-                " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?);";
+        String insertQuery = "INSERT INTO moi.invoice \n" +
+                "(fecha, nombre,documento, codEmpleado, producto, codigoProducto, imei, cantidad, valorUnitario, subTotal, iva, total)\n" +
+                " VALUES(?,?,?,?,?,?,?,?,?,?,?,?);";
         ResultSet rs = null;
 
         try (Connection connection = getConnection();
@@ -42,17 +42,17 @@ public class InvoiceDaoImpl implements InvoiceDao {
 
             preparedStatement.setString(1, model.getFecha());
             preparedStatement.setString(2, model.getNombre());
-            preparedStatement.setInt(3, model.getDocumento());
-            preparedStatement.setInt(4, model.getCodigoEmpleado());
+            preparedStatement.setLong(3, model.getDocumento());
+            preparedStatement.setInt(4, model.getCodEmpleado());
             preparedStatement.setString(5, model.getProducto());
             preparedStatement.setString(6, model.getCodigoProducto());
-            preparedStatement.setInt(7, model.getImei());
+            preparedStatement.setLong(7, model.getImei());
             preparedStatement.setInt(8, model.getCantidad());
             preparedStatement.setFloat(9, model.getValorUnitario());
             preparedStatement.setFloat(10, model.getSubTotal());
             preparedStatement.setInt(11, model.getIva());
             preparedStatement.setFloat(12, model.getTotal());
-            preparedStatement.setInt(13, model.getFactura());
+
 
 
             preparedStatement.executeUpdate();
@@ -92,7 +92,7 @@ public class InvoiceDaoImpl implements InvoiceDao {
     public List<InvoiceModel> getAllInvoices() {
 
         List<InvoiceModel> invoices = new ArrayList<>();
-        String selectQuery = "SELECT * FROM factura;";
+        String selectQuery = "SELECT * FROM invoice;";
 
         try
                 (Connection connection = getConnection();
@@ -104,14 +104,14 @@ public class InvoiceDaoImpl implements InvoiceDao {
                 InvoiceModel invoiceModel = new InvoiceModel();
                 invoiceModel.setFecha(resultSet.getString("fecha"));
                 invoiceModel.setNombre(resultSet.getString("nombre"));
-                invoiceModel.setDocumento(resultSet.getInt("documento"));
-                invoiceModel.setCodigoEmpleado(resultSet.getInt("codigoEmpleado"));
+                invoiceModel.setDocumento(resultSet.getLong("documento"));
+                invoiceModel.setCodEmpleado(resultSet.getInt("codEmpleado"));
                 invoiceModel.setProducto(resultSet.getString("producto"));
                 invoiceModel.setCodigoProducto(resultSet.getString("codigoProducto"));
-                invoiceModel.setImei(resultSet.getInt("imei"));
+                invoiceModel.setImei(resultSet.getLong("imei"));
                 invoiceModel.setCantidad(resultSet.getInt("cantidad"));
                 invoiceModel.setValorUnitario(resultSet.getFloat("valorUnitario"));
-                invoiceModel.setSubTotal(resultSet.getFloat("subToltal"));
+                invoiceModel.setSubTotal(resultSet.getFloat("subTotal"));
                 invoiceModel.setIva(resultSet.getInt("iva"));
                 invoiceModel.setTotal(resultSet.getFloat("total"));
 

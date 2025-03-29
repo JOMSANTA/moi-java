@@ -1,5 +1,6 @@
 package com.moi.dao;
 
+import com.moi.model.InventoryModel;
 import com.moi.model.SearchModel;
 
 import java.sql.*;
@@ -25,33 +26,66 @@ public class SearchDAOImpl implements SearchDAO {
     }
 
     @Override
-    public SearchModel getProductByName(String producto) {
-        SearchModel search = null;
+    public List<SearchModel> getAllSearch() {
 
-        String InsertQuery = "SELECT * FROM inventario_oficina WHERE producto = ?";
+        List<SearchModel> searchs = new ArrayList<>();
+        String query = "SELECT * FROM invent";
 
-        try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(InsertQuery)) {
 
-            preparedStatement.setString(1,producto);
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
 
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()){
-                search = new SearchModel();
-                search.setProducto(resultSet.getString("producto"));
+            while (resultSet.next()) {
+                SearchModel search = new SearchModel();
+                search.setName(resultSet.getString("name"));
                 search.setColor(resultSet.getString("color"));
-                search.setNumeroExistencias(resultSet.getInt("numeroExistencias"));
-                search.setCodigo(resultSet.getString("codigo"));
                 search.setImei(resultSet.getLong("imei"));
-                search.setFechaLimiteVenta(resultSet.getString("fechaLimiteVenta"));
-                search.setTipoDeProducto(resultSet.getString("tipoDeProducto"));
+                search.setCode(resultSet.getString("code"));
+                search.setComing(resultSet.getString("coming"));
+                search.setQuantity(resultSet.getInt("quantity"));
+                search.setType(resultSet.getString("type"));
+
+                searchs.add(search);
             }
 
-        }catch (SQLException e){
-            System.out.println("Error al obtener producto por nombre" + e.getMessage());
+        } catch (SQLException e) {
+            System.err.println("Error getting products: " + e.getMessage());
         }
-         return search;
+
+        return searchs;
+    }
+
+    @Override
+    public SearchModel getProductByName(String name) {
+        List<SearchModel> searchs = new ArrayList<>();
+
+        String query = "SELECT * FROM invent WHERE name LIKE ?";
+
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, "%" + name + "%");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                SearchModel search = new SearchModel();
+                search.setName(resultSet.getString("name"));
+                search.setColor(resultSet.getString("color"));
+                search.setImei(resultSet.getLong("imei"));
+                search.setCode(resultSet.getString("code"));
+                search.setComing(resultSet.getString("coming"));
+                search.setQuantity(resultSet.getInt("quantity"));
+                search.setType(resultSet.getString("type"));
+
+                searchs.add(search);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error getting products by name: " + e.getMessage());
+
+
+        }
+        return (SearchModel) searchs;
     }
 
     @Override
@@ -69,68 +103,74 @@ public class SearchDAOImpl implements SearchDAO {
         return null;
     }
 
+    @Override
+    public void insertProduct(SearchModel model) {
 
-    public List<SearchModel> searchProducts(String producto, String color, String imei, String codigo) {
-        List<SearchModel> productos = new ArrayList<>();
-
-        // Comienza la conexión a la base de datos
-        try (Connection conn = getConnection()) {
-            // Construir la consulta SQL
-            StringBuilder query = new StringBuilder("SELECT * FROM inventario_oficina WHERE 1=1");
-
-            // Agregar condiciones según los parámetros no nulos
-            if (producto != null && !producto.trim().isEmpty()) {
-                query.append(" AND nombre LIKE ?");
-            }
-            if (color != null && !color.trim().isEmpty()) {
-                query.append(" AND color LIKE ?");
-            }
-            if (imei != null && !imei.trim().isEmpty()) {
-                query.append(" AND imei LIKE ?");
-            }
-            if (codigo != null && !codigo.trim().isEmpty()) {
-                query.append(" AND codigo LIKE ?");
-            }
-
-            // Preparar la sentencia SQL
-            try (PreparedStatement stmt = conn.prepareStatement(query.toString())) {
-
-                // Establecer los parámetros dinámicos
-                int index = 1;
-                if (producto != null && !producto.trim().isEmpty()) {
-                    stmt.setString(index++, "%" + producto + "%");  // Para búsqueda parcial
-                }
-                if (color != null && !color.trim().isEmpty()) {
-                    stmt.setString(index++, "%" + color + "%");  // Para búsqueda parcial
-                }
-                if (imei != null && !imei.trim().isEmpty()) {
-                    stmt.setString(index++, "%" + imei + "%");  // Para búsqueda parcial
-                }
-                if (codigo != null && !codigo.trim().isEmpty()) {
-                    stmt.setString(index++, "%" + codigo + "%");  // Para búsqueda parcial
-                }
-
-                // Ejecutar la consulta
-                try (ResultSet rs = stmt.executeQuery()) {
-                    // Iterar a través de los resultados y agregarlos a la lista
-                    while (rs.next()) {
-                        SearchModel productoEncontrado = new SearchModel();
-                        productoEncontrado.setProducto(rs.getString("nombre"));
-                        productoEncontrado.setColor(rs.getString("color"));
-                        productoEncontrado.setImei(rs.getLong("imei"));
-                        productoEncontrado.setCodigo(rs.getString("codigo"));
-                        // Agregar el producto a la lista
-                        productos.add(productoEncontrado);
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Manejo de errores, por ejemplo, lanzar una excepción personalizada
-        }
-
-        return productos;  // Retorna la lista de productos encontrados
     }
 
+    @Override
+    public List<SearchModel> searchProducts(String producto, String color, String imei, String codigo) {
+        List<SearchModel> searchs = new ArrayList<>();
 
-}
+        // Inicia la consulta
+        String query = "SELECT * FROM invent WHERE 1=1";
+        // "1=1" es una condición siempre verdadera para facilitar la adición dinámica de filtros
+
+        // Agrega filtros si los parámetros no son nulos o vacíos
+        if (producto != null && !producto.isEmpty()) {
+            query += " AND name LIKE ?";
+        }
+        if (color != null && !color.isEmpty()) {
+            query += " AND color LIKE ?";
+        }
+        if (imei != null && !imei.isEmpty()) {
+            query += " AND imei = ?";
+        }
+        if (codigo != null && !codigo.isEmpty()) {
+            query += " AND code LIKE ?";
+        }
+
+        // Conexión a la base de datos
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            int paramIndex = 1;
+
+            // Establece los valores de los parámetros dinámicamente
+            if (producto != null && !producto.isEmpty()) {
+                statement.setString(paramIndex++, "%" + producto + "%");
+            }
+            if (color != null && !color.isEmpty()) {
+                statement.setString(paramIndex++, "%" + color + "%");
+            }
+            if (imei != null && !imei.isEmpty()) {
+                statement.setLong(paramIndex++, Long.parseLong(imei));
+            }
+            if (codigo != null && !codigo.isEmpty()) {
+                statement.setString(paramIndex++, "%" + codigo + "%");
+            }
+
+            // Ejecuta la consulta
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                SearchModel search = new SearchModel();
+                search.setName(resultSet.getString("name"));
+                search.setColor(resultSet.getString("color"));
+                search.setImei(resultSet.getLong("imei"));
+                search.setCode(resultSet.getString("code"));
+                search.setComing(resultSet.getString("coming"));
+                search.setQuantity(resultSet.getInt("quantity"));
+                search.setType(resultSet.getString("type"));
+                searchs.add(search);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al obtener los productos: " + e.getMessage());
+        }
+
+        return searchs;
+    }
+
+  }
+

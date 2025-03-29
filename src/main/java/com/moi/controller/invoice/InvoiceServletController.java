@@ -28,12 +28,12 @@ public class InvoiceServletController extends HttpServlet {
        String fecha = request.getParameter("fecha");
         String nombre = request.getParameter("nombre");
         String documento = request.getParameter("documento");
-        String codigoEmpleado = request.getParameter("codigoEmpleado");
+        String codEmpleado = request.getParameter("codEmpleado");
         String producto = request.getParameter("producto");
         String codigoProducto = request.getParameter("codigoProducto");
         String imei = request.getParameter("imei");
         String cantidad = request.getParameter("cantidad");
-        String valor = request.getParameter("valor");
+        String valorUnitario = request.getParameter("valorUnitario");
         String subTotal = request.getParameter("subTotal");
         String iva = request.getParameter("iva");
         String total = request.getParameter("total");
@@ -45,14 +45,14 @@ public class InvoiceServletController extends HttpServlet {
             InvoiceModel model = new InvoiceModel();
             model.setFecha(fecha != null ? fecha : "");
             model.setNombre(nombre);
-            model.setDocumento(documento != null ? Integer.parseInt(documento) : 0);
-            model.setCodigoEmpleado(Integer.parseInt(codigoEmpleado));
+            model.setDocumento(Long.parseLong(documento));
+            model.setCodEmpleado(Integer.parseInt(codEmpleado));
             model.setProducto(producto);
             model.setCodigoProducto(codigoProducto);
-            model.setImei(Integer.parseInt(imei));
+            model.setImei(Long.parseLong(imei));
 
             int quantity = Integer.parseInt(cantidad);
-            int unitValue = Integer.parseInt(valor);
+            int unitValue = Integer.parseInt(valorUnitario);
             int totalValue = unitValue * quantity;
             float ivaValue = totalValue * 0.19f;
             float subTotalValue = totalValue - ivaValue;
