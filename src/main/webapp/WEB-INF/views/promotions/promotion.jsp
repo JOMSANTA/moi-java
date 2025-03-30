@@ -24,6 +24,6 @@
 </head>
 <body>
 
-    <img src="webapp/img/promo.jpg" alt="Descripción de la imagen" />
+    <img class="full-screen-image" src="webapp/img/promo.jpg" alt="Descripción de la imagen" />
 </body>
 </html>
