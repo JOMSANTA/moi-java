@@ -21,7 +21,7 @@
     </div>
   </div>
   <div class="medio">
-    <section class="sucursal">
+    <section class="suc">
       <img src="${pageContext.request.contextPath}/img/logo_ruta.png" alt="" width="220px" class="ruta">
       <h2 class="suc">sucursal</h2>
     </section>
