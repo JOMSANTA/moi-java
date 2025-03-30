@@ -113,6 +113,6 @@ public class InventoryModel {
     }
 
     public static void insertProcuct(Connection connection){
-        String query = "INSERT INTO user (idProducto, producto, colorProducto, numeroExistencias, imeiProducto, fechaLimiteVenta, tipoDeProducto) VALUES(?,?,?,?,?,?,?);"
+        String query = "INSERT INTO user (idProducto, producto, colorProducto, numeroExistencias, imeiProducto, fechaLimiteVenta, tipoDeProducto) VALUES(?,?,?,?,?,?,?);";
     }
 }
