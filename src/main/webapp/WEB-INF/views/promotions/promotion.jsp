@@ -2,4 +2,12 @@
 <%@ page language="java" import="java.util.*, java.lang.*"%>
 
 
-Promo
+<html>
+<head>
+    <title>Mi Página con Imagen</title>
+</head>
+<body>
+    <h1>Bienvenido a mi página JSP</h1>
+    <img src="webapp/img/promo.jpg" alt="Descripción de la imagen" />
+</body>
+</html>
