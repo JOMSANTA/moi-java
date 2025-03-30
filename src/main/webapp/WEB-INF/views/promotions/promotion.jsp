@@ -22,6 +22,6 @@
     </style>
 </head>
 <body>
-    <img class="full-screen-image" src="/img/promo.jpg" />
+    <img class="full-screen-image" src="webapp/img/promo.jpg" />
 </body>
 </html>
