@@ -79,8 +79,10 @@ public class InventoryModel {
         return type;
     }
 
+
     public void setType(String type) {
         this.type = type;
+   
     }
 
    
