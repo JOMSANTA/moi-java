@@ -5,39 +5,68 @@
                    <meta charset="UTF-8">
                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
                    <title>factura</title>
-                   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/invoices.css">
+                   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/insertPayroll.css?">
                </head>
                <body>
-                 <div class="fondo">
-                   <form action="http://localhost:5000/invoices" method="post">
-                   <div class="general">
-                       <h1 class="factura">Factura</h1>
+               <div class="tod">
+                   <div class="bna">
+                   <a href=""><nav class="search">Buscar</nav></a>
+                    <a href="clientsRegister"><nav class="atras">Registrar</nav></a>
+                    <a href="moi-java"><nav class="salir">Salir</nav></a>
+                   </div>
 
-                       <label for="fecha_factura">Fecha factura</label>
-                       <input type="datetime-local" name="fechaFactura" id="fechaFactura" placeholder="fecha factura"><br>
-                       <input type="number" name="idCliente" id="idCliente" placeholder="id cliente"><br>
-                       <input type="text" name="nombreCliente" id="nombreCliente" placeholder="Nombre cliente"><br>
-                       <input type="number" name="idProducto" id="idProducto" placeholder="id producto"><br>
-                       <input type="text" name="nombreProducto" id="nombreProducto"placeholder="nombre producto"><br>
-                       <input type="text" name="imeiProducto" id="imeiProducto"placeholder="imei"><br>
-                       <input type="number" name="cantidadProductos" id="cantidadProductos" placeholder="cantidad producto"><br>
-                       <input type="number" name="valorUnitario" id="valorUnitario" placeholder="valor_unitario"><br>
-                       <input type="number" name="subTotal" id="subTotal" placeholder="sub total"><br>
-                       <input type="number" name="iva" id="iva" placeholder="iva"><br>
-                       <input type="number" name="total" id="total" placeholder="total"><br>
-                       <input type="reset" ><br>
-                       <input type="submit" value="Enviar">
+                  <div class="fondo">
+                        <div class="general">
+                          <form class="pay" action="invoices" method= "post">
+                           <div class="ent">
+                              <table>
+                                <tr>
+                                 <th>fecha</th>
+                                 <th>nombre</th>
+                                 <th>documento</th>
+                                 <th>codigo empleado</th>
+                                 <th>producto</th>
+                                 <th>codigo producto</th>
+                                 <th>imei</th>
+                                 <th>cantidad</th>
+                                 <th>valor</th>
+                                 <th>subtotal</th>
+                                 <th>iva</th>
+                                 <th>total</th>
+                                </tr>
 
-                     </div>
-                      </div>
+                                <tr>
+                                 <td> <input type="datetime-local" name="fecha" id="fecha">  </td>
+                                 <td> <input type="text" name="nombre" id="nombre"> </td>
+                                 <td> <input type="long" name="documento" id="documento"> </td>
+                                 <td> <input type="int" name="codigoEmpleado" id="codigoEmpleado"> </td>
+                                 <td> <input type="text" name="producto" id="producto"> </td>
+                                 <td> <input type="text" name="codigoProducto" id="codigoProducto"> </td>
+                                 <td> <input type="long" name="imei" id="imei"> </td>
+                                 <td> <input type="number" name="cantidad" id="cantidad"> </td>
+                                 <td> <input type="number" name="valor" id="valor"> </td>
+                                 <td> <input type="number" name="subTotal" id="subTotal"> </td>
+                                 <td> <input type="number" name="iva" id="iva"> </td>
+                                 <td> <input type="number" name="total" id="total"> </td>
+                                </tr>
+                              </table>
+                           </div>
 
-               </body>
-               </form>
-               </html>
+                                  <button class="en" type="submit">Enviar</button>
 
-      </div>
+                          </form>
+
+
+
+          </div>
+
        </div>
+    </div>
+  </div>
 
-</body>
+
+
+
+
 </form>
 </html>

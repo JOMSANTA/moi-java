@@ -1,0 +1,148 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.fondo{
+    background-image: url(../img/logo_buimon.png);
+        background-repeat: no-repeat;
+        background-size: 60%;
+        background-position: center;
+
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+
+    }
+
+body{
+    width:100%;
+text-decoration: none;
+}
+.en{
+width:9%;
+position:relative;
+left:5%;
+background-color:rgb(94, 147, 226);
+color:white;
+}
+table {
+    width: 100%;
+    table-layout: fixed; }
+
+  input {
+    width: 100%;
+     box-sizing: border-box;
+  }
+
+
+    .tabla{
+    background-color: rgba(255, 255, 255, 0.8);
+        text-align: center;
+    }
+    .tod{
+
+        width: 100%;
+    }
+
+
+    .general{
+       width: 100%;
+       height: 38.5rem;
+    }
+
+
+    table,th,td{
+    border: 1px solid;
+    border-collapse: collapse;
+    }
+
+
+    .tabla{
+    font-size:250%;
+    }
+
+
+    table{background-color: rgba(255, 255, 255, 0.9);
+        width: 90%;
+        height: auto;
+        margin: auto;
+    }
+    .search{
+
+   background-color: #b11818;
+   width:5%;
+   height:5%;
+   display-flex;
+   text-align: center;
+   position: relative;
+   left:2%;
+   top:1.3rem;
+   font-size:100%;
+   border-radius:20px;
+   color: white;
+
+    }
+.insert{
+    background-color: #b11818;
+      width:5%;
+      height:30%;
+
+      align-content: center;
+      text-align: center;
+      position:relative;
+      left:70%;
+      bottom:52%;
+      font-size:100%;
+      border-radius:20px;
+      color: white;
+
+    }
+
+
+
+
+    .atras{
+    background-color: #b11818;
+      width:5%;
+      height:30%;
+      align-content: center;
+      text-align: center;
+      position: relative;
+      left:80%;
+      top:0.2rem;
+      font-size:100%;
+      border-radius:20px;
+      color: white;
+       }
+    .salir{
+    background-color: #b11818;
+     width:5%;
+     height:30%;
+
+     align-content: center;
+     text-align: center;
+     position: relative;
+     left: 90%;
+     bottom: 1rem;
+     font-size:100%;
+     border-radius:20px;
+     color: white;
+     }
+
+
+    nav:active{
+        background-color: #b11818;
+    }
+    .atras:active{
+    background-color: #f92626;
+    }
+    .salir:active{
+    background-color: #f92626;
+    }
+    .insert:active{
+    background-color: #f92626;
+    }
+

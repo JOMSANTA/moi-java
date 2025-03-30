@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+     text-decoration: none;
+}
+.general{
+    background-image: url(../img/fondoOptAdm.png);
+    width: 100%;
+    height: 44.5rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:cover;
+
+
+
+}
+.edith,
+.pay,.empl,.email,.autho,.report,.accounting{
+   background-color: rgb(250, 36, 36,0.7);
+   width: 60%;
+   height: 9%;
+   align-content: center;
+   text-align: center;
+   font-size: 180%;
+   color: white;
+   border-radius: 20px;
+   display: block;
+   margin-bottom: 1.5%;
+   position: relative;
+   left: 20%;
+   top: 5%;
+
+
+}
+.opc{
+
+}

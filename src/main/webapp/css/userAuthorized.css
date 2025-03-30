@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1{text-align: center}
+
+.fondo{
+width: 100%;
+height: 43.5rem;
+background-image:url(../img/logo_buimon.png);
+background-size: 80%;
+background-position: center;
+background-repeat: no-repeat;
+position: relative;
+
+align-content: center;
+}
+.general{
+background-color: rgb(246, 242, 242,0.7);
+    position:relative;
+    align-content: center;
+   text-align: center;
+   align-items: center;
+
+
+
+
+
+}
+input{
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+     width: 70%;
+   height: 50%;
+   margin-top: 1%;
+}

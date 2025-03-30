@@ -32,6 +32,6 @@ public class InventoryServletController extends HttpServlet {
         String fechaLimiteVenta = request.getParameter("fechaLimiteVenta");
         String tipoDeProducto = request.getParameter("tipoDeProducto");
 
-        InventoryModel inventoryModel = new InventoryDAOImpl().insertProduct();
+      //  InventoryModel inventoryModel = new InventoryDAOImpl().insertProduct();
     }
 }

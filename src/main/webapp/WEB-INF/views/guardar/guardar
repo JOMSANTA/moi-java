@@ -77,3 +77,194 @@ public List<InventoryModel> getAllInventory(String idProducto, String producto, 
     public void updateProduct(String idProducto, InventoryModel model) {
 
     }
+
+    =====
+
+        String first_name = request.getParameter("first_name");
+        String last_name= request.getParameter("last_name");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        if (first_name != null) {
+            EmployeeAuthorizedModel model= new EmployeeAuthorizedModel();
+            model.setFirst_name(first_name);
+            model.setLast_name(last_name);
+            model.setUsername(username);
+            model.setPassword(password);
+
+
+
+            EmployeeAuthorizedDAOImpl employeeAuthorizedDAO = new EmployeeAuthorizedDAOImpl();
+            employeeAuthorizedDAO.insertEmployeeAuthorized(model);
+
+            System.out.println("empleado autorizado");
+
+
+        }else {
+              request.setAttribute("error al ingresar empleado", "loginMessage");
+
+        }
+        response.sendRedirect(request.getContextPath()+"/employeesAuthorized");
+
+
+        ***************************
+
+         <td> <input type="int" name="document" id="document">  </td>
+                                        <td> <input type="text" name="name" id="name"> </td>
+                                        <td> <input type="text" name="lastName" id="lastName"> </td>
+                                        <td> <input type="int" name="coode" id="code"> </td>
+                                        <td> <input type="int" name="cel" id="cel"> </td>
+                                        <td> <input type="text" name="email" id="email"> </td>
+                                        <td> <input type="text" name="position" id="position"> </td>
+                                        <td> <input type="date" name="birthdate" id="otros"> </td>
+                                        <td> <input type="text" name="branch" id="branch"> </td>
+
+                                        *******************
+
+          @Override
+             protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+                 String username = request.getParameter("username");
+                 String password = request.getParameter("password");
+
+
+                 if (username.equalsIgnoreCase("santa") && password.equals("12345")) {
+                     request.setAttribute("loginMessage", "acceso valido");
+                     request.getRequestDispatcher("/WEB-INF/views/administratorOptions/administrationOption.jsp").forward(request,response);
+
+                 }else {
+                     request.setAttribute("loginMessage","acceso invalido");
+                 }
+                 request.getRequestDispatcher("/WEB-INF/views/loginAdm.jsp").forward(request,response);
+
+             }
+
+             **********
+             INSERT INTO `moi`.`accounting` (`date`, `invoice`, `description`, `detail`, `quantity`, `income`, `expenses`, `total`) VALUES ('2024-12-02', '002', 'pago', 'servicios', '3', '0', '150000', '0');
+
+
+             ****
+
+        String query = "INSERT INTO moi.report (date,codigo,nombre,basico,prepago,postpago,detalle,otros,subTotal,total) VALUES (?,?,?,?,?,?,?,?,?,?);";
+          ResultSet rs = null;
+
+
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement= connection.prepareStatement(query)){
+
+
+            preparedStatement.setString(1,model.getDate());
+            preparedStatement.setInt(2,model.getCodigo());
+            preparedStatement.setString(3,model.getNombre());
+            preparedStatement.setInt(4,model.getBasico());
+            preparedStatement.setInt(5,model.getPrepago());
+            preparedStatement.setInt(6,model.getPostpago());
+            preparedStatement.setString(7,model.getDetalle());
+            preparedStatement.setInt(8,model.getOtros());
+            preparedStatement.setInt(9,model.getSubtotal());
+            preparedStatement.setInt(10,model.getTotal());
+
+            preparedStatement.executeUpdate();
+
+        }catch (SQLException e){
+            System.err.println("error insertando pago : " + e.getMessage());
+        }
+
+
+    }
+**********************
+
+ public List<SearchModel> searchProducts(String producto, String color, String imei, String codigo) {
+        List<SearchModel> productos = new ArrayList<>();
+
+        // Comienza la conexión a la base de datos
+        try (Connection conn = getConnection()) {
+            // Construir la consulta SQL
+            StringBuilder query = new StringBuilder("SELECT * FROM inventario_oficina WHERE 1=1");
+
+            // Agregar condiciones según los parámetros no nulos
+            if (producto != null && !producto.trim().isEmpty()) {
+                query.append(" AND nombre LIKE ?");
+            }
+            if (color != null && !color.trim().isEmpty()) {
+                query.append(" AND color LIKE ?");
+            }
+            if (imei != null && !imei.trim().isEmpty()) {
+                query.append(" AND imei LIKE ?");
+            }
+            if (codigo != null && !codigo.trim().isEmpty()) {
+                query.append(" AND codigo LIKE ?");
+            }
+
+            // Preparar la sentencia SQL
+            try (PreparedStatement stmt = conn.prepareStatement(query.toString())) {
+
+                // Establecer los parámetros dinámicos
+                int index = 1;
+                if (producto != null && !producto.trim().isEmpty()) {
+                    stmt.setString(index++, "%" + producto + "%");  // Para búsqueda parcial
+                }
+                if (color != null && !color.trim().isEmpty()) {
+                    stmt.setString(index++, "%" + color + "%");  // Para búsqueda parcial
+                }
+                if (imei != null && !imei.trim().isEmpty()) {
+                    stmt.setString(index++, "%" + imei + "%");  // Para búsqueda parcial
+                }
+                if (codigo != null && !codigo.trim().isEmpty()) {
+                    stmt.setString(index++, "%" + codigo + "%");  // Para búsqueda parcial
+                }
+
+                // Ejecutar la consulta
+                try (ResultSet rs = stmt.executeQuery()) {
+                    // Iterar a través de los resultados y agregarlos a la lista
+                    while (rs.next()) {
+                        SearchModel productoEncontrado = new SearchModel();
+                        productoEncontrado.setName(rs.getString("producto"));
+                        productoEncontrado.setColor(rs.getString("color"));
+                        productoEncontrado.setImei(rs.getLong("imei"));
+                        productoEncontrado.setCode(rs.getString("codigo"));
+                        // Agregar el producto a la lista
+                        productos.add(productoEncontrado);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Manejo de errores, por ejemplo, lanzar una excepción personalizada
+        }
+
+        return productos;  // Retorna la lista de productos encontrados
+    }
+
+
+//codigo para search
+  </tr>
+                <% if (searchs != null && !searchs.isEmpty()) { %>
+                    <% for (int i = 0; i < searchs.size(); i ++) { %>
+                 <% SearchModel search = (SearchModel) searchs.get(i); %>
+
+            <tr>
+                    <td><%= search.getName() %></td>
+                    <td><%= search.getColor() %></td>
+                    <td><%= search.getImei() %></td>
+                    <td><%= search.getCode() %></td>
+                     <td><%= search.getComing() %></td>
+                     <td><%= search.getQuantity() %></td>
+                     <td><%= search.getType() %></td>
+                       <td>
+                        <form action="inventories" method="post">
+
+                           <div>
+                             <button type="submit" value="DELETE">
+                               Delete
+                             </button>
+                           </div>
+                        </form>
+                       </td>
+                </tr>
+                <% } %>
+
+                <% } else { %>
+                    <tr><td colspan="5">No se encontraron resultados</td></tr>
+                <% } %>

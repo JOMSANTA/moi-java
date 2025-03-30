@@ -66,7 +66,7 @@ nav{
     justify-content: center;
     align-items: center;
 }
-.administrar nav{
+.admin{
     width: 90%;
     height: 100%;
     display: flex;
@@ -74,6 +74,8 @@ nav{
     align-items: center;
     font-size: 300%;
     margin: 0;
+
+}
 
 }
 nav:active{

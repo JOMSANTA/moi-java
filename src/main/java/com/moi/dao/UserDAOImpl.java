@@ -6,22 +6,24 @@ import java.sql.*;
 import java.util.Collections;
 import java.util.List;
 
-public class UserDAOImpl implements UserDAO{
+public class UserDAOImpl implements UserDAO {
+
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/moi";
     private static final String JDBC_USER = "root";
-    private static final String JDBC_PASSWORD = "rootpassword";
+    private static final String JDBC_PASSWORD = "root123";
 
     static {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e){
+        } catch (ClassNotFoundException e) {
             System.err.println("falla en el jbdc driver");
         }
     }
 
     private Connection getConnection() throws SQLException {
-        return  DriverManager.getConnection(JDBC_URL,JDBC_USER,JDBC_PASSWORD);
+        return DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
     }
+
     @Override
     public void insertUser(UserModel model) {
         String insertQuery = "INSERT INTO user (first_name, last_name, username, password) VALUES(?,?,?,?);";

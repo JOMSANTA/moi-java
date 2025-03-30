@@ -38,6 +38,7 @@ input{
     justify-content: center;
     border-radius: 10px;
 
+
 }
 label{
     display: flex;
@@ -48,6 +49,9 @@ label{
     width: 50%;
     margin: 0 auto;
 }
+ .env{
+background-color:rgb(250, 36, 36);
+  }
 @media(max-width:640px){
 
   .registro{
@@ -66,3 +70,4 @@ label{
       width: 20rem;
     }
   }
+
