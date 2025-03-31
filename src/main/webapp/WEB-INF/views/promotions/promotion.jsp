@@ -20,6 +20,6 @@
     </style>
 </head>
 <body>
-    <img class="full-screen-image" src="${pageContext.request.contextPath}/img/promo.jpg">
+    <img class="full-screen-image" src="${pageContext.request.contextPath}/img/promo.png">
 </body>
 </html>
