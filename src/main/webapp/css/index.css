@@ -6,6 +6,9 @@
 
 }
 body {
+width: 100%;
+overflow: hidden;
+}
 
 .general{
     width: 100%;
@@ -14,13 +17,11 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    background: url(../img/tiendacelulares.png) no-repeat center center;
+    background-size: cover;
 }
 
-width: 100%;
 
-overflow: hidden;
-
-}
 
 .distribuidor{
 
@@ -35,7 +36,8 @@ overflow: hidden;
     display: flex;
     margin-top: 40px;
     color: white;
-    opacity: 80%;
+    opacity: 0.8
+    padding:1rem;
 
 }
 .buimon{
@@ -82,10 +84,9 @@ overflow: hidden;
     position: relative;
     top: 10%;
     left: 10%;
-    opacity: 80%;
-
-
+    opacity: 0.8;
 }
+
 .ruta{
     width:20%;
     border-radius: 20px;
@@ -112,57 +113,45 @@ overflow: hidden;
     left: 80%;
 
 }
-.as{
+.as, .ad {
     background-color: rgb(250, 36, 36);
    width: 40%;
    height: 40%;
    border-radius: 10px 0 0 10px;
-   opacity: 80%;
+   opacity: 0.8;
    position: relative;
    left: 60%;
+   margin-top: 5%;
 
 }
-.ad{
-    background-color: rgb(250, 36, 36);
-   width: 40%;
-   height: 40%;
-   border-radius: 10px 0 0 10px;
-   opacity: 80%;
-   margin-top: 5%;
-   position: relative;
-   left: 60%;
+.as: hover, .ad: hover{
+background-color: rgb(247, 12, 12);
 }
-.ase{
+
+.ase, .adm{
     font-size: 350%;
     position: relative;
     bottom: 10%;
     left: 20%;
     color: black;
 }
-.adm{
-    font-size: 320%;
-    position: relative;
-    bottom: 10%;
-    left: 20%;
-    color: black;
-}
+
 .abajo{
     width: 80%;
     height: 20%;
 }
+
 .entrar{
     width: 100%;
     height: 100%;
     border-radius: 20px;
     background-color: rgb(250, 36, 36);
-    opacity: 80%;
+    opacity: 0.8;
     border: 5px solid rgb(240, 18, 18);
     position: relative;
     bottom: 20%;
-
-
-
 }
+
 .ent{
     font-size: 60px;
     text-align: center ;
@@ -173,17 +162,8 @@ overflow: hidden;
 .entrar:hover{
     background-color: rgb(247, 12, 12);
 }
-.as:hover{
-    background-color: rgb(247, 12, 12);
-}.ad:hover{
-    background-color: rgb(247, 12, 12);
-}
-.general{
-    width: 120%;
-    background: url(../img/tiendacelulares.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
+
+
 @media screen and (max-width:1160px) {
     .tienda{
 
@@ -222,7 +202,7 @@ overflow: hidden;
         bottom: 5%;
     }
 
-
+}
 @media screen and (max-width:885px) {
     .grupo{
         font-size: 100%;
@@ -264,13 +244,11 @@ overflow: hidden;
   .buimon{
     font-size: 100%;
   }
-  .ase{
+  .ase, .adm{
     left: 10%;
 }
-.adm{
-   left: 10%;
 }
-}
+
 
 
 
