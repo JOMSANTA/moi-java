@@ -74,7 +74,6 @@ overflow: hidden;
     width:100%;
     height: auto;
 
-
 }
 .sucursal{
     background-color:rgb(250, 36, 36) ;
@@ -247,6 +246,28 @@ background-color: rgb(247, 12, 12);
   .ase, .adm{
     left: 10%;
 }
+@media screen and (max-width: 561px){
+  .grupo{
+    bottom: 20%;
+    font-size: 1.5vw;
+  }
+  .tienda{
+    font-size: 2.0vw;
+  }
+  .buimon{
+    font-size: 1.7vw;
+  }
+  .ase, .adm{
+    left: 10%;
+  }
+  .ent{
+  font-size: 3vw;
+  }
+  .suc{
+  font-size: 2vw;
+  }
+}
+
 }
 
 
