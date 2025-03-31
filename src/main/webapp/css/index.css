@@ -31,12 +31,11 @@ overflow: hidden;
 .arriba{
     background-color:rgb(250, 36, 36) ;
     width: 80%;
-
     border-radius: 20px;
     display: flex;
     margin-top: 40px;
     color: white;
-    opacity: 0.8
+    opacity: 0.8;
     padding:1rem;
 
 }
@@ -61,6 +60,7 @@ overflow: hidden;
     position: relative;
     left: 70%;
     bottom: 20%;
+    max-width: 100%
 }
 .grupo{
 
@@ -92,6 +92,7 @@ overflow: hidden;
     position: relative;
     left: 10%;
     top:15%;
+    max-width: 100%;
 
 }
 .suc{
@@ -123,7 +124,7 @@ overflow: hidden;
    margin-top: 5%;
 
 }
-.as: hover, .ad: hover{
+.as:hover, .ad:hover{
 background-color: rgb(247, 12, 12);
 }
 
@@ -193,8 +194,8 @@ background-color: rgb(247, 12, 12);
             left: 10%;
             top:35px;
 
-        }
     }
+
     .suc{
         position: relative;
         left: 40%;
