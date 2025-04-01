@@ -247,6 +247,7 @@ background-color: rgb(247, 12, 12);
   .ase, .adm{
     left: 10%;
 }
+}
 @media screen and (max-width: 561px){
   .grupo{
     bottom: 20%;
