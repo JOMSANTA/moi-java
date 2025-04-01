@@ -23,23 +23,24 @@ overflow: hidden;
 
 
 
-.distribuidor{
 
-    width: 90%;
-
-}
 .arriba{
     background-color:rgb(250, 36, 36) ;
     width: 80%;
-
+    height: 30%;
     border-radius: 20px;
     display: flex;
-    margin-top: 40px;
+    margin-top: 4%;
     color: white;
     opacity: 0.8;
     padding:1rem;
 
 }
+.distribuidor{
+
+     width: 90%;
+
+ }
 .buimon{
     font-size: 6vw;
     position: relative;
@@ -162,7 +163,7 @@ background-color: rgb(247, 12, 12);
     background-color: rgb(247, 12, 12);
 }
 
-
+/*
 @media screen and (max-width:1160px) {
     .tienda{
 
@@ -268,7 +269,7 @@ background-color: rgb(247, 12, 12);
   .suc{
   font-size: 2vw;
   }
-
+*/
 
 }
 
