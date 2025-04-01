@@ -31,6 +31,7 @@ overflow: hidden;
 .arriba{
     background-color:rgb(250, 36, 36) ;
     width: 80%;
+
     border-radius: 20px;
     display: flex;
     margin-top: 40px;
@@ -60,7 +61,6 @@ overflow: hidden;
     position: relative;
     left: 70%;
     bottom: 20%;
-    max-width: 100%
 }
 .grupo{
 
@@ -92,7 +92,6 @@ overflow: hidden;
     position: relative;
     left: 10%;
     top:15%;
-    max-width: 100%;
 
 }
 .suc{
@@ -194,8 +193,8 @@ background-color: rgb(247, 12, 12);
             left: 10%;
             top:35px;
 
-    }
-
+        }
+    
     .suc{
         position: relative;
         left: 40%;
@@ -203,6 +202,7 @@ background-color: rgb(247, 12, 12);
     }
 
 }
+
 @media screen and (max-width:885px) {
     .grupo{
         font-size: 3vw;
@@ -266,54 +266,9 @@ background-color: rgb(247, 12, 12);
   }
   .suc{
   font-size: 2vw;
-  top: 20%;
   }
 }
 
-@media screen and (max-width: 451px){
-  .grupo{
-    bottom: 20%;
-    font-size: 1.2vw;
-  }
-  .tienda{
-    font-size: 1.5vw;
-  }
-  .buimon{
-    font-size: 1.2vw;
-  }
-  .ase, .adm{
-    left: 10%;
-  }
-  .ent{
-  font-size: 1.5vw;
-  }
-  .suc{
-  font-size: 1vw;
-  top: 20%;
-  }
-}
-@media screen and (max-width: 321px){
-  .grupo{
-    bottom: 20%;
-    font-size: 1vw;
-  }
-  .tienda{
-    font-size: 1vw;
-  }
-  .buimon{
-    font-size: 1vw;
-  }
-  .ase, .adm{
-    left: 10%;
-  }
-  .ent{
-  font-size: 1.5vw;
-  }
-  .suc{
-  font-size: 1vw;
-  top: 20%;
-  }
-}
 }
 
 
