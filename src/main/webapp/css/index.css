@@ -48,7 +48,7 @@ overflow: hidden;
 }
 .tienda{
     width: 60%;
-    height: auto;
+
     font-size: 6vw;
     position: relative;
     top: 15%;
@@ -229,8 +229,8 @@ background-color: rgb(247, 12, 12);
         font-size: 3.5vw;
     }
     .adm{
-       font-size: 3vw;
-       top: 10%;
+       font-size: 3.5vw;
+
     }
 }
 @media screen and (max-width: 655px){
@@ -268,7 +268,7 @@ background-color: rgb(247, 12, 12);
   .suc{
   font-size: 2vw;
   }
-}
+
 
 }
 
