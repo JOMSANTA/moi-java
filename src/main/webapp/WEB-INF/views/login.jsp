@@ -26,7 +26,7 @@
             <div class="margin-bottom--12 content-center">
             <%-- Check if loginMessage attribute exists --%>
             <% if (request.getAttribute("loginMessage") != null) { %>
-            <p style="color:#0000ff ";>
+            <p style="color:#f01226 ";>
                 <%= request.getAttribute("loginMessage")  %>
             </p>
                 <% } %>
