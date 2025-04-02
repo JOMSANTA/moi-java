@@ -15,6 +15,10 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    background-image:url(../img/tiendacelulares.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+
 }
 
 
@@ -178,12 +182,7 @@
 }.ad:hover{
     background-color: rgb(247, 12, 12);
 }
-.general{
-    width: 120%;
-    background-image:"\img\fondoUsuario.png ";
-    background-repeat: no-repeat;
-    background-size: cover;
-}
+
 @media screen and (max-width:1160px) {
     .tienda{
 
