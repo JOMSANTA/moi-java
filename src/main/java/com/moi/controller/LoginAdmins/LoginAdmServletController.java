@@ -69,7 +69,7 @@ public class LoginAdmServletController extends HttpServlet {
 
 
         }catch (SQLException e){
-            e.printStackTrace();
+
             request.setAttribute("loginMessage","error de conexion");
             request.getRequestDispatcher("/WEB-INF/views/loginAdm.jsp").forward(request, response);
         }
