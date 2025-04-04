@@ -3,14 +3,18 @@ version: '3.7'
 services:
   mysqldb:
     image: mysql:latest
-    #    command: --default-authentication-plugin=mysql_native_password
+    command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: moi
-      MYSQL_USER: santa
-      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: buimonDb
+      MYSQL_USER: santander
+      MYSQL_PASSWORD: santa16
     ports:
       - "3307:3306"
-#    volumes:
-#      - ./mysql-data:/var/lib/mysql
+ #   volumes:
+ #     - ./mysql-data:/var/lib/mysql
+
+
+
+
