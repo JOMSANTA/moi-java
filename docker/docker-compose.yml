@@ -6,7 +6,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: buimonDb
+      MYSQL_DATABASE: buimondb
       MYSQL_USER: santander
       MYSQL_PASSWORD: santa16
     ports:
