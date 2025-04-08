@@ -74,7 +74,7 @@ public class LoginServletController extends HttpServlet {
 
 
             }catch (SQLException e){
-                e.printStackTrace();
+
                 request.setAttribute("loginMessage","error de conexion");
                 request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
             }
