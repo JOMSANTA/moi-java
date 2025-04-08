@@ -16,11 +16,15 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    background: url(../img/tiendacelulares.png);
+
+    overflow: hidden;
+    background-image:url(../img/tiendacelulares.png);
     background-repeat: no-repeat;
     background-size: cover;
-    overflow: hidden;
+
 }
+
+
 
 .distribuidor{
 
@@ -99,7 +103,7 @@
     border-radius: 20px;
     position: relative;
     left: 10%;
-    top:15%;
+    top:12.5%;
 
 }
 .suc{
@@ -198,6 +202,7 @@
         top: 20%;
     }
 
+
     .log {
         width: 25%;
         top: 10%;
@@ -208,6 +213,7 @@
         height: 60%;
         top: 15%;
         left: 15%;
+
     }
 
 }
@@ -227,7 +233,9 @@
             position: relative;
             left: 10%;
             top:35px;
+
     }
+
     .suc{
         width:80%;
         height:50%;
@@ -235,12 +243,14 @@
         top:20%;
 
     }
+
     .log{
         width: 30%;
         top: 20%;
         right: 10%;
 
     }
+
 }
 
 @media screen and (max-width:885px) {
@@ -301,15 +311,18 @@
     }
 
     .log{
+
         width: 35%;
         top:25%;
         right:15%;
+
 
     }
     .ruta{
         width: 35%;
     }
     .suc{
+
         left: 5%;
         width:90%;
         height:40%;
@@ -319,6 +332,7 @@
     font-size:200%;
     top:10%;
     left:10%;
+
     }
 }
 @media screen and (max-width: 655px){
@@ -351,6 +365,96 @@
     right: 80%;
 
 }
+
+}
+
+
+@media screen and (max-width: 580px){
+    .suc{
+        font-size: 200%;
+    }
+    .grupo{
+        display: none;
+    }
+    .tienda{
+        font-size: 130%;
+        top: 45%;
+    }
+    .buimon{
+        top: 35%;
+    }
+    .ent{
+        top: 40%;
+    }
+
+}
+
+@media screen and (max-width: 430px){
+    .suc{
+        font-size: 100%;
+        top: 10%;
+        left: 65%;
+    }
+    .grupo{
+        display: none;
+    }
+    .tienda{
+        font-size: 110%;
+        top: 45%;
+    }
+    .buimon{
+        top: 35%;
+        font-size: 80%;
+    }
+    .ent{
+        top: 40%;
+        font-size: 200%;
+    }
+    .ruta{
+        width: 50%;
+    }
+    .log{
+        width: 35%;
+    }
+
+}
+
+
+@media screen and (max-width: 340px){
+    .suc{
+
+        top: 15%;
+
+    }
+
+    .tienda{
+        top: 30%;
+    }
+    .buimon{
+        top: 20%;
+
+    }
+    .ent{
+        top: 40%;
+        font-size: 150%;
+    }
+    .ruta{
+        width: 60%;
+
+
+    }
+    .log{
+        width: 45%;
+        left: 50%;
+    }
+    .empleados{
+        left: 75%;
+
+    }
+    .as, .ad{
+        width: 90%;
+    }
+
 }
 @media screen and (max-width: 580px){
     .suc{
@@ -401,6 +505,7 @@
     }
 
 }
+
 
 
 
