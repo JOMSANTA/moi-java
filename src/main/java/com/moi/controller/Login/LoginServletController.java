@@ -14,9 +14,9 @@ import java.sql.*;
 
 @WebServlet("/login")
 public class LoginServletController extends HttpServlet {
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/moi";
-    private static final String JDBC_USER = "root";
-    private static final String JDBC_PASSWORD = "root123";
+    private static final String JDBC_URL = System.getenv("MYSQL_JDBC_URL");
+    private static final String JDBC_USER =System.getenv("MYSQL_JDBC_USER");
+    private static final String JDBC_PASSWORD = System.getenv("MYSQL_JDBC_PASSWORD");
 
     static {
         try {
