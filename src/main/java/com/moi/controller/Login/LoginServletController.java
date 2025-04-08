@@ -49,7 +49,7 @@ public class LoginServletController extends HttpServlet {
 
 
 
-            String query = "SELECT * FROM moi.user WHERE username = ? AND password = ?";
+            String query = "SELECT * FROM _user WHERE username = ? AND password = ?";
 
 
             try (Connection connection = getConnection();
