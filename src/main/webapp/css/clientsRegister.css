@@ -6,6 +6,7 @@
 body{
 
 }
+
 .fondo{
 background-image: url(../img/logo_buimon.png);
 background-repeat: no-repeat;
@@ -39,7 +40,7 @@ input{
    
    
 }
-label{
+label{<
     display: flex;
     justify-content:center;
     align-items: center;

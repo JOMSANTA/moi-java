@@ -28,7 +28,7 @@
       <th>color</th>
       <th>imei </th>
       <th>codigo</th>
-      <th>cant</th>
+
 
       </tr>
 
@@ -37,7 +37,7 @@
       <td> <input type="text" name="color" id="color"> </td>
       <td> <input type="int" name="imei" id="imei"> </td>
       <td> <input type="text" name="code" id="code"> </td>
-      <td> <input type="int" name="quantity" id="quantity"> </td>
+
       </tr>
       </table>
       </div>

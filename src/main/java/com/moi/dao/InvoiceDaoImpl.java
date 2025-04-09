@@ -25,6 +25,7 @@ public class InvoiceDaoImpl implements InvoiceDao {
     }
 
     private Connection getConnection() throws SQLException {
+        System.out.println("Conexión establecida con éxito a la base de datos");
         return DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
     }
 

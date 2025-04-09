@@ -434,16 +434,26 @@
 
 }
 
-
 @media screen and (max-width: 320px){
     .tienda{
         font-size: 140%;
     }
     .grupo{
-        font-size: 70%;
+        font-size: 60%;
+    }
+    .buimon{
+        left: 7%;
+    }
+    .ruta{
+        left: 7%;
+    }
+    .suc{
+        left: -52%;
+    }
+    .ent{
+        font-size: 140%;
     }
 }
-
 
 
 

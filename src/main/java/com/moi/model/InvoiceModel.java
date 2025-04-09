@@ -1,5 +1,7 @@
 package com.moi.model;
 
+import java.util.List;
+
 public class InvoiceModel {
 
 
@@ -124,4 +126,6 @@ public class InvoiceModel {
     public void setTotal(float total) {
         this.total = total;
     }
+
+
 }

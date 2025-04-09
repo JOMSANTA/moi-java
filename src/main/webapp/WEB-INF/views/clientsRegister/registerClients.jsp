@@ -12,7 +12,7 @@
 <body>
   <div class="fondo">
     <form action="/clientsRegister">
-    <div class="general">
+   <div class="general">
         <h1 class="factura">Cliente</h1>
         <input type="number" name="idcliente_num_documento" id="idcliente_num_documento" placeholder="id Cliente numero documento"><br>
         <input type="text" name="nombre_cliente" id="nombre_cliente" placeholder="Nombre Cliente"><br>
@@ -20,10 +20,10 @@
         <input type="number" name="cel" id="cel" placeholder= "celular"
         <input type="email" name="correo" id="correo" placeholder="Correo electronico"><br>
         <input type="text" name="direccion" id="direccion" placeholder="Direccion residencia"><br>
-        <input type="submit" value="Enviar"></div>
-        <input type="reset" ><br>
+        <input type="submit" value="Enviar"><br>
+        <input type="reset"  value= "Reset"></div>
    </div>
-
-</body>
 </form>
+</body>
+
 </html>
