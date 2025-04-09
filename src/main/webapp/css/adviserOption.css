@@ -184,3 +184,59 @@ nav:active{
       font-size: 150%;
   }
   }
+  @media screen and (max-width:550px){
+    p{
+      font-size: 130%;
+    }
+
+  .inventario,
+   .registrar,
+   .Priorizar,
+   .Promociones,
+   .solicitudes,
+   .Productos{
+      font-size: 130%;
+  }
+  }
+  @media screen and (max-width:405px){
+    p{
+      font-size: 100%;
+    }
+
+  .inventario,
+   .registrar,
+   .Priorizar,
+   .Promociones,
+   .solicitudes,
+   .Productos{
+      font-size: 110%;
+  }
+  }
+  @media screen and (max-width:350px){
+    p{
+      font-size: 90%;
+    }
+
+  .inventario,
+   .registrar,
+   .Priorizar,
+   .Promociones,
+   .solicitudes,
+   .Productos{
+      font-size: 90%;
+  }
+  }
+  @media screen and (max-width:280px){
+    p{
+      font-size: 70%;
+    }
+
+  .inventario,
+   .registrar,
+   .Priorizar,
+   .Promociones,
+   .solicitudes,
+   .Productos{
+      font-size: 70%;
+  }
+  }
