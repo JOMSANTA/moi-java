@@ -2,7 +2,6 @@
 <%@ page language="java" import="java.util.*, java.lang.*"%>
 <%@ page import="com.moi.model.InventoryModel" %>
 
-
 <!DOCTYPE html>
 <html lang="es">
 <head>

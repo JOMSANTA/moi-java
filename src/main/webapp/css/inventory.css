@@ -21,6 +21,9 @@ body{
     width:100%;
 
 }
+td{
+    overflow: hidden;
+}
 .en{
 width:9%;
 position:relative;
@@ -29,6 +32,7 @@ background-color:rgb(94, 147, 226);
 color:white;
 }
 table {
+    overflow: hidden;
     width: 100%;
     table-layout: fixed; }
 
@@ -41,6 +45,7 @@ table {
     .tabla{
     background-color: rgba(255, 255, 255, 0.8);
         text-align: center;
+        overflow: hidden;
     }
     .tod{
 
@@ -49,6 +54,7 @@ table {
 
 
     .general{
+
        width: 100%;
        height: 38.5rem;
     }
@@ -140,6 +146,54 @@ table {
         background-color: #FFFF00; /* Amarillo para productos a 5 días */
         color: black; /* Texto negro  */
     }
+    @media screen and (max-width:1000px) {
+        table {
+            font-size: 80%;
+        }
+        .insert, .atras, .salir{
+            font-size: 80%;
+        }
+        .salir{
+            bottom: 0.5rem;
+        }
+        .atras{
+            top: 0.45rem;
+        }
+    }
+    @media screen and (max-width:750px) {
+        table {
+            font-size: 60%;
+        }
+        .tabla{
+            font-size: 200%;
+        }
+        .insert, .atras, .salir{
+            font-size: 60%;
+        }
+        .salir{
+            bottom: 0.2rem;
+        }
+        .atras{
+            top: 0.55rem;
+        }
+    }
+    @media screen and (max-width:500px) {
+        table {
+            font-size: 40%;
+        }
+        .tabla{
+            font-size: 100%;
+        }
+        .insert, .atras, .salir{
+            font-size: 30%;
+        }
+        .insert{
+            top: 0.70rem;
+        }
+        .atras{
+            top: 0.25rem;
+        }
 
+    }
 
 
