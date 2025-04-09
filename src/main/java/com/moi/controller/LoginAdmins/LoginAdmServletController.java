@@ -44,7 +44,7 @@ public class LoginAdmServletController extends HttpServlet {
 
 
 
-        String query = "SELECT * FROM adminAuthorized WHERE username = ? AND password = ?";
+        String query = "SELECT * FROM adminauthorized WHERE username = ? AND password = ?";
 
 
         try (Connection connection = getConnection();
