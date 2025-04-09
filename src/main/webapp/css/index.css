@@ -16,7 +16,6 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-
     overflow: hidden;
     background-image:url(../img/tiendacelulares.png);
     background-repeat: no-repeat;
@@ -34,12 +33,20 @@
 .arriba{
     background-color:rgb(250, 36, 36) ;
     width: 80%;
-
+    height: 30%;
     border-radius: 20px;
     display: flex;
     margin-top: 40px;
     color: white;
     opacity: 80%;
+
+}
+.log{
+    border-radius: 20px;
+    width: 20%;
+    position: relative;
+    left: 80%;
+    bottom: 35%;
 
 }
 .buimon{
@@ -49,68 +56,48 @@
     top: 10%;
 }
 .tienda{
-    width: 60%;
-    height: 30%;
+
     font-size: 355%;
     position: relative;
-    top: 15%;
-    left: 5%;
+    top: 10%;
+    right: 17.5%;
     display: flex;
     justify-content: center;
     align-items: center;
-
-
 }
-.log{
-    border-radius: 20px;
-    width: 20%;
-    position: absolute;
-    top: 0;
-    right: 10%;
 
-}
 .grupo{
-
-    width: 25%;
+    font-size: 200%;
     position: relative;
-    left: 30%;
-    bottom: 30%;
+    left: 33%;
+    bottom: 50%;
 }
 .medio{
-
-    width:100%;
-    height: 30%;
-
-
+    width: 100%;
 }
 .sucursal{
     background-color:rgb(250, 36, 36);
-    width: 60%;
-    height: 70%;
+    width: 50%;
+    height: 25%;
     border-radius: 20px;
     position: absolute;
-    top: 10%;
+    top: 43.5%;
     left: 10%;
     opacity: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
-
-
 }
 .ruta{
-    width:20%;
+    width:25%;
     border-radius: 20px;
     position: relative;
-    left: 10%;
-    top:12.5%;
-
+    right: 15%;
 }
 .suc{
     font-size: 250%;
     position: relative;
-    left: 40%;
-    top: -25%;
+    top: 30%;
     color: white;
     width: 16%;
     height: 50%;
@@ -190,29 +177,23 @@
     .tienda{
 
         font-size: 300%;
+        top: 15%;
     }
     .grupo{
         font-size: 120%;
+        bottom: 30%;
     }
     .ent{
         font-size: 350%;
         top: 30%;
     }
-    .ruta{
-        top: 20%;
-    }
-
 
     .log {
-        width: 25%;
-        top: 10%;
-        right: 5%;
+        bottom:25%;
     }
     .sucursal {
-        width: 70%;
-        height: 60%;
-        top: 15%;
-        left: 15%;
+        width: 50%;
+
 
     }
 
@@ -230,283 +211,238 @@
        font-size: 250%;
     }
     .ruta{
-            position: relative;
-            left: 10%;
-            top:35px;
-
+        width: 35%;
     }
 
     .suc{
-        width:80%;
+
         height:50%;
-        left: 10%;
-        top:20%;
+
+        top:30%;
 
     }
 
     .log{
-        width: 30%;
-        top: 20%;
+        width: 25%;
+        bottom: 15%;
+
+
+    }
+
+}
+@media screen and (max-width:840px) {
+    .tienda{
+        right: 15%;
+    }
+    .suc{
         right: 10%;
-
     }
-
 }
 
-@media screen and (max-width:885px) {
-    .grupo{
-        font-size: 100%;
-    }
-    .ruta{
-        width: 30%;
-        top: 15%;
 
 
-    }
-    .suc{
-        left: 50%;
-    }
-    .log{
-        width: 25%;
-    }
-
-}
-@media screen and (max-width:817px) {
-    .grupo{
-        font-size: 90%;
-        bottom: 40%;
-    }
+@media screen and (max-width:750px) {
     .tienda{
-
-        font-size: 200%;
-    }
-
-    .ent{
-        font-size: 300%;
-    }
-    .buimon{
-        font-size: 150%;
-    }
-    .ase{
-        font-size: 250%;
-    }
-    .adm{
-       font-size: 220%;
-       top: 10%;
-    }
-    .log{
-        width: 25%;
-    }
-    .ruta{
-        width: 30%;
-    }
-    .suc{
-        left: 50%;
-    }
-}
-@media screen and (max-width:720px) {
-    .grupo{
-        font-size: 70%;
-        bottom: 40%;
-    }
-
-    .log{
-
-        width: 35%;
-        top:25%;
-        right:15%;
-
-
-    }
-    .ruta{
-        width: 35%;
-    }
-    .suc{
-
-        left: 5%;
-        width:90%;
-        height:40%;
-        top:25;
-    }
-    .tienda{
-    font-size:200%;
-    top:10%;
-    left:10%;
-
-    }
-}
-@media screen and (max-width: 655px){
-  .grupo{
-    bottom: 30%;
-    font-size: 80%;
-  }
-  .tienda{
-    font-size: 150%;
-    top: 30%;
-  }
-  .buimon{
-    font-size: 100%;
-    top: 20%;
-  }
-  .ase{
-    left: 10%;
-}
-.adm{
-   left: 10%;
-}
-.ent{
-    font-size: 250%;
-}
-.ruta{
-    top: 20%;
-
-}
-.suc{
-    right: 80%;
-
-}
-
-}
-
-
-@media screen and (max-width: 580px){
-    .suc{
-        font-size: 200%;
+        right: 10%;
     }
     .grupo{
-        display: none;
+        bottom: 20%;
+
     }
-    .tienda{
+    .suc{
+        right: 10%;
+    }
+
+}
+@media screen and (max-width:650px) {
+    .grupo{
         font-size: 130%;
-        top: 45%;
-    }
-    .buimon{
-        top: 35%;
-    }
-    .ent{
-        top: 40%;
-    }
-
-}
-
-@media screen and (max-width: 430px){
-    .suc{
-        font-size: 100%;
-        top: 10%;
-        left: 65%;
-    }
-    .grupo{
-        display: none;
+        left: 33%;
+        bottom: 10%;
     }
     .tienda{
-        font-size: 110%;
-        top: 45%;
-    }
-    .buimon{
-        top: 35%;
-        font-size: 80%;
-    }
-    .ent{
-        top: 40%;
         font-size: 200%;
-    }
-    .ruta{
-        width: 50%;
-    }
-    .log{
-        width: 35%;
-    }
-
-}
-
-
-@media screen and (max-width: 340px){
-    .suc{
-
-        top: 15%;
-
-    }
-
-    .tienda{
         top: 30%;
     }
     .buimon{
+        font-size: 120%;
+        left: 10%;
         top: 20%;
-
-    }
-    .ent{
-        top: 40%;
-        font-size: 150%;
-    }
-    .ruta{
-        width: 60%;
-
-
     }
     .log{
-        width: 45%;
-        left: 50%;
-    }
-    .empleados{
+        width: 30%;
         left: 75%;
-
-    }
-    .as, .ad{
-        width: 90%;
-    }
-
-}
-@media screen and (max-width: 580px){
-    .suc{
-        font-size: 200%;
-    }
-    .grupo{
-        display: none;
-    }
-    .tienda{
-        font-size: 130%;
-        top: 45%;
-    }
-    .buimon{
-        top: 35%;
-    }
-    .ent{
-        top: 40%;
-    }
-
-}
-
-@media screen and (max-width: 430px){
-    .suc{
-        font-size: 100%;
-        top: 10%;
-        left: 65%;
-    }
-    .grupo{
-        display: none;
-    }
-    .tienda{
-        font-size: 110%;
-        top: 45%;
-    }
-    .buimon{
-        top: 35%;
-        font-size: 80%;
-    }
-    .ent{
-        top: 40%;
-        font-size: 200%;
+        top: 1%;
     }
     .ruta{
-        width: 50%;
+        width: 45%;
+    }
+    .suc{
+        font-size: 170%;
+    }
+    .ent{
+        font-size: 300%;
+    }
+
+}
+@media screen and (max-width:600px) {
+    .tienda{
+        font-size: 160%;
+        right: 15%;
+        top: 35%;
+    }
+    .buimon{
+        top: 20%;
+    }
+    .grupo{
+        bottom: 10%;
+        font-size: 100%;
+        left: 30%;
     }
     .log{
         width: 35%;
+        left: 67%;
+    }
+    .ruta{
+        width: 50%;
+        right: 5%;
+    }
+    .suc{
+        font-size: 130%;
+        left: 1%;
+        top: 40%;
+    }
+}
+@media screen and (max-width: 540px){
+    .tienda{
+        font-size: 130%;
+    }
+    .buimon{
+        font-size: 100%;
+        top: 25%;
+    }
+    .grupo{
+        bottom: 0%;
+        font-size: 90%;
+    }
+    .suc{
+        left: -3%;
+    }
+    .ent{
+        font-size: 250%;
+    }
+    .ad{
+        left: 50%;
+        width: 80%;
+    }
+    .adm{
+        left: 5%;
+    }
+    .as{
+        left: 50%;
+        width: 80%;
+    }
+    .ase{
+        left: 5%;
+    }
+
+
+}
+
+
+@media screen and (max-width: 435px){
+    .log{
+        top: -10%;
+        width: 40%;
+        left: 60%;
+        border-radius: 10px;
+    }
+    .tienda{
+        font-size: 180%;
+        width: 30%;
+        left: 15%;
+    }
+    .grupo{
+        left: 60%;
+        top: -10%;
+    }
+    .ruta{
+        border-radius: 10px;
+        left: 10%;
+        top: -10%;
+    }
+    .suc{
+        left: -35%;
+        font-size: 150%;
+    }
+    .ent{
+        font-size: 200%;
+    }
+    .ad{
+        left: 30%;
+        width: 80%;
+    }
+    .adm{
+        left: 5%;
+    }
+    .as{
+        left: 30%;
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 370px){
+    .tienda{
+        font-size: 160%;
+        top: 30%;
+    }
+    .buimon{
+        font-size: 80%;
+        top: 25%;
+    }
+    .grupo{
+        font-size: 75%;
+        top: 0%;
+    }
+    .log{
+        top: 0%;
+    }
+    .suc{
+        left: -45%;
+    }
+    .ruta{
+        width: 60%;
+    }
+    .ent{
+        font-size: 170%;
+        top: 40%;
+    }
+    .ad{
+        left: 30%;
+        width: 80%;
+    }
+    .adm{
+        left: 5%;
+    }
+    .as{
+        left: 30%;
+        width: 80%;
+    }
+    .ase{
+        left: 5%;
     }
 
 }
 
 
+@media screen and (max-width: 320px){
+    .tienda{
+        font-size: 140%;
+    }
+    .grupo{
+        font-size: 70%;
+    }
+}
 
 
 
