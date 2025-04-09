@@ -22,18 +22,18 @@
 
 
                                  <h1 class="factura">Factura</h1>
-                                 <input type="datetime-local" name="fecha" id="fecha">
-                                  <input type="text" name="nombre" id="nombre" placeholder="Nombre cliente">
-                                  <input type="number" name="documento" id="documento" placeholder="Documento">
-                                  <input type="number" name="codEmpleado" id="codEmpleado" placeholder="Codigo empleado">
-                                  <input type="text" name="producto" id="producto" placeholder="Nombre producto">
-                                  <input type="text" name="codigoProducto" id="codigoProducto" placeholder="Codigo producto">
-                                  <input type="number" name="imei" id="imei" placeholder="imei">
-                                  <input type="number" name="cantidad" id="cantidad" placeholder="Cantidad">
-                                  <input type="number" name="valor" id="valor" placeholder="Precio">
-                                  <input type="number" name="subTotal" id="subTotal" placeholder="Subtotal">
-                                  <input type="number" name="iva" id="iva" placeholder="iva">
-                                  <input type="number" name="total" id="total" placeholder="Total">
+                                 <input type="datetime-local" name="fecha" id="fecha"><br>
+                                  <input type="text" name="nombre" id="nombre" placeholder="Nombre cliente"><br>
+                                  <input type="number" name="documento" id="documento" placeholder="Documento"><br>
+                                  <input type="number" name="codEmpleado" id="codEmpleado" placeholder="Codigo empleado"><br>
+                                  <input type="text" name="producto" id="producto" placeholder="Nombre producto"><br>
+                                  <input type="text" name="codigoProducto" id="codigoProducto" placeholder="Codigo producto"><br>
+                                  <input type="number" name="imei" id="imei" placeholder="imei"><br>
+                                  <input type="number" name="cantidad" id="cantidad" placeholder="Cantidad"><br>
+                                  <input type="number" name="valor" id="valor" placeholder="Precio"><br>
+                                  <input type="number" name="subTotal" id="subTotal" placeholder="Subtotal"><br>
+                                  <input type="number" name="iva" id="iva" placeholder="iva"><br>
+                                  <input type="number" name="total" id="total" placeholder="Total"><br>
 
 
                             <div>
