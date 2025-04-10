@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/inventory.css">
 </head>
 
+
 <body>
 <div class="bna">
 <a href="employeesRegister"><nav class="insert">Insertar</nav></a>
@@ -34,7 +35,7 @@
                        <th>celular</th>
                        <th>correo</th>
                        <th>cargo</th>
-                       <th>fechaNacimiento</th>
+                       <th>natalicio</th>
                        <th>sucursal</th>
                    </tr>
                     <% for (int i = 0; i < employees.size(); i ++) { %>
