@@ -120,7 +120,7 @@ nav:active{
 
 
 }
-@media screen and (max-width:310px){
+@media screen and (max-width:330px){
     nav{
         font-size: 60%;
         border-radius:18px;
