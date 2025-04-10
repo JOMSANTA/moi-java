@@ -77,7 +77,7 @@ nav{
 
 }
 
-}
+
 nav:active{
     background-color: #b11818;
 }
@@ -104,6 +104,17 @@ nav:active{
     }
     .texto, .administrar nav{
         font-size: 200%;
+    }
+
+
+}
+@media screen and (max-width:380px){
+    nav{
+        font-size: 80%;
+
+    }
+    .texto, .administrar nav{
+        font-size: 180%;
     }
 
 
