@@ -133,3 +133,16 @@ nav:active{
 
 
 }
+@media screen and (max-width:210px){
+    nav{
+        font-size: 50%;
+        border-radius:15px;
+
+    }
+    .texto, .administrar nav{
+        font-size: 120%;
+    }
+
+
+
+}
