@@ -27,6 +27,21 @@
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     Date currentDate = new Date(); // Fecha actual
 
+    // Ordenar la lista por fecha de vencimiento en orden descendente
+    if (productList != null && !productList.isEmpty()) {
+        Collections.sort(productList, new Comparator<InventoryModel>() {
+            public int compare(InventoryModel o1, InventoryModel o2) {
+                try {
+                    Date date1 = sdf.parse(o1.getComing());
+                    Date date2 = sdf.parse(o2.getComing());
+                    return date2.compareTo(date1); // Orden descendente
+                } catch (Exception e) {
+                    return 0;
+                }
+            }
+        });
+    }
+
 %>
     <div class="fondo">
         <form action="comings" method= "post">
@@ -72,7 +87,7 @@
         rowClass = "vencido";  // Producto vencido
     } else if (diffInDays <= 5) {
     rowClass = "cinco";  // Producto a 5 días de vencer
-    } else if (diffInDays <= 10) {
+    } else if (diffInDays <= 10 && diffInDays >5) {
     rowClass = "diez";  // Producto a 10 días de vencer
     }
 
