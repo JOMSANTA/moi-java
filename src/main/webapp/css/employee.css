@@ -71,4 +71,9 @@ position:relative;
 left:76%;
 bottom:210%;
 }
+@media screen and (max-width:480px) {
+.actualizar, agregar, buscar{
+width:10%;
+}
+}
 
