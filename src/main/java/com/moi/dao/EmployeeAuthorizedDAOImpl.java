@@ -29,7 +29,7 @@ public class EmployeeAuthorizedDAOImpl implements EmployeeAuthorizedDAO{
 
     @Override
     public void insertEmployeeAutorized(EmployeeAuthorizedModel model) {
-        String insertQuery ="INSERT INTO moi.user\n" +
+        String insertQuery ="INSERT INTO _user\n" +
                 "(first_name, last_name, username, password)\n"+
                 "VALUES(?,?,?,?);";
         ResultSet rs = null;

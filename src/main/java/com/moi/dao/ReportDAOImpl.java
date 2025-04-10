@@ -31,7 +31,7 @@ public class ReportDAOImpl implements ReportDAO{
 
     @Override
     public void insertReport(ReportModel model) {
-        String query = "INSERT INTO moi.report (date,sucursal,postpago,kitContado,kitCuotas,tv,otros,quantity) VALUES (?,?,?,?,?,?,?,?);";
+        String query = "INSERT INTO report (date,sucursal,postpago,kitContado,kitCuotas,tv,otros,quantity) VALUES (?,?,?,?,?,?,?,?);";
         //   String query = "INSERT INTO moi.report (idReport, date, sucursal, postpago, kit, kitCuotas, tv, otros, quantity) VALUES (?,?,?,?,?,?,?,?,?);";
 
         try (Connection connection = ConexionDb.getConnection();

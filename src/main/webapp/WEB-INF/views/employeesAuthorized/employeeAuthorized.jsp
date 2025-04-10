@@ -4,8 +4,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>employeeAuthorized</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/userAuthorized.css?">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/userAuthorized.css">
 </head>
 <body>
  <div class="fondo">
@@ -19,6 +20,6 @@
          <input type="reset" ><br>
          <input type="submit" value="Enviar"></div>
     </div>
-
+    </form>
 </body>
 </html>

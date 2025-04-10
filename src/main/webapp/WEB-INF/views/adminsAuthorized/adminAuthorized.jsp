@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>adminAuthorized</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/userAuthorized.css?">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/userAuthorized.css">
 </head>
 <body>
  <div class="fondo">

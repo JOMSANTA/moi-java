@@ -30,7 +30,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public void insertEmployee(EmployeeModel model) {
-        String insertQuery = "INSERT INTO moi.employ\n" +
+        String insertQuery = "INSERT INTO employ\n" +
                 "(documento, nombres, apellidos, codigo, celular, correo, cargo, fechaNacimiento, sucursal)\n" +
                 "VALUES(?,?,?,?,?,?,?,?,?);";
         ResultSet rs = null;

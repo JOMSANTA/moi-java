@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Empleados</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/payroll.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/inventory.css">
 </head>
 
 <body>
@@ -48,7 +48,7 @@
                                         <td><%= employee.getCorreo() %></td>
                                         <td><%= employee.getCargo() %></td>
                                         <td><%= employee.getFechaNacimiento() %></td>
-                                        <td><%= employee.getSucursal() %></td
+                                        <td><%= employee.getSucursal() %></td>
                                    </tr>
                                    <% } %>
 

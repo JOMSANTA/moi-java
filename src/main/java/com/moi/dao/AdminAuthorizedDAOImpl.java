@@ -27,7 +27,7 @@ public class AdminAuthorizedDAOImpl implements AdminAuthorizedDAO{
 
     @Override
     public void insertAdminAuthorized(AdminAuthorizedModel model) {
-        String insertQuery="INSERT INTO moi.adminauthorized\n" +
+        String insertQuery="INSERT INTO adminauthorized\n" +
                 "(first_name, last_name, username, password)\n"+
                 "VALUES(?,?,?,?);";
         ResultSet rs = null;
