@@ -34,7 +34,7 @@ public class ReportDAOImpl implements ReportDAO{
         String query = "INSERT INTO report (date,sucursal,postpago,kitContado,kitCuotas,tv,otros,quantity) VALUES (?,?,?,?,?,?,?,?);";
         //   String query = "INSERT INTO moi.report (idReport, date, sucursal, postpago, kit, kitCuotas, tv, otros, quantity) VALUES (?,?,?,?,?,?,?,?,?);";
 
-        try (Connection connection = ConexionDb.getConnection();
+        try (Connection connection = getConnection();
              PreparedStatement preparedStatement= connection.prepareStatement(query)){
 
             preparedStatement.setString(1,model.getDate());
