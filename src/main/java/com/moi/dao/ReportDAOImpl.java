@@ -64,7 +64,7 @@ public class ReportDAOImpl implements ReportDAO{
         List<ReportModel> reports = new ArrayList<>();
         String selectQuery = "SELECT * FROM report;";
 
-        try (Connection connection = ConexionDb.getConnection();
+        try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
 
             ResultSet resultSet = preparedStatement.executeQuery();
