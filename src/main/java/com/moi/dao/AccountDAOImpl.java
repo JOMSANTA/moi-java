@@ -1,5 +1,6 @@
 package com.moi.dao;
 
+import com.moi.ConnectionDb.ConexionDb;
 import com.moi.model.AccountingModel;
 
 import java.sql.*;
@@ -9,27 +10,13 @@ import java.util.List;
 
 public class AccountDAOImpl implements AccountDAO {
 
-    private static final String JDBC_URL = System.getenv("MYSQL_JDBC_URL");
-    private static final String JDBC_USER =System.getenv("MYSQL_JDBC_USER");
-    private static final String JDBC_PASSWORD = System.getenv("MYSQL_JDBC_PASSWORD");
 
-    static {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            System.err.println("falla en el jbdc driver");
-        }
-    }
-
-    private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
-    }
 
     @Override
     public void insertAccount(AccountingModel model) {
         String Query = "INSERT INTO `moi`.`accounting` (`date`, `invoice`, `description`, `detail`, `quantity`, `income`, `expenses`, `total`) VALUES (?, ?,?,?,?,?,?,?);";
 
-        try (Connection connection = getConnection();
+        try (Connection connection = ConexionDb.getConnection();
              PreparedStatement preparedStatement= connection.prepareStatement(Query)){
 
 
@@ -55,7 +42,7 @@ public class AccountDAOImpl implements AccountDAO {
         List<AccountingModel> accounting = new ArrayList<>();
         String selectQuery = "SELECT * FROM moi.accounting";
 
-        try (Connection connection = getConnection();
+        try (Connection connection = ConexionDb.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
 
             ResultSet resultSet = preparedStatement.executeQuery();

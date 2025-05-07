@@ -1,5 +1,6 @@
 package com.moi.dao;
 
+import com.moi.ConnectionDb.ConexionDb;
 import com.moi.model.InventoryModel;
 import com.moi.model.SearchModel;
 
@@ -9,22 +10,6 @@ import java.util.List;
 
 public class SearchDAOImpl implements SearchDAO {
 
-    private static final String JDBC_URL = System.getenv("MYSQL_JDBC_URL");
-    private static final String JDBC_USER =System.getenv("MYSQL_JDBC_USER");
-    private static final String JDBC_PASSWORD = System.getenv("MYSQL_JDBC_PASSWORD");
-
-    static {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            System.err.println("falla en el jbdc driver");
-        }
-    }
-
-    private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
-    }
-
     @Override
     public List<SearchModel> getAllSearch() {
 
@@ -32,7 +17,7 @@ public class SearchDAOImpl implements SearchDAO {
         String query = "SELECT * FROM invent";
 
 
-        try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
+        try(Connection connection = ConexionDb.getConnection();
              PreparedStatement statement = connection.prepareStatement(query);
              ResultSet resultSet = statement.executeQuery()) {
 
@@ -62,7 +47,7 @@ public class SearchDAOImpl implements SearchDAO {
 
         String query = "SELECT * FROM invent WHERE name LIKE ?";
 
-        try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
+        try (Connection connection = ConexionDb.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setString(1, "%" + name + "%");
@@ -131,7 +116,7 @@ public class SearchDAOImpl implements SearchDAO {
         }
 
         // Conexión a la base de datos
-        try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
+        try (Connection connection = ConexionDb.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             int paramIndex = 1;

@@ -1,5 +1,6 @@
 package com.moi.dao;
 
+import com.moi.ConnectionDb.ConexionDb;
 import com.moi.model.InventoryModel;
 
 import java.sql.*;
@@ -8,29 +9,12 @@ import java.util.List;
 
 public class InventoryDAOImpl implements InventoryDAO{
 
-    private static final String JDBC_URL = System.getenv("MYSQL_JDBC_URL");
-    private static final String JDBC_USER =System.getenv("MYSQL_JDBC_USER");
-    private static final String JDBC_PASSWORD = System.getenv("MYSQL_JDBC_PASSWORD");
-
-    static {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            System.err.println("falla en el jbdc driver");
-        }
-    }
-
-    private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
-    }
-
-
     @Override
     public void InsertProduct(InventoryModel model) {
         String query = "INSERT INTO moi.invent (name,color,imei,code,coming,quantity,type) VALUES (?,?,?,?,?,?,?);";
 
 
-        try (Connection connection = getConnection();
+        try (Connection connection = ConexionDb.getConnection();
              PreparedStatement preparedStatement= connection.prepareStatement(query)){
 
 
@@ -58,7 +42,7 @@ public class InventoryDAOImpl implements InventoryDAO{
         List<InventoryModel> inventories = new ArrayList<>();
         String selectQuery = "SELECT * FROM invent;";
 
-        try (Connection connection = getConnection();
+        try (Connection connection = ConexionDb.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
 
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -90,7 +74,7 @@ public class InventoryDAOImpl implements InventoryDAO{
         String selectQuery = "SELECT * FROM invent WHERE name = ?;";
 
 
-        try (Connection connection = getConnection();
+        try (Connection connection = ConexionDb.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
 
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -126,7 +110,7 @@ public class InventoryDAOImpl implements InventoryDAO{
     public void deleteInventory(int id) {
         String query = "DELETE FROM invent WHERE id = ?";
 
-        try (Connection connection = getConnection();
+        try (Connection connection = ConexionDb.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             int rowsAffected = statement.executeUpdate();

@@ -1,5 +1,6 @@
 package com.moi.dao;
 
+import com.moi.ConnectionDb.ConexionDb;
 import com.moi.controller.employee.EmployeeServletController;
 import com.moi.model.EmployeeModel;
 
@@ -11,23 +12,6 @@ import java.util.List;
 
 public class EmployeeDAOImpl implements EmployeeDAO {
 
-    private static final String JDBC_URL = System.getenv("MYSQL_JDBC_URL");
-    private static final String JDBC_USER =System.getenv("MYSQL_JDBC_USER");
-    private static final String JDBC_PASSWORD = System.getenv("MYSQL_JDBC_PASSWORD");
-
-    static {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            System.err.println("falla en el jbdc driver");
-        }
-    }
-
-    private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
-    }
-
-
     @Override
     public void insertEmployee(EmployeeModel model) {
         String insertQuery = "INSERT INTO employ\n" +
@@ -35,7 +19,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                 "VALUES(?,?,?,?,?,?,?,?,?);";
         ResultSet rs = null;
 
-        try (Connection connection = getConnection();
+        try (Connection connection = ConexionDb.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
 
             preparedStatement.setLong(1, model.getDocumento());
@@ -64,7 +48,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         List<EmployeeModel> employees = new ArrayList<>();
         String selectQuery = "SELECT * FROM employ;";
 
-        try (Connection connection = getConnection();
+        try (Connection connection = ConexionDb.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
 
             ResultSet resultSet = preparedStatement.executeQuery();

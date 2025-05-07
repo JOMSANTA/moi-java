@@ -1,5 +1,6 @@
 package com.moi.dao;
 
+import com.moi.ConnectionDb.ConexionDb;
 import com.moi.model.EmployeeModel;
 import com.moi.model.InvoiceModel;
 import com.moi.model.UserModel;
@@ -12,23 +13,6 @@ import java.util.Random;
 
 public class InvoiceDaoImpl implements InvoiceDao {
 
-    private static final String JDBC_URL = System.getenv("MYSQL_JDBC_URL");
-    private static final String JDBC_USER =System.getenv("MYSQL_JDBC_USER");
-    private static final String JDBC_PASSWORD = System.getenv("MYSQL_JDBC_PASSWORD");
-
-    static {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            System.err.println("falla en el jbdc driver");
-        }
-    }
-
-    private Connection getConnection() throws SQLException {
-        System.out.println("Conexión establecida con éxito a la base de datos");
-        return DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
-    }
-
 
     @Override
     public void insertInvoice(InvoiceModel model) {
@@ -38,7 +22,7 @@ public class InvoiceDaoImpl implements InvoiceDao {
                 " VALUES(?,?,?,?,?,?,?,?,?,?,?,?);";
         ResultSet rs = null;
 
-        try (Connection connection = getConnection();
+        try (Connection connection = ConexionDb.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
 
             preparedStatement.setString(1, model.getFecha());
@@ -96,7 +80,7 @@ public class InvoiceDaoImpl implements InvoiceDao {
         String selectQuery = "SELECT * FROM invoice;";
 
         try
-                (Connection connection = getConnection();
+                (Connection connection = ConexionDb.getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
 
             ResultSet resultSet = preparedStatement.executeQuery();
