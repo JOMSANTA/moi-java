@@ -14,7 +14,11 @@ public class SearchDAOImpl implements SearchDAO {
     public List<SearchModel> getAllSearch() {
 
         List<SearchModel> searchs = new ArrayList<>();
-        String query = "SELECT * FROM inventory";
+        String query = "SELECT i.idProduct, i.name, i.color, i.code, i.coming, i.quantity, i.type, " +
+                "im.imeis " +
+                "FROM inventory i " +
+                "LEFT JOIN imeis im ON i.idProduct = im.id_producto " +
+                "ORDER BY i.idProduct";
 
 
         try(Connection connection = ConexionDb.getConnection();
@@ -25,7 +29,7 @@ public class SearchDAOImpl implements SearchDAO {
                 SearchModel search = new SearchModel();
                 search.setName(resultSet.getString("name"));
                 search.setColor(resultSet.getString("color"));
-                search.setImei(resultSet.getLong("imei"));
+                search.setImei(resultSet.getLong("imeis"));
                 search.setCode(resultSet.getString("code"));
                 search.setComing(resultSet.getString("coming"));
                 search.setQuantity(resultSet.getInt("quantity"));
@@ -56,7 +60,7 @@ public class SearchDAOImpl implements SearchDAO {
                 SearchModel search = new SearchModel();
                 search.setName(resultSet.getString("name"));
                 search.setColor(resultSet.getString("color"));
-                search.setImei(resultSet.getLong("imei"));
+                search.setImei(resultSet.getLong("imeis"));
                 search.setCode(resultSet.getString("code"));
                 search.setComing(resultSet.getString("coming"));
                 search.setQuantity(resultSet.getInt("quantity"));
@@ -98,21 +102,24 @@ public class SearchDAOImpl implements SearchDAO {
         List<SearchModel> searchs = new ArrayList<>();
 
         // Inicia la consulta
-        String query = "SELECT * FROM inventory WHERE 1=1";
+        String query = "SELECT i.name, i.color, i.code, i.coming, i.quantity, i.type, im.imeis " +
+                "FROM inventory i " +
+                "LEFT JOIN imeis im ON i.idProduct = im.id_producto " +
+                "WHERE 1=1";
         // "1=1" es una condición siempre verdadera para facilitar la adición dinámica de filtros
 
         // Agrega filtros si los parámetros no son nulos o vacíos
         if (producto != null && !producto.isEmpty()) {
-            query += " AND name LIKE ?";
+            query += " AND i.name LIKE ?";
         }
         if (color != null && !color.isEmpty()) {
-            query += " AND color LIKE ?";
+            query += " AND i.color LIKE ?";
         }
         if (imei != null && !imei.isEmpty()) {
-            query += " AND imei = ?";
+            query += " AND im.imeis LIKE ?";
         }
         if (codigo != null && !codigo.isEmpty()) {
-            query += " AND code LIKE ?";
+            query += " AND i.code LIKE ?";
         }
 
         // Conexión a la base de datos
@@ -129,7 +136,7 @@ public class SearchDAOImpl implements SearchDAO {
                 statement.setString(paramIndex++, "%" + color + "%");
             }
             if (imei != null && !imei.isEmpty()) {
-                statement.setLong(paramIndex++, Long.parseLong(imei));
+                statement.setString(paramIndex++, "%" + imei);
             }
             if (codigo != null && !codigo.isEmpty()) {
                 statement.setString(paramIndex++, "%" + codigo + "%");
@@ -142,7 +149,7 @@ public class SearchDAOImpl implements SearchDAO {
                 SearchModel search = new SearchModel();
                 search.setName(resultSet.getString("name"));
                 search.setColor(resultSet.getString("color"));
-                search.setImei(resultSet.getLong("imei"));
+                search.setImei(resultSet.getLong("imeis"));
                 search.setCode(resultSet.getString("code"));
                 search.setComing(resultSet.getString("coming"));
                 search.setQuantity(resultSet.getInt("quantity"));

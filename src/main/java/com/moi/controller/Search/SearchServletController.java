@@ -39,11 +39,11 @@ public class SearchServletController extends HttpServlet {
 
         String name = request.getParameter("name");
         String color = request.getParameter("color");
-        String imei = request.getParameter("imei");
+        String imeis = request.getParameter("imeis");
         String code = request.getParameter("code");
 
         // Aquí llamas al DAO para obtener los productos que coinciden con los criterios de búsqueda
-        List<SearchModel> searchs = new SearchDAOImpl().searchProducts(name, color, imei, code);
+        List<SearchModel> searchs = new SearchDAOImpl().searchProducts(name, color, imeis, code);
 
         // Si no se encuentran resultados, inicializa una lista vacía
         if (searchs == null || searchs.isEmpty()) {

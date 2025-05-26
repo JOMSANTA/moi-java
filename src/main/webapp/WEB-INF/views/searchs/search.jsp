@@ -35,7 +35,7 @@
       <tr>
       <td> <input type="text" name="name" id="name"> </td>
       <td> <input type="text" name="color" id="color"> </td>
-      <td> <input type="int" name="imei" id="imei"> </td>
+      <td> <input type="int" name="imeis" id="imeis"> </td>
       <td> <input type="text" name="code" id="code"> </td>
 
       </tr>
