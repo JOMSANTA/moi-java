@@ -36,8 +36,18 @@ input{
     left:10%;
     margin:1%;
 }
+
+.radio{
+    transform: scale(0.5);
+    margin-right: 5px;
+    cursor: pointer;
+    width: 25%;
+}
+
 @media screen and (max-width:500px){
 .autorizar{
 font-size: 170%;
 }
+
+
 }

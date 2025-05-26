@@ -5,9 +5,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- * @author Ferney Estupinan Baron
- */
 public class CallableStatementInterface {
     public static void main(String[] args) {
         try {

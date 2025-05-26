@@ -10,10 +10,10 @@ public class EmployeeAuthorizedDAOImpl implements EmployeeAuthorizedDAO{
 
 
     @Override
-    public void insertEmployeeAutorized(EmployeeAuthorizedModel model) {
+    public void insertEmployeeAuthorized(EmployeeAuthorizedModel model) {
         String insertQuery ="INSERT INTO _user\n" +
-                "(first_name, last_name, username, password)\n"+
-                "VALUES(?,?,?,?);";
+                "(first_name, last_name, username, role, password)\n"+
+                "VALUES(?,?,?,?,?);";
         ResultSet rs = null;
 
         try (Connection connection = ConexionDb.getConnection();
@@ -22,7 +22,8 @@ public class EmployeeAuthorizedDAOImpl implements EmployeeAuthorizedDAO{
             preparedStatement.setString(1, model.getFirst_name());
             preparedStatement.setString(2, model.getLast_name());
             preparedStatement.setString(3, model.getUsername());
-            preparedStatement.setString(4, model.getPassword());
+            preparedStatement.setString(4, model.getRole());
+            preparedStatement.setString(5, model.getPassword());
 
 
 
@@ -32,14 +33,9 @@ public class EmployeeAuthorizedDAOImpl implements EmployeeAuthorizedDAO{
 
 
         } catch (SQLException e) {
-            System.err.println("employeAuthorizedDAOImpl fallo para insertar empleado: " + e.getMessage());
+            System.err.println("employeAuthorizedDAOImpl fallo para insertar : " + e.getMessage());
 
         }
-    }
-
-    @Override
-    public List<EmployeeAuthorizedModel> getAllEmployeeAuthorized() {
-        return List.of();
     }
 
     @Override
@@ -48,23 +44,47 @@ public class EmployeeAuthorizedDAOImpl implements EmployeeAuthorizedDAO{
     }
 
     @Override
-    public EmployeeAuthorizedModel getEmployeeAuthorizedByLast_name(String last_name) {
-        return null;
+    public EmployeeAuthorizedModel getEmployeeByUsername(String username) {
+        String query = "SELECT * FROM _user WHERE username = ?";
+        EmployeeAuthorizedModel model = null;
+     try (Connection connection = ConexionDb.getConnection();
+     PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+         preparedStatement.setString(1,username);
+         ResultSet resultSet = preparedStatement.executeQuery();
+
+         if(resultSet.next()){
+             model = new EmployeeAuthorizedModel();
+             model.setFirst_name(resultSet.getString("first_name"));
+             model.setLast_name(resultSet.getString("last_name"));
+             model.setUsername(resultSet.getString("username"));
+             model.setRole(resultSet.getString("role"));
+             model.setPassword(resultSet.getString("password"));
+         }
+     }catch (SQLException e) {
+         System.out.println("Error buscando empleado autorizado por username : " + e.getMessage());
+     }
+     return model;
     }
 
     @Override
-    public EmployeeAuthorizedModel getEmployeeAuthorizedByUsername(String user_name) {
-        return null;
-    }
+    public boolean employeeExist(String username) {
 
-    @Override
-    public void updateEmployeeAuthorized(int id ) {
+        String query = "SELECT * FROM _user WHERE username = ?";
 
-    }
+        try (Connection connection = ConexionDb.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(query)){
 
-    @Override
-    public void deleteEmployeeAuthorized(int id) {
+            preparedStatement.setString(1,username);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
+            return resultSet.next();
+
+        }catch (SQLException e) {
+            System.err.println("EmployeeAutorizedImpl employeeExist fallo al buscar empleado por username :" + e.getMessage());
+
+        }
+        return false;
     }
 
 

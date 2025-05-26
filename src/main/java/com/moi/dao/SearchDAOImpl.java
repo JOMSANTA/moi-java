@@ -14,7 +14,7 @@ public class SearchDAOImpl implements SearchDAO {
     public List<SearchModel> getAllSearch() {
 
         List<SearchModel> searchs = new ArrayList<>();
-        String query = "SELECT * FROM invent";
+        String query = "SELECT * FROM inventory";
 
 
         try(Connection connection = ConexionDb.getConnection();
@@ -45,7 +45,7 @@ public class SearchDAOImpl implements SearchDAO {
     public SearchModel getProductByName(String name) {
         List<SearchModel> searchs = new ArrayList<>();
 
-        String query = "SELECT * FROM invent WHERE name LIKE ?";
+        String query = "SELECT * FROM inventory WHERE name LIKE ?";
 
         try (Connection connection = ConexionDb.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -98,7 +98,7 @@ public class SearchDAOImpl implements SearchDAO {
         List<SearchModel> searchs = new ArrayList<>();
 
         // Inicia la consulta
-        String query = "SELECT * FROM invent WHERE 1=1";
+        String query = "SELECT * FROM inventory WHERE 1=1";
         // "1=1" es una condición siempre verdadera para facilitar la adición dinámica de filtros
 
         // Agrega filtros si los parámetros no son nulos o vacíos

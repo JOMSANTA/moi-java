@@ -2,13 +2,14 @@ package com.moi.model;
 
 import java.sql.*;
 import java.util.Date;
+import java.util.List;
 
 public class InventoryModel {
 
     private long idProduct;
     private String name;
     private String color;
-    private long imei;
+   // private long imei;
     private String code;
     private String coming;
     private int quantity;
@@ -43,14 +44,14 @@ public class InventoryModel {
         this.color = color;
     }
 
-    public long getImei() {
+/*    public long getImei() {
         return imei;
     }
 
     public void setImei(long imei) {
         this.imei = imei;
     }
-
+*/
     public String getCode() {
         return code;
     }
@@ -83,6 +84,14 @@ public class InventoryModel {
     public void setType(String type) {
         this.type = type;
    
+    }
+    private List<String> imeis;
+
+    public void setImeis(List<String> imeis){
+        this.imeis = imeis;
+    }
+    public  List<String> getImeis() {
+        return  imeis;
     }
 
    

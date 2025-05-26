@@ -16,8 +16,7 @@
     <a href= "payrolls"><div class="pay">Nominas</div></a>
     <a href= "employees"><div class="empl">Empleados</div></a>
     <a href= "employeesAuthorized"><div class="autho">Autorizacion de empleados</div></a>
-    <a href= "adminsAuthorized"><div class="autho">Autorizacion de administracion</div></a>
-  </div>
+</div>
  </div>
 
 </body>

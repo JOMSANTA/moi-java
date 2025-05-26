@@ -1,15 +1,11 @@
 package com.moi.dao;
 
 import com.moi.ConnectionDb.ConexionDb;
-import com.moi.model.EmployeeModel;
 import com.moi.model.InvoiceModel;
-import com.moi.model.UserModel;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class InvoiceDaoImpl implements InvoiceDao {
 

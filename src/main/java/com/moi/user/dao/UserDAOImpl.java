@@ -1,18 +1,19 @@
-package com.moi.dao;
+package com.moi.user.dao;
 
 import com.moi.ConnectionDb.ConexionDb;
-import com.moi.model.UserModel;
+import com.moi.user.model.UserModel;
 
-import java.sql.*;
-import java.util.Collections;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UserDAOImpl implements UserDAO {
 
 
     @Override
     public void insertUser(UserModel model) {
-        String insertQuery = "INSERT INTO user (first_name, last_name, username, password) VALUES(?,?,?,?);";
+        String insertQuery = "INSERT INTO _user (first_name, last_name, username, password) VALUES(?,?,?,?);";
 
         try (Connection connection = ConexionDb.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
@@ -31,19 +32,13 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public UserModel getUserById(long id) {
-        return null;
-    }
-
-    @Override
-    public UserModel getUserByUsernameANDPassword(String username, String password) {
+    public UserModel getUserByUsername(String username) {
         UserModel userModel = null;
-        String selectQuery = "SELECT * FROM user WHERE username = ? AND password = ?";
+        String selectQuery = "SELECT * FROM _user WHERE username = ?";
         try (Connection connection = ConexionDb.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
 
             preparedStatement.setString(1, username);
-            preparedStatement.setString(2, password);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -52,6 +47,9 @@ public class UserDAOImpl implements UserDAO {
                 userModel.setId(resultSet.getLong("id"));
                 userModel.setFirstName(resultSet.getString("first_name"));
                 userModel.setLastName(resultSet.getString("last_name"));
+                userModel.setUsername(resultSet.getString("username"));
+                userModel.setPassword(resultSet.getString("password"));
+                userModel.setRole(resultSet.getString("role"));
             }
         } catch (SQLException e) {
             System.err.println("UserDAOImpl failed to select user by username and password: " + e.getMessage());
@@ -60,18 +58,21 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public List<UserModel> getAllUser() {
-        return Collections.emptyList();
-    }
+    public boolean userExist(String username) {
 
-    @Override
-    public void updateUser(long id, UserModel model) {
+        String query = "SELECT * FROM _user WHERE username = ?";
+        try (Connection connection = ConexionDb.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
-    }
+            preparedStatement.setString(1, username);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-    @Override
-    public void deleteUserById(long id) {
+            return resultSet.next();
+        } catch (SQLException e) {
+            System.out.println("UserDaoImpl userExist Usuario ya existe " + e.getMessage());
+        }
 
+        return false;
     }
 
 

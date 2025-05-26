@@ -2,6 +2,7 @@ package com.moi.dao;
 
 import com.moi.ConnectionDb.ConexionDb;
 import com.moi.model.AdminAuthorizedModel;
+import com.moi.model.EmployeeAuthorizedModel;
 
 import java.sql.*;
 import java.util.List;
@@ -33,7 +34,7 @@ public class AdminAuthorizedDAOImpl implements AdminAuthorizedDAO{
 
 
         } catch (SQLException e) {
-            System.err.println("employeAuthorizedDAOImpl fallo para insertar empleado: " + e.getMessage());
+            System.err.println("employeAuthorizedDAOImpl fallo para insertar administrador: " + e.getMessage());
 
         }
     }
@@ -49,6 +50,30 @@ public class AdminAuthorizedDAOImpl implements AdminAuthorizedDAO{
     }
 
     @Override
+    public AdminAuthorizedModel getAdminAuthorizedByUsername(String username) {
+        String query = "SELECT * FROM adminauthorized WHERE username = ?";
+        AdminAuthorizedModel model = null;
+        try (Connection connection = ConexionDb.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setString(1,username);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()){
+                model = new AdminAuthorizedModel();
+                model.setFirst_name(resultSet.getString("first_name"));
+                model.setLast_name(resultSet.getString("last_name"));
+                model.setUsername(resultSet.getString("username"));
+                model.setPassword(resultSet.getString("password"));
+
+            }
+        }catch (SQLException e) {
+            System.out.println("Error buscando administrador autorizado por username : " + e.getMessage());
+        }
+        return model;
+    }
+
+    @Override
     public void updateAdminAuthorized(int id) {
 
     }
@@ -57,4 +82,25 @@ public class AdminAuthorizedDAOImpl implements AdminAuthorizedDAO{
     public void deleteAdminAuthorized(int id) {
 
     }
+
+    @Override
+    public boolean adminExist(String username) {
+
+        String query = "SELECT * FROM adminauthorized WHERE username = ?";
+
+        try (Connection connection = ConexionDb.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(query)){
+
+            preparedStatement.setString(1,username);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            return resultSet.next();
+
+        }catch (SQLException e) {
+            System.err.println("AdminAutorizedImpl adminExist fallo al buscar administrador por username :" + e.getMessage());
+
+        }
+       return false;
+    }
+
 }

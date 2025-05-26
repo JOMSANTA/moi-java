@@ -4,9 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- * @author Ferney Estupinan Baron
- */
+
 public class DriverInterface {
 
     public static void main(String[] args) {
@@ -16,8 +14,8 @@ public class DriverInterface {
 
             // Establish a connection to the database
             Connection connection = DriverManager
-                    .getConnection("jdbc:mysql://localhost:3306/fbank", "root", "rootpassword");
-
+                    .getConnection("jdbc:mysql://localhost:3306/moi", "root", "rootpassword");
+                 //   .getConnection("jdbc:mysql://localhost:3306/fbank", "root", "rootpassword");
             System.out.println("Connected to the database!");
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();

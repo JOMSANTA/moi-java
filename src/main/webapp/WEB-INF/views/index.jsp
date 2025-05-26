@@ -28,8 +28,8 @@
       <h2 class="suc">sucursal</h2>
     </section>
     <section class="empleados">
-      <a href="login"><nav class="as"><h2 class="ase">as</h2></nav></a>
-      <a href="loginAdm"><nav class="ad"><h2 class="adm">ad</h2></nav></a>
+      <a href="login"><nav class="as"><h2 class="ase">log</h2></nav></a>
+
     </section>
   </div>
   <div class="abajo">

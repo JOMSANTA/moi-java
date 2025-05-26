@@ -6,9 +6,18 @@ public class EmployeeAuthorizedModel {
     private String first_name;
     private String last_name;
     private String username;
+    private String role;
     private String password;
 
     public EmployeeAuthorizedModel() {
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public int getId() {
