@@ -4,39 +4,42 @@ import com.moi.ConnectionDb.ConexionDb;
 import com.moi.model.InventoryModel;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class InventoryDAOImpl implements InventoryDAO {
 
     @Override
     public void InsertProduct(InventoryModel model) {
-        String queryInvent = "INSERT INTO moi.inventory (name,color,code,coming,quantity,type) VALUES (?,?,?,?,?,?);";
-        String queryImei = "INSERT INTO moi.imeis (imeis, id_producto) VALUES (?,?);";
-
+        String queryProduct = "INSERT INTO product (name, color, code, coming, type) VALUES (?,?,?,?,?)";
+        String queryInventory = "INSERT INTO inventory (quantity, idProduct) VALUES (?,?)";
+        String queryImei = "INSERT INTO imeis (imei, idProduct) VALUES (?,?)";
 
         try (Connection connection = ConexionDb.getConnection()) {
             connection.setAutoCommit(false);//inicia envio
 
-            try (PreparedStatement preparedStatementInvent = connection.prepareStatement(queryInvent, Statement.RETURN_GENERATED_KEYS);
+            try (PreparedStatement preparedStatementProduct = connection.prepareStatement(queryProduct, Statement.RETURN_GENERATED_KEYS);
+                 PreparedStatement preparedStatementInventory = connection.prepareStatement(queryInventory);
                  PreparedStatement preparedStatementImei = connection.prepareStatement(queryImei)) {
                 // insert invent
 
-                preparedStatementInvent.setString(1, model.getName());
-                preparedStatementInvent.setString(2, model.getColor());
+                preparedStatementProduct.setString(1, model.getName());
+                preparedStatementProduct.setString(2, model.getColor());
                 //    preparedStatement.setLong(3, model.getImei());
-                preparedStatementInvent.setString(3, model.getCode());
-                preparedStatementInvent.setString(4, model.getComing());
-                preparedStatementInvent.setInt(5, model.getQuantity());
-                preparedStatementInvent.setString(6, model.getType());
+                preparedStatementProduct.setString(3, model.getCode());
+                preparedStatementProduct.setString(4, model.getComing());
+                preparedStatementProduct.setString(5, model.getType());
 
-                preparedStatementInvent.executeUpdate();
+                preparedStatementProduct.executeUpdate();
                 //pedir id
-                ResultSet generateKeys = preparedStatementInvent.getGeneratedKeys();
+                ResultSet generateKeys = preparedStatementProduct.getGeneratedKeys();
                 if (generateKeys.next()) {
                     int idProducto = generateKeys.getInt(1);
+
+                    //insert en inventory
+
+                    preparedStatementInventory.setInt(1, model.getQuantity());
+                    preparedStatementInventory.setInt(2, idProducto);
+                    preparedStatementInventory.executeUpdate();
 
                     //insert imeis
                     if (model.getImeis() != null && !model.getImeis().isEmpty()) {
@@ -66,12 +69,14 @@ public class InventoryDAOImpl implements InventoryDAO {
 
     @Override
     public List<InventoryModel> getAllInventory() {
-        Map<Long, InventoryModel> inventoryMap = new HashMap<>();
-        String Query =     "SELECT i.idProduct, i.name, i.color, i.code, i.coming, i.quantity, i.type, " +
-                "im.imeis " +
-                "FROM inventory i " +
-                "LEFT JOIN imeis im ON i.idProduct = im.id_producto " +
-                "ORDER BY i.idProduct";
+        Map<Long, InventoryModel> inventoryMap = new LinkedHashMap<>();
+        String Query =
+                "SELECT p.idProduct, p.name, p.color, p.code, p.coming, p.type, " +
+                "i.quantity, im.imei " +
+                "FROM product p " +
+                "LEFT JOIN inventory i ON p.idProduct = i.idProduct " +
+                "LEFT JOIN imeis im ON p.idProduct = im.idProduct " +
+                "ORDER BY p.name ASC ";
 
         try (Connection connection = ConexionDb.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(Query)) {
@@ -94,9 +99,10 @@ public class InventoryDAOImpl implements InventoryDAO {
                     inventoryModel.setQuantity(resultSet.getInt("quantity"));
                     inventoryModel.setType(resultSet.getString("type"));
                     inventoryModel.setImeis(new ArrayList<>());
+
                     inventoryMap.put(idProduct, inventoryModel);
                 }
-                String imei = resultSet.getString("imeis");
+                String imei = resultSet.getString("imei");
                 if (imei != null) {
                     inventoryModel.getImeis().add(imei);
                 }
@@ -115,7 +121,10 @@ public class InventoryDAOImpl implements InventoryDAO {
     @Override
     public InventoryModel getProductByName(String name) {
         InventoryModel inventoryModel = null;
-        String selectQuery = "SELECT * FROM inventory WHERE name = ?;";
+        String selectQuery =
+                "SELECT p.*, i.quantity FROM product p " +
+                "LEFT JOIN inventory i ON p.idProduct = i.idProduct " +
+                "WHERE p.name = ?";
 
 
         try (Connection connection = ConexionDb.getConnection();
@@ -179,7 +188,7 @@ public class InventoryDAOImpl implements InventoryDAO {
 
     private List<String> getImeiByProductoId(Long productId) {
         List<String> imeis = new ArrayList<>();
-        String query = "SELECT imeis FROM imeis WHERE id_producto = ?";
+        String query = "SELECT imei FROM imeis WHERE idProducto = ?";
 
         try (Connection connection = ConexionDb.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -189,7 +198,7 @@ public class InventoryDAOImpl implements InventoryDAO {
 
 
             while (resultSet.next()) {
-                imeis.add(resultSet.getString("imeis"));
+                imeis.add(resultSet.getString("imei"));
             }
         } catch (SQLException e) {
             System.err.println("Error al obtener imeis" + e.getMessage());

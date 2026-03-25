@@ -23,11 +23,6 @@ public class SearchServletController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<SearchModel> searchs = new SearchDAOImpl().getAllSearch();
-
-
-
-
-
         request.setAttribute("searchs", searchs);
 
         request.getRequestDispatcher("/WEB-INF/views/searchs/search.jsp").forward(request, response);

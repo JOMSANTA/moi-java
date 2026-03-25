@@ -3,6 +3,8 @@ package com.moi.dao;
 import com.moi.ConnectionDb.ConexionDb;
 import com.moi.model.InventoryModel;
 import com.moi.model.SearchModel;
+import java.util.Map;
+import java.util.LinkedHashMap;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,60 +15,98 @@ public class SearchDAOImpl implements SearchDAO {
     @Override
     public List<SearchModel> getAllSearch() {
 
-        List<SearchModel> searchs = new ArrayList<>();
-        String query = "SELECT i.idProduct, i.name, i.color, i.code, i.coming, i.quantity, i.type, " +
-                "im.imeis " +
-                "FROM inventory i " +
-                "LEFT JOIN imeis im ON i.idProduct = im.id_producto " +
-                "ORDER BY i.idProduct";
+        Map<Long, SearchModel> map = new LinkedHashMap<>();
+
+        String query =
+                "SELECT p.idProduct, p.name, p.color, p.code, p.coming, p.type, " +
+                        "i.quantity, im.imei " +
+                        "FROM product p " +
+                        "LEFT JOIN inventory i ON p.idProduct = i.idProduct " +
+                        "LEFT JOIN imeis im ON p.idProduct = im.idProduct ";
 
 
-        try(Connection connection = ConexionDb.getConnection();
+        try (Connection connection = ConexionDb.getConnection();
              PreparedStatement statement = connection.prepareStatement(query);
              ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {
-                SearchModel search = new SearchModel();
-                search.setName(resultSet.getString("name"));
-                search.setColor(resultSet.getString("color"));
-                search.setImei(resultSet.getLong("imeis"));
-                search.setCode(resultSet.getString("code"));
-                search.setComing(resultSet.getString("coming"));
-                search.setQuantity(resultSet.getInt("quantity"));
-                search.setType(resultSet.getString("type"));
+                long id = resultSet.getLong("idProduct");
 
-                searchs.add(search);
+                SearchModel search = map.get(id);
+                if (search == null) {
+
+                    search = new SearchModel();
+                    search.setName(resultSet.getString("name"));
+                    search.setColor(resultSet.getString("color"));
+                    search.setCode(resultSet.getString("code"));
+                    search.setComing(resultSet.getString("coming"));
+                    search.setQuantity(resultSet.getInt("quantity"));
+                    search.setType(resultSet.getString("type"));
+                    search.setImeis(new ArrayList<>());
+
+
+                    map.put(id, search);
+                }
+
+                String imeiValue = resultSet.getString("imei");
+                if (imeiValue != null) {
+                    search.getImeis().add(imeiValue);
+                }
             }
 
         } catch (SQLException e) {
             System.err.println("Error getting products: " + e.getMessage());
         }
 
-        return searchs;
+        return new ArrayList<>(map.values());
+
+
     }
 
     @Override
-    public SearchModel getProductByName(String name) {
-        List<SearchModel> searchs = new ArrayList<>();
+    public List<SearchModel> getProductByName(String name) {
+        Map<Long, SearchModel> map = new LinkedHashMap<>();
 
-        String query = "SELECT * FROM inventory WHERE name LIKE ?";
+        String query =
+
+                "SELECT p.idProduct, p.name, p.color, p.code, p.coming, p.type, " +
+                        "i.quantity, im.imei " +
+                        "FROM product p " +
+                        "LEFT JOIN inventory i ON p.idProduct = i.idProduct " +
+                        "LEFT JOIN imeis im ON p.idProduct = im.idProduct " +
+                        "WHERE p.name LIKE ?";
 
         try (Connection connection = ConexionDb.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setString(1, "%" + name + "%");
             ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                SearchModel search = new SearchModel();
-                search.setName(resultSet.getString("name"));
-                search.setColor(resultSet.getString("color"));
-                search.setImei(resultSet.getLong("imeis"));
-                search.setCode(resultSet.getString("code"));
-                search.setComing(resultSet.getString("coming"));
-                search.setQuantity(resultSet.getInt("quantity"));
-                search.setType(resultSet.getString("type"));
 
-                searchs.add(search);
+            while (resultSet.next()) {
+                long id = resultSet.getLong("idProduct");
+
+                SearchModel search = map.get(id);
+
+                if (search == null) {
+
+                    search = new SearchModel();
+
+                    search.setName(resultSet.getString("name"));
+                    search.setColor(resultSet.getString("color"));
+                    search.setCode(resultSet.getString("code"));
+                    search.setComing(resultSet.getString("coming"));
+                    search.setQuantity(resultSet.getInt("quantity"));
+                    search.setType(resultSet.getString("type"));
+                    search.setImeis(new ArrayList<>());
+
+                    map.put(id, search);
+
+                }
+
+                String imeiValue = resultSet.getString("imei");
+                if (imeiValue != null) {
+                    search.getImeis().add(imeiValue);
+                }
             }
 
         } catch (SQLException e) {
@@ -74,12 +114,52 @@ public class SearchDAOImpl implements SearchDAO {
 
 
         }
-        return (SearchModel) searchs;
+        return new ArrayList<>(map.values());
     }
 
     @Override
     public SearchModel getProductByImei(long imeiProducto) {
-        return null;
+
+        SearchModel search = null;
+
+        String query =
+                "SELECT p.idProduct, p.name, p.color, p.code, p.coming, p.type, " +
+                        "i.quantity, im.imei " +
+                        "FROM product p " +
+                        "LEFT JOIN inventory i ON p.idProduct = i.idProduct " +
+                        "LEFT JOIN imeis im ON p.idProduct = im.idProduct " +
+                        "WHERE im.imei = ?";
+
+        try (Connection connection = ConexionDb.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setLong(1, imeiProducto);
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                search = new SearchModel();
+                search.setName(rs.getString("name"));
+                search.setColor(rs.getString("color"));
+                search.setCode(rs.getString("code"));
+                search.setComing(rs.getString("coming"));
+                search.setQuantity(rs.getInt("quantity"));
+                search.setType(rs.getString("type"));
+
+                search.setImeis(new ArrayList<>());
+            }
+            // agregar TODOS los imeis del producto
+            while (rs.next()) {
+                String imei = rs.getString("imei");
+                if (imei != null) {
+                    search.getImeis().add(imei);
+                }
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error getting product by imei: " + e.getMessage());
+        }
+
+        return search;
     }
 
     @Override
@@ -99,27 +179,32 @@ public class SearchDAOImpl implements SearchDAO {
 
     @Override
     public List<SearchModel> searchProducts(String producto, String color, String imei, String codigo) {
-        List<SearchModel> searchs = new ArrayList<>();
+
+        //  MAP AQUÍ
+        Map<Long, SearchModel> map = new LinkedHashMap<>();
 
         // Inicia la consulta
-        String query = "SELECT i.name, i.color, i.code, i.coming, i.quantity, i.type, im.imeis " +
-                "FROM inventory i " +
-                "LEFT JOIN imeis im ON i.idProduct = im.id_producto " +
-                "WHERE 1=1";
+        String query =
+                "SELECT p.idProduct, p.name, p.color, p.code, p.coming, p.type, " +
+                        "i.quantity, im.imei " +
+                        "FROM product p " +
+                        "LEFT JOIN inventory i ON p.idProduct = i.idProduct " +
+                        "LEFT JOIN imeis im ON p.idProduct = im.idProduct " +
+                        "WHERE 1=1";
         // "1=1" es una condición siempre verdadera para facilitar la adición dinámica de filtros
 
         // Agrega filtros si los parámetros no son nulos o vacíos
         if (producto != null && !producto.isEmpty()) {
-            query += " AND i.name LIKE ?";
+            query += " AND p.name LIKE ?";
         }
         if (color != null && !color.isEmpty()) {
-            query += " AND i.color LIKE ?";
+            query += " AND p.color LIKE ?";
         }
         if (imei != null && !imei.isEmpty()) {
-            query += " AND im.imeis LIKE ?";
+            query += " AND p.idProduct IN (SELECT idProduct FROM imeis WHERE imei LIKE ?)";
         }
         if (codigo != null && !codigo.isEmpty()) {
-            query += " AND i.code LIKE ?";
+            query += " AND p.code LIKE ?";
         }
 
         // Conexión a la base de datos
@@ -136,7 +221,7 @@ public class SearchDAOImpl implements SearchDAO {
                 statement.setString(paramIndex++, "%" + color + "%");
             }
             if (imei != null && !imei.isEmpty()) {
-                statement.setString(paramIndex++, "%" + imei);
+                statement.setString(paramIndex++, "%" + imei + "%");
             }
             if (codigo != null && !codigo.isEmpty()) {
                 statement.setString(paramIndex++, "%" + codigo + "%");
@@ -146,23 +231,33 @@ public class SearchDAOImpl implements SearchDAO {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                SearchModel search = new SearchModel();
-                search.setName(resultSet.getString("name"));
-                search.setColor(resultSet.getString("color"));
-                search.setImei(resultSet.getLong("imeis"));
-                search.setCode(resultSet.getString("code"));
-                search.setComing(resultSet.getString("coming"));
-                search.setQuantity(resultSet.getInt("quantity"));
-                search.setType(resultSet.getString("type"));
-                searchs.add(search);
+                long id = resultSet.getLong("idProduct");
+
+                SearchModel search = map.get(id);
+                if (search == null) {
+                    search = new SearchModel();
+                    search.setName(resultSet.getString("name"));
+                    search.setColor(resultSet.getString("color"));
+                    search.setCode(resultSet.getString("code"));
+                    search.setComing(resultSet.getString("coming"));
+                    search.setQuantity(resultSet.getInt("quantity"));
+                    search.setType(resultSet.getString("type"));
+                    search.setImeis(new ArrayList<>());
+
+                    map.put(id, search);
+                }
+                String imeiValue = resultSet.getString("imei");
+                if (imeiValue != null && !search.getImeis().contains(imeiValue)) {
+                    search.getImeis().add(imeiValue);
+                }
             }
 
         } catch (SQLException e) {
             System.err.println("Error al obtener los productos: " + e.getMessage());
         }
 
-        return searchs;
+        return new ArrayList<>(map.values());
     }
+}
 
-  }
 

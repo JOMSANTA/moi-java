@@ -9,6 +9,7 @@ services:
       MYSQL_DATABASE: buimondb
       MYSQL_USER: santander
       MYSQL_PASSWORD: santa16
+
     ports:
       - 3307:3306
     volumes:

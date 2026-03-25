@@ -21,7 +21,15 @@ public class ComingDAOImpl implements ComingDAO{
     public  List<InventoryModel> getProductByComing() {
 
         List<InventoryModel> productList = new ArrayList<>();
-        String stringQuery = "SELECT * FROM invent ORDER BY coming DESC";
+        String stringQuery =
+                "SELECT p.idProduct, p.name, p.coming, i.quantity, "
+                +"COALESCE(GROUP_CONCAT(im.imei ORDER BY im.imei), '') AS imeis "
+                + "FROM product p "
+                + "LEFT JOIN inventory i ON p.idProduct = i.idProduct "
+                + "LEFT JOIN imeis im ON p.idProduct = im.idProduct "
+                + "WHERE i.quantity > 0 "
+                + "GROUP BY p.idProduct, p.name, p.coming, i.quantity "
+                + "ORDER BY p.coming DESC";
 
         try (
         Connection connection = ConexionDb.getConnection();
@@ -35,6 +43,7 @@ public class ComingDAOImpl implements ComingDAO{
             product.setName(resultSet.getString("name"));
             product.setQuantity(resultSet.getInt("quantity"));
             product.setComing(resultSet.getString("coming"));
+            product.setImei(resultSet.getString("imeis"));
 
 
             productList.add(product);

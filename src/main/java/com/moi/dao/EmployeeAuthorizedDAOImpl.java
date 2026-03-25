@@ -33,7 +33,7 @@ public class EmployeeAuthorizedDAOImpl implements EmployeeAuthorizedDAO{
 
 
         } catch (SQLException e) {
-            System.err.println("employeAuthorizedDAOImpl fallo para insertar : " + e.getMessage());
+            System.err.println("Error insertando empleado autorizado : " + e.getMessage());
 
         }
     }

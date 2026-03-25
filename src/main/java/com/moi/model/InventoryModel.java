@@ -9,11 +9,12 @@ public class InventoryModel {
     private long idProduct;
     private String name;
     private String color;
-   // private long imei;
+    private String imei;
     private String code;
     private String coming;
     private int quantity;
     private String type;
+    private List<String> imeis;
 
 
 
@@ -44,14 +45,14 @@ public class InventoryModel {
         this.color = color;
     }
 
-/*    public long getImei() {
+    public String getImei() {
         return imei;
     }
 
-    public void setImei(long imei) {
+    public void setImei(String imei) {
         this.imei = imei;
     }
-*/
+
     public String getCode() {
         return code;
     }
@@ -85,7 +86,7 @@ public class InventoryModel {
         this.type = type;
    
     }
-    private List<String> imeis;
+
 
     public void setImeis(List<String> imeis){
         this.imeis = imeis;

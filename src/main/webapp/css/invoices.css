@@ -84,30 +84,16 @@ input{
    justify-content: center;
    align-items: center;
    font-size: 120%;
-   border-radius: 10px;
+  <-- border-radius: 10px;/-->
 
 
 }
-label{
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    font-size: 150%;
-}
-.env{
-background-color: #f92626;
-}
-.env:active{
-    background-color: #b11818;
-}
-.submit, .reset{
-background-color:rgb(94, 147, 226);
-border-radius: 10px;
-width:49%;
 
-}
-button{
+
+.en{
 background-color: rgb(94, 147, 226);
-width:49%;
-border-radius:10px;
+}
+.rs{
+background-color: rgb(246, 92, 104);
+
 }

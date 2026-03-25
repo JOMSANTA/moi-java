@@ -44,8 +44,6 @@ public class EmployeeAuthorizedService {
         return errors;
     }
     public  void insertEmployeeAuthorized(EmployeeAuthorizedModel employeeAuthorizedModel){
-       String hashPassword = PasswordUtil.hash(employeeAuthorizedModel.getPassword());
-       employeeAuthorizedModel.setPassword(hashPassword);
         employeeAuthorizedDAO.insertEmployeeAuthorized(employeeAuthorizedModel);
     }
 

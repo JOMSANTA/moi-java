@@ -32,12 +32,13 @@
                 <% } %>
             </div>
 
-            <form class="login-form" action="login" method="post">
+            <form class="login-form" action="${pageContext.request.contextPath}/login" method="post">
               <div class="field">
                 <label for="username">Nombre :   </label>
                 <input
                   type="text"
                   name="username"
+                  value=""
                   placeholder="Ingresa tu nombre de usuario"
                   required
                 />
@@ -47,6 +48,7 @@
                 <input
                   type="password"
                   name="password"
+                  value=""
                   placeholder="Ingresa tu contraseña"
                   required
                 />
@@ -63,7 +65,7 @@
              </form>
                 <div class="footer-link padding-top--12">
           </div>
-<h3>BUIMON.Ltda</h3
+<h3>BUIMON.Ltda</h3>
         </div>
       </section>
     </main>

@@ -17,15 +17,14 @@ height: 44.5rem;
 }
 .general{
     background-color: rgba(255, 255, 255, 0.7);
-
     width: 50%;
     margin: auto;
     position: relative;
     top: 10em;
-    border-radius: 20px;
     padding: 10px 20px;
     
 }
+
 .factura{
     text-align: center;
     font-size: 350%;
@@ -36,7 +35,6 @@ input{
    justify-content: center;
    align-items: center;
    font-size: 120%;
-   border-radius: 10px;
    
    
 }
@@ -45,4 +43,11 @@ label{<
     justify-content:center;
     align-items: center;
     font-size: 150%; 
+}
+.en{
+background-color: rgb(94, 147, 226);
+}
+.rs{
+background-color: rgb(246, 92, 104);
+
 }

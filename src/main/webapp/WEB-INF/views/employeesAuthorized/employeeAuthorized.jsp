@@ -41,11 +41,11 @@
 
 
 <div class="fondo">
-     <form action="employeesAuthorized" method="post" class="authorized-form">
+     <form action="${pageContext.request.contextPath}/employeesAuthorized" method="post" class="authorized-form">
      <div class="general">
          <h1 class="autorizar">Autorizar empleado</h1>
          <input type="text" name="first_name" id="first_name" placeholder="Nombre" value="${employeeModel.first_name}"><br>
-         <input type="text" name="last_name" id="last_ name" placeholder="Apellido" value="${employeeModel.last_name}"><br>
+         <input type="text" name="last_name" id="last_name" placeholder="Apellido" value="${employeeModel.last_name}"><br>
          <input type="text" name="username" id="username" placeholder="nombre de usuario" value="${employeeModel.username}"><br>
          <label>
              <input class= "radio" type="radio" name="role" value="USER" ${employeeModel.role == 'USER' ? 'checked' : ''}>

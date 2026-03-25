@@ -5,6 +5,7 @@ package com.moi.controller.employeeAuthorized;
 import com.moi.dao.EmployeeAuthorizedDAOImpl;
 import com.moi.model.EmployeeAuthorizedModel;
 import com.moi.services.EmployeeAuthorizedService;
+import com.moi.util.PasswordUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -33,15 +34,30 @@ public class EmployeeAuthorizedServletController extends HttpServlet {
         String role = request.getParameter("role");
         String password = request.getParameter("password");
 
+        // 🔍 DEBUG 1: ver lo que llega del formulario
+        System.out.println("Password original: " + password);
 
         EmployeeAuthorizedModel employeeAuthorizedModel= new EmployeeAuthorizedModel();
         employeeAuthorizedModel.setFirst_name(first_name);
         employeeAuthorizedModel.setLast_name(last_name);
         employeeAuthorizedModel.setUsername(username);
         employeeAuthorizedModel.setRole(role);
-        employeeAuthorizedModel.setPassword(password);
+
+        // 🔐 Hash del password
+        String hashedPassword = PasswordUtil.hash(password);
+
+        // 🔍 DEBUG 2: ver el hash generado
+        System.out.println("Password hasheado: " + hashedPassword);
+
+        employeeAuthorizedModel.setPassword(hashedPassword);
+
+        // 🔍 DEBUG 3: ver lo que quedó en el modelo
+        System.out.println("Password final en modelo: " + employeeAuthorizedModel.getPassword());
+
 //validar
         EmployeeAuthorizedService employeeAuthorizedService = new EmployeeAuthorizedService();
+
+
 
         List<String> errors = new ArrayList<>();
                 //employeeAuthorizedService.validarEmployeeAuthorized(employeeAuthorizedModel, password);
@@ -57,19 +73,19 @@ public class EmployeeAuthorizedServletController extends HttpServlet {
             request.setAttribute("employeeModel", employeeAuthorizedModel);
             request.setAttribute("errorsMessage","Error en la autorizacion de empleado, reintentalo.");
             request.getRequestDispatcher("/WEB-INF/views/employeesAuthorized/employeeAuthorized.jsp").forward(request, response);
+            return;
 
         }else {
             //registrar y enviar mensaje
             employeeAuthorizedService.insertEmployeeAuthorized(employeeAuthorizedModel);
             request.setAttribute("successMessage", "Empleado " + first_name + " autorizado" );
             request.setAttribute("employeeModel",new EmployeeAuthorizedModel());
+
+
             //limpiar el formulario
             request.getRequestDispatcher("/WEB-INF/views/employeesAuthorized/employeeAuthorized.jsp").forward(request, response);
+            return;
 
-            String errorsMessage = " Fallo en autorizar empleado, intentalo nuevamente" + first_name;
-            request.setAttribute("errors", errors);
-            request.setAttribute("employeeModel", employeeAuthorizedModel);
-            request.setAttribute("errorsMessage", errorsMessage);
         }
 
 }
