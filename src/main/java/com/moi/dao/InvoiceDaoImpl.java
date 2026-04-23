@@ -4,7 +4,8 @@ import com.moi.ConnectionDb.ConexionDb;
 import com.moi.model.ClientModel;
 import com.moi.model.InvoiceModel;
 import com.moi.model.InvoiceDetailModel;
-
+import java.util.Map;
+import java.util.HashMap;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,39 +13,85 @@ import java.util.List;
 public class InvoiceDaoImpl implements InvoiceDao {
 
 
+
+    public InvoiceModel getInvoiceFull(int factura) {
+
+        String sql = "SELECT i.id, i.date, i.name, i.document, " +
+                "d.id as detailId, d.idProduct, d.product, d.color, d.code, d.quantity, d.price, " +
+                "im.imei " +
+                "FROM invoice i " +
+                "JOIN invoice_detail d ON i.id = d.idInvoice " +
+                "LEFT JOIN invoice_imei im ON d.id = im.idDetail " +
+                "WHERE i.id = ?";
+
+        InvoiceModel invoice = null;
+        Map<Long, InvoiceDetailModel> detailMap = new HashMap<>();
+
+        try (Connection con = ConexionDb.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, factura);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                if (invoice == null) {
+                    invoice = new InvoiceModel();
+                    invoice.setId(rs.getLong("id"));
+                    invoice.setDate(rs.getTimestamp("date").toLocalDateTime());
+                    invoice.setName(rs.getString("name"));
+                    invoice.setIdClient(rs.getLong("document"));
+                    invoice.setDetails(new ArrayList<>());
+                }
+
+                long detailId = rs.getLong("detailId");
+
+                InvoiceDetailModel detail = detailMap.get(detailId);
+
+                if (detail == null) {
+                    detail = new InvoiceDetailModel();
+
+                    detail.setId(detailId);
+                    detail.setIdProduct(rs.getLong("idProduct"));
+                    detail.setProduct(rs.getString("product"));
+                    detail.setColor(rs.getString("color"));
+                    detail.setCode(rs.getString("code"));
+                    detail.setQuantity(rs.getInt("quantity"));
+                    detail.setPrice(rs.getFloat("price"));
+
+                    detail.setImeis(new ArrayList<>());
+
+                    detailMap.put(detailId, detail);
+                    invoice.getDetails().add(detail);
+                }
+
+                String imei = rs.getString("imei");
+                if (imei != null) {
+                    detail.getImeis().add(imei);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return invoice;
+    }
+
+
     @Override
     public void insertInvoice(InvoiceModel model) {
 
-        String insertQuery = "INSERT INTO moi.invoice \n" +
-                "(fecha, nombre, documento, codEmpleado, factura)\n" +
-                " VALUES(?,?,?,?,?);";
-        ResultSet rs = null;
-
-        try (Connection connection = ConexionDb.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
-
-            preparedStatement.setString(1, model.getFecha());
-            preparedStatement.setString(2, model.getNombre());
-            preparedStatement.setLong(3, model.getIdClient());
-            preparedStatement.setInt(4, model.getCodEmpleado());
-            preparedStatement.setInt(5, model.getFactura());
-
-
-            preparedStatement.executeUpdate();
-
-
-        } catch (SQLException e) {
-            System.out.println("error al insertar factura" + e.getMessage());
-        }
     }
 
-    public void insertFullInvoice(InvoiceModel model) {
+    public long insertFullInvoice(InvoiceModel model) {
 
-        String insertInvoice = "INSERT INTO invoice (fecha, nombre, documento, codEmpleado, factura) VALUES (?, ?, ?, ?, ?)";
-        String insertDetail = "INSERT INTO invoice_detail (idInvoice, idProduct, quantity, price) VALUES (?, ?, ?, ?)";
+        String insertInvoice = "INSERT INTO invoice (date, name, document, codEmployee) VALUES ( ?, ?, ?, ?)";
+        String insertDetail = "INSERT INTO invoice_detail (idInvoice, idProduct, product, color, code, quantity, price) VALUES (?, ?, ?, ?, ?, ?, ?)";
         String insertImei = "INSERT INTO invoice_imei (idDetail, imei) VALUES (?, ?)";
 
         Connection connection = null;
+        long idInvoice = 0;
 
         try {
             connection = ConexionDb.getConnection();
@@ -53,16 +100,15 @@ public class InvoiceDaoImpl implements InvoiceDao {
             // 1. INSERT INVOICE
             PreparedStatement psInvoice = connection.prepareStatement(insertInvoice, Statement.RETURN_GENERATED_KEYS);
 
-            psInvoice.setString(1, model.getFecha());
-            psInvoice.setString(2, model.getNombre());
+            psInvoice.setTimestamp(1, Timestamp.valueOf(model.getDate()));
+            psInvoice.setString(2, model.getName());
             psInvoice.setLong(3, model.getIdClient()); // documento cliente
-            psInvoice.setInt(4, model.getCodEmpleado());
-            psInvoice.setInt(5, model.getFactura());
+            psInvoice.setInt(4, model.getCodEmployee());
 
             psInvoice.executeUpdate();
 
             ResultSet rs = psInvoice.getGeneratedKeys();
-            long idInvoice = 0;
+
 
             if (rs.next()) {
                 idInvoice = rs.getLong(1);
@@ -79,8 +125,11 @@ public class InvoiceDaoImpl implements InvoiceDao {
 
                 psDetail.setLong(1, idInvoice);
                 psDetail.setLong(2, detail.getIdProduct());
-                psDetail.setInt(3, detail.getQuantity());
-                psDetail.setFloat(4, detail.getPrice());
+                psDetail.setString(3, detail.getProduct());
+                psDetail.setString(4, detail.getColor());
+                psDetail.setString(5, detail.getCode());
+                psDetail.setInt(6, detail.getQuantity());
+                psDetail.setFloat(7, detail.getPrice());
 
                 psDetail.executeUpdate();
 
@@ -129,16 +178,19 @@ public class InvoiceDaoImpl implements InvoiceDao {
                 e.printStackTrace();
             }
         }
+        return idInvoice;
     }
 
 
+
+
     @Override
-    public InvoiceModel getInvoiceByFactura(int factura) {
+    public InvoiceModel getInvoiceByFactura(int invoice) {
         return null;
     }
 
     @Override
-    public InvoiceModel getInvoiceByDocumento(int documento) {
+    public InvoiceModel getInvoiceByDocumento(int document) {
         return null;
     }
 
@@ -148,7 +200,7 @@ public class InvoiceDaoImpl implements InvoiceDao {
     }
 
     @Override
-    public InvoiceModel getInvoiceByCodigo(String codigoProducto) {
+    public InvoiceModel getInvoiceByCodigo(String code) {
         return null;
     }
 
@@ -171,19 +223,12 @@ public class InvoiceDaoImpl implements InvoiceDao {
 
             while (resultSet.next()) {
                 InvoiceModel invoiceModel = new InvoiceModel();
-                invoiceModel.setFecha(resultSet.getString("fecha"));
-                invoiceModel.setNombre(resultSet.getString("nombre"));
-                invoiceModel.setIdClient(resultSet.getLong("idClient"));
-                invoiceModel.setCodEmpleado(resultSet.getInt("codEmpleado"));
-                invoiceModel.setProducto(resultSet.getString("product"));
-                invoiceModel.setIdProduct(resultSet.getString("idProducto"));
-                invoiceModel.setImei(resultSet.getString("imei"));
-                invoiceModel.setCantidad(resultSet.getInt("cantidad"));
-                invoiceModel.setValorUnitario(resultSet.getFloat("valorUnitario"));
-                invoiceModel.setSubTotal(resultSet.getFloat("subTotal"));
-                invoiceModel.setIva(resultSet.getInt("iva"));
-                invoiceModel.setTotal(resultSet.getFloat("total"));
 
+                invoiceModel.setId(resultSet.getLong("id"));
+                invoiceModel.setDate(resultSet.getTimestamp("date").toLocalDateTime());
+                invoiceModel.setName(resultSet.getString("name"));
+                invoiceModel.setIdClient(resultSet.getLong("document"));
+                invoiceModel.setCodEmployee(resultSet.getInt("codEmployee"));
 
                 invoices.add(invoiceModel);
 
@@ -215,6 +260,11 @@ public class InvoiceDaoImpl implements InvoiceDao {
             e.printStackTrace();
         }
         return clientModel;
+    }
+
+    @Override
+    public long getLastInvoiceNumber() {
+        return 0;
     }
 
 }

@@ -4,12 +4,22 @@ import java.util.List;
 
 public class InvoiceDetailModel {
 
+    private long id;
     private long idProduct;
     private int quantity;
     private float price;
     private List<String> imeis;
 
-    public InvoiceDetailModel() {
+    private String product;
+    private String color;
+    private String code;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public long getIdProduct() {
@@ -42,5 +52,29 @@ public class InvoiceDetailModel {
 
     public void setImeis(List<String> imeis) {
         this.imeis = imeis;
+    }
+
+    public String getProduct() {
+        return product;
+    }
+
+    public void setProduct(String product) {
+        this.product = product;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

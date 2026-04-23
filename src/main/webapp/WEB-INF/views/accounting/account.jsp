@@ -22,7 +22,6 @@
   <table>
                  <tr>
                   <th>AAMMDD</th>
-                    <th>Factura</th>
                     <th>Descripcion</th>
                     <th>Detalle</th>
                     <th>Cant</th>
@@ -33,7 +32,6 @@
 
                  <tr>
                   <td> <input type="date" name="date" id="date">  </td>
-                  <td> <input type="int" name="invoice" id="invoice"> </td>
                   <td> <input type="text" name="description" id="description"> </td>
                   <td> <input type="text" name="detail" id="detail"> </td>
                   <td> <input type="int" name="quantity" id="quantity"> </td>
@@ -67,14 +65,14 @@
  <% for (int i = 0; i < accounting.size(); i ++) { %>
   <% AccountingModel account = (AccountingModel) accounting.get(i); %>
  <tr>
-    <td><%= account.getDate() %></td>
-    <td><%= account.getInvoice() %></td>
-    <td><%= account.getDescription() %></td>
-    <td><%= account.getDetail() %></td>
-    <td><%= account.getQuantity() %></td>
-    <td><%= account.getIncome() %></td>
-    <td><%= account.getExpenses() %></td>
-    <td><%= account.getTotal() %></td>
+            <td><%= account.getDate() %></td>
+            <td><%= account.getInvoice() %></td>
+            <td><%= account.getDescription() != null ? account.getDescription() : "" %></td>
+            <td><%= account.getDetail() %></td>
+            <td><%= account.getQuantity() != null ? account.getQuantity() : 0 %></td>
+            <td><%= account.getIncome() != null ? account.getIncome() : 0 %></td>
+            <td><%= account.getExpenses() != null ? account.getExpenses() : 0 %></td>
+            <td><%= account.getTotal() != null ? account.getTotal() : 0 %></td>
  </tr>
 
   <% } %>

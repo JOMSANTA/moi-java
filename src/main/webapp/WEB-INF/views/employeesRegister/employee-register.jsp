@@ -34,15 +34,15 @@
                 </tr>
 
                  <tr>
-                        <td> <input type="long" name="documento" id="documento">  </td>
-                                                                <td> <input type="text" name="nombres" id="nombres"> </td>
-                                                                <td> <input type="text" name="apellidos" id="apellidos"> </td>
-                                                                <td> <input type="int" name="codigo" id="codigo"> </td>
-                                                                <td> <input type="long" name="celular" id="celular"> </td>
-                                                                <td> <input type="text" name="correo" id="correo"> </td>
-                                                                <td> <input type="text" name="cargo" id="cargo"> </td>
-                                                                <td> <input type="date" name="fechaNacimiento" id="fechaNacimiento"> </td>
-                                                                <td> <input type="text" name="sucursal" id="sucursal"> </td>
+                        <td> <input type="number" name="document" id="document">  </td>
+                        <td> <input type="text" name="name" id="name"> </td>
+                        <td> <input type="text" name="lastname" id="lastname"> </td>
+                        <td> <input type="number" name="code" id="code"> </td>
+                        <td> <input type="number" name="cel" id="cel"> </td>
+                        <td> <input type="text" name="email" id="email"> </td>
+                        <td> <input type="text" name="role" id="role"> </td>
+                        <td> <input type="date" name="birthdate" id="birthdate"> </td>
+                        <td> <input type="text" name="branch" id="branch"> </td>
                                </tr>
                              </table>
                              </div>
@@ -69,15 +69,15 @@
                   <% for (int i = 0; i < employeesRegister.size(); i ++) { %>
                    <% EmployeeModel employee =( EmployeeModel) employeesRegister.get(i); %>
                    <tr>
-                   <td><%= employee.getDocumento() %></td>
-                   <td><%= employee.getNombres() %></td>
-                   <td><%= employee.getApellidos() %></td>
-                   <td><%= employee.getCodigo() %></td>
-                   <td><%= employee.getCelular() %></td>
-                   <td><%= employee.getCorreo() %></td>
-                   <td><%= employee.getCargo() %></td>
-                   <td><%= employee.getFechaNacimiento() %></td>
-                   <td><%= employee.getSucursal() %></td
+                   <td><%= employee.getDocument() %></td>
+                   <td><%= employee.getName() %></td>
+                   <td><%= employee.getLastname() %></td>
+                   <td><%= employee.getCode() %></td>
+                   <td><%= employee.getCel() %></td>
+                   <td><%= employee.getEmail() %></td>
+                   <td><%= employee.getRole() %></td>
+                   <td><%= employee.getBirthdate() %></td>
+                   <td><%= employee.getBranch() %></td
                    </tr>
                      <% } %>
 

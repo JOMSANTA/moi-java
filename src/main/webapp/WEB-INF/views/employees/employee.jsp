@@ -41,15 +41,15 @@
                     <% for (int i = 0; i < employees.size(); i ++) { %>
                     <% EmployeeModel employee =( EmployeeModel) employees.get(i); %>
                                    <tr>
-                                       <td><%= employee.getDocumento() %></td>
-                                       <td><%= employee.getNombres() %></td>
-                                       <td><%= employee.getApellidos() %></td>
-                                       <td><%= employee.getCodigo() %></td>
-                                       <td><%= employee.getCelular() %></td>
-                                        <td><%= employee.getCorreo() %></td>
-                                        <td><%= employee.getCargo() %></td>
-                                        <td><%= employee.getFechaNacimiento() %></td>
-                                        <td><%= employee.getSucursal() %></td>
+                                       <td><%= employee.getDocument() %></td>
+                                       <td><%= employee.getName() %></td>
+                                       <td><%= employee.getLastname() %></td>
+                                       <td><%= employee.getCode() %></td>
+                                       <td><%= employee.getCel() %></td>
+                                        <td><%= employee.getEmail() %></td>
+                                        <td><%= employee.getRole() %></td>
+                                        <td><%= employee.getBirthdate() %></td>
+                                        <td><%= employee.getBranch() %></td>
                                    </tr>
                                    <% } %>
 

@@ -26,7 +26,6 @@ public class AccountingServletController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String date = request.getParameter("date");
-        String invoice = request.getParameter("invoice");
         String description = request.getParameter("description");
         String detail = request.getParameter("detail");
         String quantity = request.getParameter("quantity");
@@ -34,17 +33,17 @@ public class AccountingServletController extends HttpServlet {
         String expenses = request.getParameter("expenses");
         String total = request.getParameter("total");
 
-        if (invoice != null) {
+        if (date != null && !date.trim().isEmpty() &&
+            detail != null && !detail.trim().isEmpty())  {
             AccountingModel model = new AccountingModel();
 
-            model.setDate(date != null ? date : "");
-            model.setInvoice(Integer.parseInt(invoice));
-            model.setDescription(description);
+            model.setDate(date);
+            model.setDescription(description != null ? description : "");
             model.setDetail(detail);
-            model.setQuantity(Integer.parseInt(quantity));
-            model.setIncome(Integer.parseInt(income));
-            model.setExpenses(Integer.parseInt(expenses));
-            model.setTotal(Integer.parseInt(total));
+            model.setQuantity(parseIntegerOrNull(quantity));
+            model.setIncome(parseIntegerOrNull(income));
+            model.setExpenses(parseIntegerOrNull(expenses));
+            model.setTotal(parseIntegerOrNull(total));
 
             AccountDAOImpl accountDAO = new AccountDAOImpl();
             accountDAO.insertAccount(model);
@@ -57,4 +56,15 @@ public class AccountingServletController extends HttpServlet {
         }
         response.sendRedirect(request.getContextPath() + "/accounting");
     }
+
+    private Integer parseIntegerOrNull(String value) {
+        if (value != null && !value.trim().isEmpty()) {
+            try {
+                return Integer.parseInt(value.trim());
+            } catch (NumberFormatException e) {
+                return null;
+            }
+        }
+        return null;
+}
 }

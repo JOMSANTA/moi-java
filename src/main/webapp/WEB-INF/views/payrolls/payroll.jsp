@@ -41,8 +41,8 @@
  <% PayrollModel payroll = (PayrollModel) payrolls.get(i); %>
  <tr>
     <td><%= payroll.getDate() %></td>
-        <td><%= payroll.getCodigo() %></td>
-        <td><%= payroll.getNombre() %></td>
+        <td><%= payroll.getCode() %></td>
+        <td><%= payroll.getName() %></td>
         <td><%= payroll.getBasico() %></td>
         <td><%= payroll.getPrepago() %></td>
         <td><%= payroll.getPostpago() %></td>

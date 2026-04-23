@@ -96,4 +96,30 @@ background-color: rgb(94, 147, 226);
 .rs{
 background-color: rgb(246, 92, 104);
 
+
+}
+#listaClientes {
+    border: 1px solid #ccc;
+    background: white;
+    position: absolute;
+    width: 300px;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+#listaClientes div {
+    padding: 5px;
+    cursor: pointer;
+}
+
+#listaClientes div:hover {
+    background: #eee;
+}
+.autocomplete-item {
+    padding: 5px;
+    cursor: pointer;
+}
+.autocomplete-item:hover {
+    background-color: #ddd;
 }

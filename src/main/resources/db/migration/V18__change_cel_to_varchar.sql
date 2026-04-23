@@ -1,0 +1,1 @@
+ALTER TABLE client MODIFY cel VARCHAR(15);

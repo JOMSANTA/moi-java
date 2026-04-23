@@ -8,10 +8,10 @@ public class AccountingModel {
     private int invoice;
     private String description;
     private String detail;
-    private int quantity;
-    private int income;
-    private int expenses;
-    private int total;
+    private Integer quantity;
+    private Integer income;
+    private Integer expenses;
+    private Integer total;
 
     public AccountingModel() {
     }
@@ -48,35 +48,35 @@ public class AccountingModel {
         this.detail = detail;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
-    public int getIncome() {
+    public Integer getIncome() {
         return income;
     }
 
-    public void setIncome(int income) {
+    public void setIncome(Integer income) {
         this.income = income;
     }
 
-    public int getExpenses() {
+    public Integer getExpenses() {
         return expenses;
     }
 
-    public void setExpenses(int expenses) {
+    public void setExpenses(Integer expenses) {
         this.expenses = expenses;
     }
 
-    public int getTotal() {
+    public Integer getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(Integer total) {
         this.total = total;
     }
 }

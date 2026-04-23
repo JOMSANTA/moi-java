@@ -326,4 +326,356 @@ public List<InventoryModel> getAllInventory(String idProducto, String producto, 
                            </form>
                        </td>
 
+*****************************
+<!--
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>factura</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/invoices.css">
+</head>
 
+<body>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${not empty loginMessage}">
+    <p style="color:green;">${loginMessage}</p>
+</c:if>
+<div class="tod">
+
+                   <div class="bna">
+                   <a href=""><nav class="search">Buscar</nav></a>
+                    <a href="clients"><nav class="atras">Registrar</nav></a>
+                    <a href="moi-java"><nav class="salir">Salir</nav></a>
+                   </div>
+
+<div class="fondo">
+<div class="general">
+
+<form class="pay" action="invoices" method="post">
+
+<h1>Factura</h1>
+<div class="fila">
+       <label>Fecha:</label>
+       <input type="text" id="fecha" name="fecha">
+</div>
+<div class="fila">
+   <label>Cliente:</label>
+    <input type="text" id="clienteNombre" name="nombre" placeholder="Nombre del cliente"</input>
+    <label>Documento:</label>
+     <input type="text" id="idDocumento" name="idDocument" placeholder="Documento"></div></input>
+    <div id="listaClientes" class="autocomplete-list">
+</div>
+
+<div class="fila">
+       <label>Producto:</label>
+       <input type="text" id="producto" name="producto">
+</div>
+
+<div class="fila">
+       <label>Código:</label>
+       <input type="text" id="codigo" name="codigo">
+</div>
+
+<div class="fila">
+       <label>IMEI:</label>
+       <input type="text" id="imei" name="imei">
+</div>
+
+<div class="fila">
+       <label>Cantidad:</label>
+       <input type="number" id="cantidad" name="cantidad">
+</div>
+
+<div class="fila">
+       <label>Precio:</label>
+       <input type="number" id="precio" name="precio">
+<label>Subtotal:</label>
+<input type="number" id="subtotal" name="subtotal" readonly>
+<label>Iva:</label>
+<input type="number" id="iva" name="iva" readonly>
+<label>Total:</label>
+<input type="number" id="total" name="total" readonly>
+</div>
+
+<button type="submit">Enviar</button>
+<button type="reset">Reset</button>
+
+</form>
+
+
+</div>
+</div>
+</div>
+
+
+
+<script>
+// Fecha con hora
+document.getElementById("fecha").value = new Date().toLocaleString();
+
+function buscarCliente() {
+    let nombre = document.getElementById("clienteNombre").value;
+    let documento = document.getElementById("clienteDocumento").value;
+
+    // Tomar primero lo que se ingrese
+    let valor = nombre ? nombre : documento;
+    if (!valor) return;
+
+    fetch("invoices?cliente=" + encodeURIComponent(valor))
+    .then(res => res.json())
+    .then(data => {
+        let lista = document.getElementById("listaClientes");
+        lista.innerHTML = "";
+
+        data.forEach(c => {
+            let div = document.createElement("div");
+            div.textContent = c.nombre + " - " + c.documento;
+
+            div.onclick = function () {
+            document.getElementById("fecha").value = new Date().toLocaleString();
+                document.getElementById("clienteNombre").value = c.nombre;
+                document.getElementById("clienteDocumento").value = c.documento;
+                lista.innerHTML = "";
+            };
+
+            lista.appendChild(div);
+        });
+    });
+}
+
+document.getElementById("clienteNombre").addEventListener("input", buscarCliente);
+document.getElementById("clienteDocumento").addEventListener("input", buscarCliente);
+
+function calcularTotales() {
+    const cantidad = parseFloat(document.getElementById("cantidad").value) || 0;
+    const precio = parseFloat(document.getElementById("precio").value) || 0;
+    const subtotal = cantidad * precio;
+    const iva = subtotal * 0.12;
+    const total = subtotal + iva;
+
+    document.getElementById("subtotal").value = subtotal.toFixed(2);
+    document.getElementById("iva").value = iva.toFixed(2);
+    document.getElementById("total").value = total.toFixed(2);
+}
+
+document.getElementById("cantidad").addEventListener("input", calcularTotales);
+document.getElementById("precio").addEventListener("input", calcularTotales);
+</script>
+
+
+</body>
+</html>
+
+-->
+CREATE TABLE employ (
+    documento BIGINT NOT NULL,
+    nombres VARCHAR(45) NOT NULL,
+    apellidos VARCHAR(45) NOT NULL,
+    codigo INT DEFAULT NULL,
+    celular BIGINT NOT NULL,
+    correo VARCHAR(60) NOT NULL,
+    cargo VARCHAR(45) NOT NULL,
+    fecha DATE DEFAULT NULL
+     ++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+    CREATE TABLE _user (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(20) DEFAULT NULL,
+    last_name VARCHAR(20) DEFAULT NULL,
+    username VARCHAR(20) DEFAULT NULL,
+    role VARCHAR(20) DEFAULT NULL,
+    password VARCHAR(100) DEFAULT NULL,
+
+    UNIQUE KEY UK_user_username (username)
+    );
+
+    INSERT INTO _user (first_name, last_name, username, role, password)
+    VALUES ('administrador','buimon','admin', 'ADMIN', '$2a$10$X7Qm1Z9yYp5sFJk...');
+
+    +++++++++++++++++++++++++++++++++++++++++++++++
+
+
+CREATE TABLE inventory (
+idInventory BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+quantity INT DEFAULT 0,
+idProduct BIGINT NOT NULL,
+INDEX (idProduct),
+FOREIGN KEY (idProduct) REFERENCES invent(idProduct)
+);
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+CREATE TABLE product (
+idProduct BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(50) NOT NULL ,
+color VARCHAR(50) NULL DEFAULT NULL,
+imei bigint NULL DEFAULT NULL,
+code VARCHAR(50) NULL DEFAULT NULL,
+coming DATE NULL DEFAULT NULL,
+type VARCHAR(60) NULL DEFAULT NULL
+);
+
++++++++++++++++++++++++++++++++++++++++++++++++++
+
+CREATE TABLE imeis (
+    id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    imei VARCHAR(50) NOT NULL,
+    idProduct BIGINT NOT NULL,
+    INDEX (idProduct),
+    CONSTRAINT fk_imeis_product
+    FOREIGN KEY (idProduct) REFERENCES product(idProduct)
+) ENGINE=InnoDB;
+
+++++++++++++++++++++++++++++++++++++++++++++++++
+
+-- Tabla factura
+CREATE TABLE invoice (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    fecha DATE NOT NULL,
+    nombre VARCHAR(45),
+    documento BIGINT NOT NULL,
+    codEmpleado INT NOT NULL,
+    factura INT NOT NULL,
+
+    PRIMARY KEY (id)
+);
+
+-- Detalle
+CREATE TABLE invoice_detail (
+    idDetail BIGINT NOT NULL AUTO_INCREMENT,
+    idInvoice BIGINT NOT NULL,
+    idProduct BIGINT NOT NULL, -- ✅ MISMO TIPO QUE product
+    quantity INT NOT NULL,
+    price DECIMAL(10,2),
+
+    PRIMARY KEY (idDetail),
+
+    CONSTRAINT fk_invoice_detail_invoice
+        FOREIGN KEY (idInvoice) REFERENCES invoice(id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_invoice_detail_product
+        FOREIGN KEY (idProduct) REFERENCES product(idProduct)
+);
+
+-- IMEIs
+CREATE TABLE invoice_imei (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    idDetail BIGINT NOT NULL,
+    imei VARCHAR(20),
+
+    CONSTRAINT fk_invoice_imei_detail
+        FOREIGN KEY (idDetail) REFERENCES invoice_detail(idDetail)
+        ON DELETE CASCADE
+);
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+CREATE TABLE client (
+    idCliente BIGINT NOT NULL,
+    nombre VARCHAR(45) NOT NULL,
+    apellido VARCHAR(45) NOT NULL,
+    cel INT NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    direccion VARCHAR(45),
+
+    PRIMARY KEY (idCliente)
+);
+
+********************************************
+
+CREATE TABLE report (
+    idReport BIGINT NOT NULL AUTO_INCREMENT,
+    date DATE NOT NULL,
+    sucursal VARCHAR(60) NOT NULL,
+    postpago INT DEFAULT NULL,
+    kitContado INT DEFAULT NULL,
+    kitCuotas INT DEFAULT NULL,
+    tv INT DEFAULT NULL,
+    otros INT DEFAULT NULL,
+    PRIMARY KEY (idReport)
+);
+
++++++++++++++++++++++++++++++++++++++++++++++
+
+CREATE TABLE accounting (
+    date DATE NOT NULL,
+    invoice INT NOT NULL,
+    description VARCHAR(90) DEFAULT NULL,
+    detail VARCHAR(60) NOT NULL,
+    quantity INT DEFAULT NULL,
+    income INT DEFAULT NULL,
+    expenses INT NOT NULL,
+    total INT DEFAULT NULL
+);
+
++++++++++++++++++++++++++++++++++
+
+CREATE TABLE nominas (
+    documento INT NOT NULL,
+    codigo INT NOT NULL,
+    nombre VARCHAR(45) NOT NULL,
+    basico INT DEFAULT NULL,
+    prepago INT DEFAULT NULL,
+    postpago INT DEFAULT NULL,
+    otros INT DEFAULT NULL,
+    subtotal INT DEFAULT NULL
+);
+
++++++++++++++++++++++++++++++++++
+
+
+CREATE TABLE adminauthorized (
+    id INT NOT NULL AUTO_INCREMENT,
+    first_name VARCHAR(45) NOT NULL,
+    last_name VARCHAR(45) NOT NULL,
+    username VARCHAR(45) NOT NULL,
+    password VARCHAR(90) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+++++++++++++++++++++++++++++++++
+
+CREATE TABLE payroll (
+    idpayroll INT NOT NULL AUTO_INCREMENT,
+    date DATE NOT NULL,
+    codigo INT NOT NULL,
+    nombre VARCHAR(45) NOT NULL,
+    basico INT DEFAULT NULL,
+    prepago INT DEFAULT NULL,
+    postpago INT DEFAULT NULL,
+    detalle VARCHAR(90) DEFAULT NULL,
+    PRIMARY KEY (idpayroll)
+);
+
++++++++++++++++++++++++++++++++++
+
+CREATE TABLE employ (
+    documento BIGINT NOT NULL,
+    nombres VARCHAR(45) NOT NULL,
+    apellidos VARCHAR(45) NOT NULL,
+    codigo INT DEFAULT NULL,
+    celular BIGINT NOT NULL,
+    correo VARCHAR(60) NOT NULL,
+    cargo VARCHAR(45) NOT NULL,
+    fecha DATE DEFAULT NULL
+);
+
++++++++++++++++++++++
+
+CREATE TABLE accounting (
+    date DATE NOT NULL,                  -- Obligatorio
+    invoice INT NOT NULL,                 -- Obligatorio
+    description VARCHAR(90) NULL,        -- Opcional
+    detail VARCHAR(60) NOT NULL,         -- Obligatorio
+    quantity INT NULL,                    -- Opcional
+    income INT NULL,                      -- Opcional
+    expenses INT NOT NULL,                -- Obligatorio
+    total INT NULL                        -- Opcional
+);

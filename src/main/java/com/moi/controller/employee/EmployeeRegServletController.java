@@ -27,28 +27,28 @@ public class EmployeeRegServletController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String documento = request.getParameter("documento");
-        String nombres = request.getParameter("nombres");
-        String apellidos = request.getParameter("apellidos");
-        String codigo =request.getParameter("codigo");
-        String celular = request.getParameter("celular");
-        String correo = request.getParameter("correo");
-        String cargo = request.getParameter("cargo");
-        String fechaNacimiento = request.getParameter("fechaNacimiento");
-        String sucursal = request.getParameter("sucursal");
+        String documento = request.getParameter("document");
+        String nombres = request.getParameter("name");
+        String apellidos = request.getParameter("lastname");
+        String codigo =request.getParameter("code");
+        String celular = request.getParameter("cel");
+        String correo = request.getParameter("email");
+        String cargo = request.getParameter("role");
+        String fechaNacimiento = request.getParameter("birthdate");
+        String sucursal = request.getParameter("branch");
 
 
         if (documento != null) {
             EmployeeModel model= new EmployeeModel();
-            model.setDocumento(Long.parseLong(documento));
-            model.setNombres(nombres);
-            model.setApellidos(apellidos);
-            model.setCodigo(Integer.parseInt(codigo));
-            model.setCelular(Long.parseLong(celular));
-            model.setCorreo(correo);
-            model.setCargo(cargo);
-            model.setFechaNacimiento(LocalDate.parse(fechaNacimiento));
-            model.setSucursal(sucursal);
+            model.setDocument(Long.parseLong(documento));
+            model.setName(nombres);
+            model.setLastname(apellidos);
+            model.setCode(Integer.parseInt(codigo));
+            model.setCel(Long.parseLong(celular));
+            model.setEmail(correo);
+            model.setRole(cargo);
+            model.setBirthdate(LocalDate.parse(fechaNacimiento));
+            model.setBranch(sucursal);
 
             EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
             employeeDAO.insertEmployee(model);

@@ -10,7 +10,8 @@ import java.util.List;
 public interface InvoiceDao {
 
     void insertInvoice(InvoiceModel model);
-    void insertFullInvoice(InvoiceModel model);
+    public long insertFullInvoice(InvoiceModel model);
+    InvoiceModel getInvoiceFull(int factura);
     InvoiceModel getInvoiceByFactura(int factura);
     InvoiceModel getInvoiceByDocumento(int documento);
     InvoiceModel getInvoiceById(int id);
@@ -18,4 +19,6 @@ public interface InvoiceDao {
     InvoiceModel getInvoiceByImei(int imei);
     List<InvoiceModel> getAllInvoices();
     ClientModel getClientById(long idClient);
+
+    long getLastInvoiceNumber();
 }

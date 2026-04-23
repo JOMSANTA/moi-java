@@ -6,8 +6,8 @@ public class PayrollModel {
 
     private int id;
     private String date;
-    private int codigo;
-    private String nombre;
+    private int code;
+    private String name;
     private int basico;
     private int prepago;
     private int postpago;
@@ -36,20 +36,20 @@ public class PayrollModel {
         this.date = date;
     }
 
-    public int getCodigo() {
-        return codigo;
+    public int getCode() {
+        return code;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setCode(int codigo) {
+        this.code = codigo;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String nombre) {
+        this.name = nombre;
     }
 
     public int getBasico() {

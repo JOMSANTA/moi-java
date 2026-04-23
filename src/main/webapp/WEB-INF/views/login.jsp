@@ -39,7 +39,7 @@
                   type="text"
                   name="username"
                   value=""
-                  placeholder="Ingresa tu nombre de usuario"
+                  placeholder="Ingresa tu usuario"
                   required
                 />
               </div>

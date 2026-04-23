@@ -1,33 +1,35 @@
 package com.moi.controller.invoice;
+
 import com.moi.dao.InvoiceDao;
 import com.moi.dao.InvoiceDaoImpl;
 import com.moi.model.InvoiceModel;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import com.moi.model.InvoiceDetailModel;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.*;
 
+import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.*;
-import java.io.IOException;
-import java.sql.Date;
-
 
 @WebServlet("/invoices")
 public class InvoiceServletController extends HttpServlet {
 
     private InvoiceDao invoiceDao = new InvoiceDaoImpl();
 
-
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/views/invoices/invoice-list.jsp").forward(request, response);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
+        long lastInvoiceNumber = invoiceDao.getLastInvoiceNumber();
+        long nextInvoiceNumber = lastInvoiceNumber + 1;
+
+        request.setAttribute("nextInvoiceNumber", nextInvoiceNumber);
+
+        request.getRequestDispatcher("/WEB-INF/views/invoices/invoice-list.jsp")
+                .forward(request, response);
     }
 
     @Override
@@ -35,56 +37,112 @@ public class InvoiceServletController extends HttpServlet {
             throws ServletException, IOException {
 
         try {
+            // =========================
+            //  CABECERA
+            // =========================
+            String fechaHora = request.getParameter("fechaHora");
+            String idClient = request.getParameter("idClient");
+            String cliente = request.getParameter("name");
+            String codEmployee = request.getParameter("codEmployee");
 
-            String[] idProducts = request.getParameterValues("idProduct[]");
-            String[] quantities = request.getParameterValues("quantity[]");
-            String[] prices = request.getParameterValues("price[]");
+            String[] products = request.getParameterValues("name[]");
+            String[] colors = request.getParameterValues("color[]");
+            String[] codes = request.getParameterValues("code[]");
             String[] imeis = request.getParameterValues("imei[]");
+            String[] prices = request.getParameterValues("price[]");
+            String[] quantities = request.getParameterValues("quantity[]");
 
-            if (idProducts == null || quantities == null || prices == null || imeis == null) {
-                throw new NumberFormatException("Campos incompletos");
+            // =========================
+            // VALIDACION
+            // =========================
+            if (fechaHora == null || idClient == null || cliente == null ||
+                    products == null || products.length == 0) {
+
+                request.setAttribute("loginMessage", "Todos los campos son obligatorios");
+                request.getRequestDispatcher("/WEB-INF/views/invoices/invoice-list.jsp")
+                        .forward(request, response);
+                return;
             }
 
-            List<InvoiceDetailModel> details = new ArrayList<>();
+            // =========================
+            //  CREAR FACTURA
+            // =========================
+            InvoiceModel invoice = new InvoiceModel();
+            invoice.setDate(LocalDateTime.parse(fechaHora));
+            invoice.setIdClient(Long.parseLong(idClient));
+            invoice.setName(cliente);
+            invoice.setCodEmployee(Integer.parseInt(codEmployee));
 
-            for (int i = 0; i < idProducts.length; i++) {
+            // =========================
+            // DETALLES
+            // =========================
+            List<InvoiceDetailModel> details = new ArrayList<>();
+            float subTotal = 0;
+
+            for (int i = 0; i < products.length; i++) {
+
+                // evitar filas vacías
+                if (products[i] == null || products[i].isEmpty()) continue;
 
                 InvoiceDetailModel detail = new InvoiceDetailModel();
 
-                detail.setIdProduct(Long.parseLong(idProducts[i]));
-                detail.setQuantity(Integer.parseInt(quantities[i]));
-                detail.setPrice(Float.parseFloat(prices[i]));
+                detail.setProduct(products[i]);
+                detail.setColor(colors[i]);
+                detail.setCode(codes[i]);
 
                 List<String> imeiList = new ArrayList<>();
-                imeiList.add(imeis[i]);
-
+                if (imeis != null && imeis.length > i && imeis[i] != null && !imeis[i].isEmpty()) {
+                    imeiList.add(imeis[i]);
+                }
                 detail.setImeis(imeiList);
+
+                detail.setIdProduct(0);
+
+                float price = 0;
+                int quantity = 0;
+
+                if (prices[i] != null && !prices[i].isEmpty()) {
+                    price = Float.parseFloat(prices[i]);
+                }
+
+                if (quantities[i] != null && !quantities[i].isEmpty()) {
+                    quantity = Integer.parseInt(quantities[i]);
+                }
+                if (price <= 0 || quantity <= 0) continue;
+
+                detail.setPrice(price);
+                detail.setQuantity(quantity);
+
+                subTotal += detail.getPrice() * detail.getQuantity();
 
                 details.add(detail);
             }
 
-            InvoiceModel model = new InvoiceModel();
-            model.setFecha(request.getParameter("fecha"));
-            model.setNombre(request.getParameter("nombre"));
-            model.setIdClient(Long.parseLong(request.getParameter("idClient")));
-            model.setCodEmpleado(Integer.parseInt(request.getParameter("codEmpleado")));
-            model.setFactura(1);
+            // =========================
+            // TOTALES
+            // =========================
+            int iva = (int) (subTotal * 0.19);
+            float total = subTotal + iva;
 
-            model.setDetails(details);
+            invoice.setSubTotal(subTotal);
+            invoice.setIva(iva);
+            invoice.setTotal(total);
+            invoice.setDetails(details);
 
-            invoiceDao.insertFullInvoice(model);
+            // =========================
+            // GUARDAR EN BD
+            // =========================
+            invoiceDao.insertFullInvoice(invoice);
 
-            request.setAttribute("loginMessage", "Factura generada con éxito");
-
-            // PRG pattern (mejor práctica)
+            // =========================
+            //  RESPUESTA
+            // =========================
             response.sendRedirect("invoices");
-            return;
 
-        } catch (NumberFormatException e) {
-
-            request.setAttribute("loginMessage", "Datos inválidos, verifique los campos");
+        } catch (Exception e) {
             e.printStackTrace();
 
+            request.setAttribute("loginMessage", "Error al procesar la factura");
             request.getRequestDispatcher("/WEB-INF/views/invoices/invoice-list.jsp")
                     .forward(request, response);
         }

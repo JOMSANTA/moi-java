@@ -21,10 +21,10 @@
         <h1 class="factura">Cliente</h1>
         <input type="number" name="idClient" id="idClient" placeholder="Numero documento"><br>
         <input type="text" name="name" id="name" placeholder="Nombre Cliente"><br>
-        <input type="text" name="lastName" id="lastName" placeholder="Apellido"><br>
+        <input type="text" name="lastname" id="lastname" placeholder="Apellido"><br>
         <input type="number" name="cel" id="cel" placeholder= "celular"><br>
         <input type="email" name="email" id="email" placeholder="Correo electronico"><br>
-        <input type="text" name="adress" id="adress" placeholder="Direccion residencia"><br>
+        <input type="text" name="address" id="address" placeholder="Direccion residencia"><br>
         <input type="submit" value="Enviar" class= "en"><br>
         <input type="reset"  value= "Reset" class= "rs"></div>
 

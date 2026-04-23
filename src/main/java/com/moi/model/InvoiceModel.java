@@ -1,117 +1,75 @@
 package com.moi.model;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class InvoiceModel {
 
-
-    private String fecha;//PREGUNTAR POR ESTO
+    private long id;
+    private LocalDateTime date;
 
     private long idClient;
-    private String nombre;
-    private int factura;
-    private int codEmpleado;
-    private String producto;
-    private String idProduct;
-    private String imei;
-    private int cantidad;
-    private float valorUnitario;
+    private String name; // nombre del cliente
+    private int invoice;
+    private int codEmployee;
+
     private float subTotal;
     private int iva;
     private float total;
 
+    // Lista de detalles (productos)
     private List<InvoiceDetailModel> details;
 
-    public List<InvoiceDetailModel> getDetails() {
-        return details;
+    public InvoiceModel() {}
+
+    // GETTERS Y SETTERS
+
+    public long getId() {
+        return id;
     }
 
-    public void setDetails(List<InvoiceDetailModel> details) {
-        this.details = details;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public InvoiceModel(){
-
+    public LocalDateTime getDate() {
+        return date;
     }
 
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setDate(LocalDateTime date) {
+        this.date = date;
     }
 
     public long getIdClient() {
         return idClient;
     }
 
-    public void setIdClient(long documento) {
-        this.idClient = documento;
+    public void setIdClient(long idClient) {
+        this.idClient = idClient;
     }
 
-    public int getFactura() {
-        return factura;
+    public String getName() {
+        return name;
     }
 
-    public void setFactura(int factura) {
-        this.factura = factura;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getCodEmpleado() {
-        return codEmpleado;
+    public int getInvoice() {
+        return invoice;
     }
 
-    public void setCodEmpleado(int codEmpleado) {
-        this.codEmpleado = codEmpleado;
+    public void setInvoice(int invoice) {
+        this.invoice = invoice;
     }
 
-    public String getProducto() {
-        return producto;
+    public int getCodEmployee() {
+        return codEmployee;
     }
 
-    public void setProducto(String producto) {
-        this.producto = producto;
-    }
-
-    public String getIdProduct() {
-        return idProduct;
-    }
-
-    public void setIdProduct(String idProduct) {
-        this.idProduct = idProduct;
-    }
-
-    public String getImei() {
-        return imei;
-    }
-
-    public void setImei(String imei) {
-        this.imei = imei;
-    }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public float getValorUnitario() {
-        return valorUnitario;
-    }
-
-    public void setValorUnitario(float valorUnitario) {
-        this.valorUnitario = valorUnitario;
+    public void setCodEmployee(int codEmployee) {
+        this.codEmployee = codEmployee;
     }
 
     public float getSubTotal() {
@@ -138,5 +96,11 @@ public class InvoiceModel {
         this.total = total;
     }
 
+    public List<InvoiceDetailModel> getDetails() {
+        return details;
+    }
 
+    public void setDetails(List<InvoiceDetailModel> details) {
+        this.details = details;
+    }
 }

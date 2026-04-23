@@ -11,7 +11,7 @@ public class PayrollDAOImpl  implements PayrollDAO{
 
     @Override
     public void insertPay(PayrollModel model) {
-    String query = "INSERT INTO moi.payroll (date,codigo,nombre,basico,prepago,postpago,detalle,otros,subTotal,total) VALUES (?,?,?,?,?,?,?,?,?,?);";
+    String query = "INSERT INTO moi.payroll (date,code,name,basico,prepago,postpago,detalle,otros,subtotal,total) VALUES (?,?,?,?,?,?,?,?,?,?);";
 
 
     try (Connection connection = ConexionDb.getConnection();
@@ -19,8 +19,8 @@ public class PayrollDAOImpl  implements PayrollDAO{
 
 
         preparedStatement.setString(1,model.getDate());
-        preparedStatement.setInt(2,model.getCodigo());
-        preparedStatement.setString(3,model.getNombre());
+        preparedStatement.setInt(2,model.getCode());
+        preparedStatement.setString(3,model.getName());
         preparedStatement.setInt(4,model.getBasico());
         preparedStatement.setInt(5,model.getPrepago());
         preparedStatement.setInt(6,model.getPostpago());
@@ -53,8 +53,8 @@ public class PayrollDAOImpl  implements PayrollDAO{
 
                 PayrollModel payrollModel = new PayrollModel();
                 payrollModel.setDate(resultSet.getString("date"));
-                payrollModel.setCodigo(resultSet.getInt("codigo"));
-                payrollModel.setNombre(resultSet.getString("nombre"));
+                payrollModel.setCode(resultSet.getInt("code"));
+                payrollModel.setName(resultSet.getString("name"));
                 payrollModel.setBasico(resultSet.getInt("basico"));
                 payrollModel.setPrepago(resultSet.getInt("prepago"));
                 payrollModel.setPostpago(resultSet.getInt("postpago"));
@@ -74,27 +74,27 @@ public class PayrollDAOImpl  implements PayrollDAO{
     }
 
     @Override
-    public PayrollModel getPayByCodigo(int codigo) {
+    public PayrollModel getPayByCodigo(int code) {
         return null;
     }
 
     @Override
-    public PayrollModel getPayByDocumento(int documento) {
+    public PayrollModel getPayByDocumento(int document) {
         return null;
     }
 
     @Override
-    public PayrollModel getPayByNombre(String nombre) {
+    public PayrollModel getPayByNombre(String name) {
         return null;
     }
 
     @Override
-    public void updatePay(int documento, PayrollModel model) {
+    public void updatePay(int document, PayrollModel model) {
 
     }
 
     @Override
-    public void deletePay(int documento) {
+    public void deletePay(int document) {
 
     }
 }

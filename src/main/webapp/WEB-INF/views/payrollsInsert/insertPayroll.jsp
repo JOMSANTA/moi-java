@@ -19,7 +19,7 @@
     </div>
     <div class="fondo">
        <div class="general">
-         <form class="pay" action="payrollsInsert" method= "post">
+         <form class="pay" action="payrolls" method= "post">
           <div class="ent">
              <table>
                <tr>
@@ -37,15 +37,15 @@
 
                <tr>
                 <td> <input type="date" name="date" id="date">  </td>
-                <td> <input type="text" name="codigo" id="codigo"> </td>
-                <td> <input type="text" name="nombre" id="nombre"> </td>
-                <td> <input type="int" name="basico" id="basico"> </td>
-                <td> <input type="int" name="prepago" id="prepago"> </td>
-                <td> <input type="int" name="postpago" id="postpago"> </td>
+                <td> <input type="text" name="code" id="code"> </td>
+                <td> <input type="text" name="name" id="name"> </td>
+                <td> <input type="number" name="basico" id="basico"> </td>
+                <td> <input type="number" name="prepago" id="prepago"> </td>
+                <td> <input type="number" name="postpago" id="postpago"> </td>
                 <td> <input type="text" name="detalle" id="detalle"> </td>
-                <td> <input type="int" name="otros" id="otros"> </td>
-                <td> <input type="int" name="subtotal" id="subtotal"> </td>
-                <td> <input type="int" name="total" id="total"> </td>
+                <td> <input type="number" name="otros" id="otros"> </td>
+                <td> <input type="number" name="subtotal" id="subtotal"> </td>
+                <td> <input type="number" name="total" id="total"> </td>
                </tr>
              </table>
           </div>
@@ -77,8 +77,8 @@
                   <% PayrollModel payroll = (PayrollModel) payrollsInsert.get(i); %>
                <tr>
                  <td><%= payroll.getDate() %></td>
-                 <td><%= payroll.getCodigo() %></td>
-                 <td><%= payroll.getNombre() %></td>
+                 <td><%= payroll.getCode() %></td>
+                 <td><%= payroll.getName() %></td>
                  <td><%= payroll.getBasico() %></td>
                  <td><%= payroll.getPrepago() %></td>
                  <td><%= payroll.getPostpago() %></td>

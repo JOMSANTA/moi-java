@@ -41,8 +41,8 @@ public class InsertPayrollServletController extends HttpServlet {
 
             PayrollModel model = new PayrollModel();
             model.setDate(date != null ? date : "");
-            model.setCodigo(Integer.parseInt(codigo));
-            model.setNombre(nombre);
+            model.setCode(Integer.parseInt(codigo));
+            model.setName(nombre);
             model.setBasico(Integer.parseInt(basico));
             model.setPrepago(Integer.parseInt(prepago));
             model.setPostpago(Integer.parseInt(postpago));

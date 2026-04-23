@@ -14,20 +14,19 @@ public class AccountDAOImpl implements AccountDAO {
 
     @Override
     public void insertAccount(AccountingModel model) {
-        String Query = "INSERT INTO `moi`.`accounting` (`date`, `invoice`, `description`, `detail`, `quantity`, `income`, `expenses`, `total`) VALUES (?, ?,?,?,?,?,?,?);";
+        String Query = "INSERT INTO `moi`.`accounting` (`date`,`description`, `detail`, `quantity`, `income`, `expenses`, `total`) VALUES (?,?,?,?,?,?,?);";
 
         try (Connection connection = ConexionDb.getConnection();
              PreparedStatement preparedStatement= connection.prepareStatement(Query)){
 
 
             preparedStatement.setString(1,model.getDate());
-            preparedStatement.setInt(2,model.getInvoice());
-            preparedStatement.setString(3,model.getDescription());
-            preparedStatement.setString(4,model.getDetail());
-            preparedStatement.setInt(5,model.getQuantity());
-            preparedStatement.setInt(6,model.getIncome());
-            preparedStatement.setInt(7,model.getExpenses());
-            preparedStatement.setInt(8,model.getTotal());
+            preparedStatement.setString(2,model.getDescription());
+            preparedStatement.setString(3,model.getDetail());
+            preparedStatement.setObject(4,model.getQuantity());
+            preparedStatement.setObject(5,model.getIncome());
+            preparedStatement.setObject(6,model.getExpenses());
+            preparedStatement.setObject(7,model.getTotal());
 
             preparedStatement.executeUpdate();
 
@@ -53,9 +52,14 @@ public class AccountDAOImpl implements AccountDAO {
                 accountingModel.setInvoice(resultSet.getInt("invoice"));
                 accountingModel.setDescription(resultSet.getString("description"));
                 accountingModel.setDetail(resultSet.getString("detail"));
-                accountingModel.setQuantity(resultSet.getInt("quantity"));
-                accountingModel.setIncome(resultSet.getInt("income"));
-                accountingModel.setExpenses(resultSet.getInt("expenses"));
+                Integer quantity = resultSet.getObject("quantity", Integer.class);
+                accountingModel.setQuantity(quantity);
+                Integer income = resultSet.getObject("income",Integer.class);
+                accountingModel.setIncome(income);
+                Integer expenses = resultSet.getObject("expenses",Integer.class);
+                accountingModel.setExpenses(expenses);
+                Integer total = resultSet.getObject("total",Integer.class);
+                accountingModel.setTotal(total);
 
                 accounting.add(accountingModel);
             }

@@ -27,15 +27,15 @@ public class RegisterClientsServletController extends HttpServlet {
 
         String idClient = request.getParameter("idClient");
         String name = request.getParameter("name");
-        String lastName = request.getParameter("lastName");
+        String lastname = request.getParameter("lastname");
         String cel = request.getParameter("cel");
         String email = request.getParameter("email");
-        String adress = request.getParameter("adress");
+        String address = request.getParameter("address");
 
         String errorMessage = null;
 
-        if (isNullOrEmpty(idClient) || isNullOrEmpty(name) || isNullOrEmpty(lastName) ||
-                isNullOrEmpty(cel) || isNullOrEmpty(email) || isNullOrEmpty(adress)){
+        if (isNullOrEmpty(idClient) || isNullOrEmpty(name) || isNullOrEmpty(lastname) ||
+                isNullOrEmpty(cel) || isNullOrEmpty(email) || isNullOrEmpty(address)){
             errorMessage= "Todos los campos son obligatorios. ";
         }  else if (!cel.matches("\\d{10}")) {
             errorMessage = "Verifica el numero celular.";
@@ -50,17 +50,21 @@ public class RegisterClientsServletController extends HttpServlet {
             ClientModel model = new ClientModel();
             model.setIdClient(Long.parseLong(idClient));
             model.setName(name);
-            model.setLastName(lastName);
-            model.setCel(Integer.parseInt(cel));
+            model.setLastname(lastname);
+            model.setCel(cel);
             model.setEmail(email);
-            model.setAdress(adress);
+            model.setAddress(address);
 
-            ClientDAOImpl clientDAO = new ClientDAOImpl();
+        ClientDAOImpl clientDAO = new ClientDAOImpl();
+
+        try {
             clientDAO.insertClient(model);
-
             request.setAttribute("successMessage", "Cliente registrado correctamente");
-            request.getRequestDispatcher("/WEB-INF/views/clients/registerClients.jsp").forward(request, response);
+        } catch (Exception e) {
+            request.setAttribute("errorMessage", e.getMessage());
+        }
 
+        request.getRequestDispatcher("/WEB-INF/views/clients/registerClients.jsp").forward(request, response);
 
         }
         private boolean isNullOrEmpty(String str){

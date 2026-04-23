@@ -12,7 +12,7 @@ public class AuthService {
     public UserModel validate(String username, String password) {
         UserModel user = userDAO.getUserByUsername(username);
 
-        // 🔍 DEBUG aquí
+        //  DEBUG
         System.out.println("User from DB: " + user);
 
         if (user == null) return null;
@@ -21,9 +21,9 @@ public class AuthService {
 
         boolean isValid = PasswordUtil.matches(password, user.getPassword());
 
-        // ✅ AQ
+        //  AQ
         System.out.println("Password matches: " + isValid);
-        // 🔍 PRUEBA
+        //  PRUEBA
         System.out.println("Test matches admin1234: " +
                 PasswordUtil.matches("admin1234", user.getPassword()));
 

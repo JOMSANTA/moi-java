@@ -4,88 +4,88 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class EmployeeModel {
-  private long documento;
-  private String nombres;
-  private  String apellidos;
-  private int codigo;
-  private long celular;
-  private String correo;
-  private  String cargo;
-  private LocalDate fechaNacimiento;
-  private String sucursal;
+  private long document;
+  private String name;
+  private  String lastname;
+  private int code;
+  private long cel;
+  private String email;
+  private  String role;
+  private LocalDate birthdate;
+  private String branch;
 
     public EmployeeModel() {
     }
 
-    public long getDocumento() {
-        return documento;
+    public long getDocument() {
+        return document;
     }
 
-    public void setDocumento(long documento) {
-        this.documento = documento;
+    public void setDocument(long document) {
+        this.document = document;
     }
 
-    public String getNombres() {
-        return nombres;
+    public String getName() {
+        return name;
     }
 
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getApellidos() {
-        return apellidos;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public int getCodigo() {
-        return codigo;
+    public int getCode() {
+        return code;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setCode(int code) {
+        this.code = code;
     }
 
-    public long getCelular() {
-        return celular;
+    public long getCel() {
+        return cel;
     }
 
-    public void setCelular(long celular) {
-        this.celular = celular;
+    public void setCel(long cel) {
+        this.cel = cel;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getCargo() {
-        return cargo;
+    public String getRole() {
+        return role;
     }
 
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
+    public void setRole(String role) {
+        this.role = role;
     }
 
-    public LocalDate getFechaNacimiento() {
-        return fechaNacimiento;
+    public String getBranch() {
+        return branch;
     }
 
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
+    public void setBranch(String branch) {
+        this.branch = branch;
     }
 
-    public String getSucursal() {
-        return sucursal;
+    public LocalDate getBirthdate() {
+        return birthdate;
     }
 
-    public void setSucursal(String sucursal) {
-        this.sucursal = sucursal;
+    public void setBirthdate(LocalDate birthdate) {
+        this.birthdate = birthdate;
     }
 }

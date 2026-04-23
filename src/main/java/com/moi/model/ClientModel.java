@@ -4,10 +4,10 @@ public class ClientModel {
 
     private long idClient;
     private String name;
-    private String lastName;
-    private int cel;
+    private String lastname;
+    private String cel;
     private String email;
-    private String adress;
+    private String address;
 
     public ClientModel() {
     }
@@ -28,19 +28,19 @@ public class ClientModel {
         this.name = name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastName) {
+        this.lastname = lastName;
     }
 
-    public int getCel() {
+    public String getCel() {
         return cel;
     }
 
-    public void setCel(int cel) {
+    public void setCel(String cel) {
         this.cel = cel;
     }
 
@@ -52,11 +52,11 @@ public class ClientModel {
         this.email = email;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String adress) {
+        this.address = adress;
     }
 }
