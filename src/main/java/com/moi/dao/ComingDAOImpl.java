@@ -1,6 +1,8 @@
 package com.moi.dao;
 
 import com.moi.model.InventoryModel;
+import com.moi.ConnectionDb.ConexionDb;
+
 
 
 import java.sql.*;
@@ -8,22 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ComingDAOImpl implements ComingDAO{
-
-    private static final String JDBC_URL = System.getenv("MYSQL_JDBC_URL");
-    private static final String JDBC_USER =System.getenv("MYSQL_JDBC_USER");
-    private static final String JDBC_PASSWORD = System.getenv("MYSQL_JDBC_PASSWORD");
-
-    static {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            System.err.println("falla en el jbdc driver");
-        }
-    }
-
-    private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
-    }
 
 
     @Override
@@ -35,12 +21,21 @@ public class ComingDAOImpl implements ComingDAO{
     public  List<InventoryModel> getProductByComing() {
 
         List<InventoryModel> productList = new ArrayList<>();
-        String stringQuery = " SELECT * FROM invent ORDER BY coming DESC";
+        String stringQuery =
+                "SELECT p.idProduct, p.name, p.coming, i.quantity, "
+                +"COALESCE(GROUP_CONCAT(im.imei ORDER BY im.imei), '') AS imeis "
+                + "FROM product p "
+                + "LEFT JOIN inventory i ON p.idProduct = i.idProduct "
+                + "LEFT JOIN imeis im ON p.idProduct = im.idProduct "
+                + "WHERE i.quantity > 0 "
+                + "GROUP BY p.idProduct, p.name, p.coming, i.quantity "
+                + "ORDER BY p.coming DESC";
 
-        try (Connection connection = getConnection();
-            PreparedStatement preparedStatement= connection.prepareStatement(stringQuery);
-
-        ResultSet resultSet = preparedStatement.executeQuery()){
+        try (
+        Connection connection = ConexionDb.getConnection();
+        PreparedStatement preparedStatement= connection.prepareStatement(stringQuery);
+        ResultSet resultSet = preparedStatement.executeQuery()
+        ){
 
         while (resultSet.next()) {
             InventoryModel product = new InventoryModel();
@@ -48,6 +43,7 @@ public class ComingDAOImpl implements ComingDAO{
             product.setName(resultSet.getString("name"));
             product.setQuantity(resultSet.getInt("quantity"));
             product.setComing(resultSet.getString("coming"));
+            product.setImei(resultSet.getString("imeis"));
 
 
             productList.add(product);

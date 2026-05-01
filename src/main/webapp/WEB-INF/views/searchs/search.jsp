@@ -28,16 +28,16 @@
       <th>color</th>
       <th>imei </th>
       <th>codigo</th>
-      <th>cant</th>
+
 
       </tr>
 
       <tr>
       <td> <input type="text" name="name" id="name"> </td>
       <td> <input type="text" name="color" id="color"> </td>
-      <td> <input type="int" name="imei" id="imei"> </td>
+      <td> <input type="int" name="imeis" id="imeis"> </td>
       <td> <input type="text" name="code" id="code"> </td>
-      <td> <input type="int" name="quantity" id="quantity"> </td>
+
       </tr>
       </table>
       </div>
@@ -67,7 +67,9 @@
                          <tr>
                                  <td><%= search.getName() %></td>
                                  <td><%= search.getColor() %></td>
-                                 <td><%= search.getImei() %></td>
+                                 <td>
+                                 <%= String.join(", ", search.getImeis()) %>
+                                 </td>
                                  <td><%= search.getCode() %></td>
                                   <td><%= search.getComing() %></td>
                                   <td><%= search.getQuantity() %></td>
@@ -75,20 +77,15 @@
 
                              </tr>
 
-                             <%
-                                                     }
-                                                 } else {
-                                             %>
-                                                 <tr><td colspan="7">No se encontraron resultados</td></tr>
-
+                             <% }
+                              } else {%>
+                         <tr><td colspan="7">No se encontraron resultados</td></tr>
                              <% } %>
                           </table>
 
-            </div>
-
-         </div>
-
+      </div>
     </div>
+   </div>
  </div>
 
 </body>

@@ -1,15 +1,12 @@
 package com.moi.dao;
-
-import com.moi.model.EmployeeModel;
-import com.moi.model.InventoryModel;
 import com.moi.model.SearchModel;
 
 import java.util.List;
 
 public interface SearchDAO {
 
-    List<SearchModel>getAllSearch();
-    SearchModel getProductByName(String name);
+    List<SearchModel> getAllSearch();
+    List<SearchModel> getProductByName(String name);
     SearchModel getProductByImei(long imeiProducto);
     SearchModel getProductByCodigo(String codigo);
     SearchModel getProductByColor(String colorProducto);

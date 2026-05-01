@@ -1,10 +1,12 @@
 package com.moi.model;
+import java.util.List;
+import java.util.ArrayList;
 
 public class SearchModel {
 
     private String name;
     private String color;
-    private long imei;
+    private List<String> imeis;
     private String code;
     private String coming;
     private int quantity;
@@ -27,14 +29,6 @@ public class SearchModel {
 
     public void setColor(String color) {
         this.color = color;
-    }
-
-    public long getImei() {
-        return imei;
-    }
-
-    public void setImei(long imei) {
-        this.imei = imei;
     }
 
     public String getCode() {
@@ -67,5 +61,13 @@ public class SearchModel {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public List<String> getImeis() {
+        return imeis;
+    }
+
+    public void setImeis(List<String> imeis) {
+        this.imeis = imeis;
     }
 }

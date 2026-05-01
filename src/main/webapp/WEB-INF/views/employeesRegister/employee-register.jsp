@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>formulario empleados</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/insertPayroll.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/inventory.css?">
 </head>
 <body>
 <div class="tod">

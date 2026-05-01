@@ -4,6 +4,10 @@ services:
     image: localhost:5000/moi-java
     networks:
       - backend-nw
+    environment:
+      - MYSQL_JDBC_URL=${MYSQL_JDBC_URL}
+      - MYSQL_JDBC_USER=${MYSQL_JDBC_USER}
+      - MYSQL_JDBC_PASSWORD=${MYSQL_JDBC_PASSWORD}
     ports:
       - "8007:8080"
     deploy:

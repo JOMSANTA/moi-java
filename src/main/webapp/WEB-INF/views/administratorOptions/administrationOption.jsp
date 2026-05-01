@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrar</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admOption.css?">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admOption.css">
 </head>
 <body>
     <div class="general">

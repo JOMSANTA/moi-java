@@ -12,9 +12,9 @@ import java.sql.*;
 
 @WebServlet("/loginAdm")
 public class LoginAdmServletController extends HttpServlet {
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/moi";
-    private static final String JDBC_USER = "root";
-    private static final String JDBC_PASSWORD = "root123";
+    private static final String JDBC_URL = System.getenv("MYSQL_JDBC_URL");
+    private static final String JDBC_USER =System.getenv("MYSQL_JDBC_USER");
+    private static final String JDBC_PASSWORD = System.getenv("MYSQL_JDBC_PASSWORD");
 
     static {
         try {
@@ -44,7 +44,7 @@ public class LoginAdmServletController extends HttpServlet {
 
 
 
-        String query = "SELECT * FROM moi.adminAuthorized WHERE username = ? AND password = ?";
+        String query = "SELECT * FROM adminauthorized WHERE username = ? AND password = ?";
 
 
         try (Connection connection = getConnection();

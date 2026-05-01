@@ -1,21 +1,34 @@
 package com.moi.model;
 
+import java.util.List;
+
 public class InvoiceModel {
 
 
     private String fecha;//PREGUNTAR POR ESTO
+
+    private long idClient;
     private String nombre;
-    private long documento;
     private int factura;
     private int codEmpleado;
     private String producto;
-    private String codigoProducto;
-    private long imei;
+    private String idProduct;
+    private String imei;
     private int cantidad;
     private float valorUnitario;
     private float subTotal;
     private int iva;
     private float total;
+
+    private List<InvoiceDetailModel> details;
+
+    public List<InvoiceDetailModel> getDetails() {
+        return details;
+    }
+
+    public void setDetails(List<InvoiceDetailModel> details) {
+        this.details = details;
+    }
 
     public InvoiceModel(){
 
@@ -37,12 +50,12 @@ public class InvoiceModel {
         this.nombre = nombre;
     }
 
-    public long getDocumento() {
-        return documento;
+    public long getIdClient() {
+        return idClient;
     }
 
-    public void setDocumento(long documento) {
-        this.documento = documento;
+    public void setIdClient(long documento) {
+        this.idClient = documento;
     }
 
     public int getFactura() {
@@ -69,19 +82,19 @@ public class InvoiceModel {
         this.producto = producto;
     }
 
-    public String getCodigoProducto() {
-        return codigoProducto;
+    public String getIdProduct() {
+        return idProduct;
     }
 
-    public void setCodigoProducto(String codigoProducto) {
-        this.codigoProducto = codigoProducto;
+    public void setIdProduct(String idProduct) {
+        this.idProduct = idProduct;
     }
 
-    public long getImei() {
+    public String getImei() {
         return imei;
     }
 
-    public void setImei(long imei) {
+    public void setImei(String imei) {
         this.imei = imei;
     }
 
@@ -124,4 +137,6 @@ public class InvoiceModel {
     public void setTotal(float total) {
         this.total = total;
     }
+
+
 }

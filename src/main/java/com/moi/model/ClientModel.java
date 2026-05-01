@@ -2,39 +2,38 @@ package com.moi.model;
 
 public class ClientModel {
 
-    private long idCliente;
-    private String nombre;
-    private String apellido;
+    private long idClient;
+    private String name;
+    private String lastName;
     private int cel;
     private String email;
-    private String direccion;
-
+    private String adress;
 
     public ClientModel() {
     }
 
-    public long getIdCliente() {
-        return idCliente;
+    public long getIdClient() {
+        return idClient;
     }
 
-    public void setIdCliente(long idCliente) {
-        this.idCliente = idCliente;
+    public void setIdClient(long idClient) {
+        this.idClient = idClient;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public int getCel() {
@@ -53,11 +52,11 @@ public class ClientModel {
         this.email = email;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getAdress() {
+        return adress;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setAdress(String adress) {
+        this.adress = adress;
     }
 }
